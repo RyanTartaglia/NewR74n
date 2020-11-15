@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Search for emojis and other Unicode characters using keywords.">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, 4755, uwu, unicode, emoji, symbols, characters, search">
+    <meta name="author" content="R74n">
+    <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+    <meta name="twitter:image:alt" content="R74n">
+    <title>UniSearch - R74n</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
+    <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
+    <script src="characters.js"></script>
+    <script>
+        function singular(a){
+            if (a.length < 3) { return a; }
+            else if (a.endsWith("ies")) { return a.slice(0, -3)+"y"; }
+            else if (a.endsWith("es")) { return a.slice(0, -2); }
+            else if (a.endsWith("s")) { return a.slice(0, -1); }
+        }
+        function searchcharacters(){
+            var Search = document.getElementById("SearchBox").value.toLowerCase();
+            var ResultBox = document.getElementById("ResultBox");
+            SearchS = singular(Search);
+            Results = "";
+            added = [];
+            for (var key in characters) {
+                if ((characters[key].indexOf(Search) >= 0) || (characters[key].indexOf(SearchS) >= 0)) {
+                  Results = Results + " " + key + " ";
+                  added.push(key);
+                }
+              }
+            SearchSplit = Search.split(" ");
+            for (var key2 in characters) {
+                if (!(added.indexOf(key2) >= 0)) {
+                    for(var i = 0; i<SearchSplit.length; i++) {
+                        word = SearchSplit[i];
+                        wordS = singular(word);
+                        if (((characters[key2].indexOf(word) >= 0) || (characters[key2].indexOf(wordS) >= 0)) && (!(added.indexOf(key2) >= 0))) {
+                            Results = Results + " " + key2 + " ";
+                            added.push(key2);
+                        }
+                    }
+                }
+            }
+            ResultBox.value = Results;
+        }
+        function searchfor(a){
+            document.getElementById("SearchBox").value = a;
+            searchcharacters();
+        }
+    </script>
+    <!-- UniSearch by R74n.com -->
+    <style>
+        input[type=text] {font-size: 45px;text-align: center;}
+        .search {height:100px;width:35%;}
+        .result {height:100px;width:75%;}
+        body{padding: 20px;font-size: larger;font-family:Arial}
+        
+        .pointlesssites {transition: all .2s ease-in-out;}
+        .pointlesssites:hover {font-size: 120%;}
+        
+        .hoversearch {transition: all .2s ease-in-out;color:red;cursor:pointer;}
+        .hoversearch:hover {color:rgb(255, 79, 79);font-size:105%;}
+        
+        #try {transition: all .2s ease-in-out;cursor:pointer;}
+        #try:hover {font-size: 110%;}
+        .try1:hover {color:red;}
+        .try2:hover {color:lime;}
+        .try3:hover {color:brown;}
+        .try4:hover {color:yellow;}
+        .try5:hover {color:red;}
+        .try6:hover {color:blue;text-shadow: 0px 0px 5px red;}
+        .try7:hover {color:#66a83a;}
+        .try8:hover {color:white;}
+    </style>
+
+</head>
+
+<body>
+
+
+<a href="https://R74n.com" class="backbutton">⬅</a>
+<h1 class="pagetitle">UniSearch</h1><br>
+<div class="content" style="text-align: center;">
+
+  <form id="SearchForm" onsubmit="searchcharacters(); return false;">
+    <input id="SearchBox" type="text" title="Type a query here and your characters will appear at the bottom, if any are found.&#013;Nothing popping up? Try a different query. (And make sure you click enter!)" id="SearchBox" autocomplete="off" autofocus="True" class="search">
+</form><br>
+
+<input type="text" title="Your characters will appear here! Type a query in the box above." id="ResultBox" class="result"><br><br>
+
+<p>✨🆕 Unicode 13, Plural Support, All Families 🆕✨</p><br>
+
+Type your search in the top box, and related emojis or characters will appear in the bottom box.<br><br>
+
+If you're confused, try typing <span class="hoversearch" onclick="searchfor('cat')">"cat"</span> in the top box and pressing [Enter].<br>
+You may also have to scroll sideways on the box to see all results.<br><br>
+
+<b><span style="font-size:20px;">Try These</span><br>
+<span id="try" class="try2" onclick="searchfor('insect')">🐛 Insect 🐛</span>&nbsp;&nbsp;&nbsp;
+<span id="try" class="try3" onclick="searchfor('dog')">🐶 Dog 🐶</span>&nbsp;&nbsp;&nbsp;
+<span id="try" class="try4" onclick="searchfor('star')">⭐ Star ⭐</span>&nbsp;&nbsp;&nbsp;
+<span id="try" class="try5" onclick="searchfor('flag')">🎌 Flag 🎌</span><br>
+<span id="try" class="try6" onclick="searchfor('long')">❗ Long ❗</span>&nbsp;&nbsp;&nbsp;
+<span id="try" class="try7" onclick="searchfor('fruit')">🍋 Fruit 🍋</span>&nbsp;&nbsp;&nbsp;
+<span id="try" class="try8" onclick="searchfor('snow')">⛄ Snow ⛄</span><br>
+
+</b>
+
+<br><br><a href="http://r74n.com/">Brought to you by R74N.</a>
+</small><br><br>
+
+<p style="font-size:15px">No, this doesn't have every unicode character. Yes, it has every emoji. Yes, it has ZWJ sequences.<br>It's not really a "search" in the sense of a search engine. It's more like every character is assigned keywords that you can type!</p>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<!-- i like having this but ublock blocks these things anyway -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-93720349-6');
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Tools for generating UUIDs for Minecraft.">
+    <meta name="keywords" content="R74n, RyanUwU, slweeb, 4755, uwu, head, mob, uuid, command, entity">
+    <meta name="author" content="R74n">
+    <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+    <meta name="twitter:image:alt" content="R74n">
+    <title>Minecraft UUID Generator - R74n</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
+    <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
+    <script src="scripts.js"></script>
+
+</head>
+
+<body>
+
+
+<a href="." class="backbutton">⬅</a>
+<h1 class="pagetitle">Minecraft UUID Generator</h1><br>
+<div class="content">
+
+Click the button to generate a UUID.
+<br><br>
+<input type="button" value="Generate UUID" onclick="setValue('GeneratedText',generateUUID());show();">
+
+<br><br>
+<div style="display:none" id="GeneratedDiv">
+Your UUID:
+<input type="button" value="Copy" id="CopyButton" onclick="copyText();">
+<br><br>
+<textarea id="GeneratedText" style="width:500px"></textarea>
+
+</div>
+
+
+
+</div>
+
+
+
+
+<!-- i like having this but ublock blocks these things anyway -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-93720349-6');
+</script>
+
+
+
+</body>
+</html>

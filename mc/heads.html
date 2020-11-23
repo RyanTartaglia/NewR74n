@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Huge library of 600+ HD heads for Minecraft.">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, heads, player heads, HD, HD heads, 4K heads, realistic heads, database">
+    <meta name="author" content="R74n">
+    <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+    <meta name="twitter:image:alt" content="R74n">
+    <title>Minecraft HD Heads - R74n</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="../normalize.css"/>
+    <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
+    <script src="scripts.js"></script>
+    <script src="heads.js"></script>
+    <script>
+      heads = sortOnKeys(heads);
+function sortOnKeys(dict) {
+    var sorted = [];
+    for(var key in dict) {
+        sorted[sorted.length] = key;
+    }
+    sorted.sort();
+    var tempDict = {};
+    for(var i = 0; i < sorted.length; i++) {
+        tempDict[sorted[i]] = dict[sorted[i]];
+    }
+    return tempDict;
+}
+        
+function clearheads() {
+    var selectElement = document.getElementById("HeadSelect");
+    var i, L = selectElement.options.length - 1;
+    for(i = L; i >= 0; i--) {
+       selectElement.remove(i);
+    }
+    var option = document.createElement("option");
+    option.text = "Select a Head";
+    option.selected = true;
+    option.disabled = true;
+    HeadSelect.add(option);
+    
+}
+
+function searchheads(){
+    clearheads();
+    
+    var Search = document.getElementById("SearchBox").value.toLowerCase();
+    var HeadSelect = document.getElementById("HeadSelect");
+    added = [];
+    for (var key in heads) {
+        value = heads[key];
+        if (((value.indexOf("???") >= 0)||(value.indexOf("(Duplicate)") >= 0)) && (Search=="")) {
+          continue;
+        }
+        if (value.toLowerCase().indexOf(Search) >= 0) {
+            var option = document.createElement("option");
+            option.text = value;
+            option.value = key;
+            HeadSelect.add(option);
+            added.push(key);
+        }
+    }
+    
+
+        }
+
+
+
+function updateHead() {
+        var HeadSelect = document.getElementById("HeadSelect");
+        var Selected = HeadSelect.options[HeadSelect.selectedIndex];
+        var HeadFile = Selected.value;
+        var HeadName = Selected.text;
+
+        HeadURL = "https://education.minecraft.net/wp-content/uploads/"+HeadFile;
+        HeadTexture = '{"textures":{"SKIN":{"url":"'+HeadURL+'"}}}';
+        HeadB64 = btoa(HeadTexture);
+        HeadCommand = '/give @p player_head{SkullOwner:{Id:'+generateUUID()+',Name:"'+HeadName+'",Properties:{textures:[{Value:"'+HeadB64+'"}]}}}'
+        setValue("GeneratedText",HeadCommand);
+
+        setText("HeadDesc","<br><br>"+HeadName+" ("+HeadFile+")<br><br><a href='"+HeadURL+"'>"+HeadURL+"</a>"+"<br><br><img src='"+HeadURL+"' class='textureimg'><br><br>");
+
+
+
+      }
+
+    </script>
+
+    <style>
+      .textureimg {
+        width:500px;
+        background-color:gray;
+      }
+    </style>
+
+</head>
+
+<body>
+
+
+<a href="." class="backbutton">⬅</a>
+<h1 class="pagetitle">Minecraft HD Heads</h1><br>
+<div class="content">
+
+This is the largest collection of HD heads for Minecraft: Java Edition.
+<br><br>
+NSFW images are specified as such.
+<br><br>
+
+<form id="SearchForm" onsubmit="searchheads();return false">
+  <input type="text" placeholder="Type to Search..." oninput="searchheads();return false;" title="Type a query here and HD heads will appear in the dropdown list." id="SearchBox" autocomplete="off" autofocus="True" class="search">
+</form><br>
+
+<select name="boxes" id="HeadSelect" onchange="updateHead();show();" style="max-width:100%;">
+  <option selected disabled hidden value="">Select a Head</option>
+</select>
+<br><br>
+<div style="display:none" id="GeneratedDiv">
+  <input type="button" value="Copy" id="CopyButton" onclick="copyText();">
+  <textarea id="GeneratedText" style="width:500px"></textarea>
+  <span id="HeadDesc"></span>
+</div>
+
+
+
+Join the <a href="https://discord.gg/8TsNvEy">Minecraft Item Cult Discord</a>
+<br>Get commands for the <a href="../box/">RyanUwU boxes</a>
+<br>Head Count: <span id="HeadCount"></span>
+<br>Duplicate and unknown heads are hidden until you search.
+<br>Try to search: Helmet, Emoji, Number, AirPods, Hat, Logo, Sign, NSFW, RyanUwU
+
+
+<script>
+  searchheads();
+  setText("HeadCount",Object.keys(heads).length);
+</script>
+
+
+
+</div>
+
+
+
+
+<!-- i like having this but ublock blocks these things anyway -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-93720349-6');
+</script>
+
+
+
+</body>
+</html>

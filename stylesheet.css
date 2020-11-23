@@ -70,6 +70,9 @@ input[type=button], button {
     outline: 0;
     margin: 4px 0;
 }
+textarea, button, input[type=button] {
+    vertical-align: middle;
+}
 input[type=button]:active, button:active {
     background-color: rgb(133, 133, 133);
 }
@@ -111,3 +114,13 @@ ul li::before {
 ul li.redbullet::before {
     color:red;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgray;
+  opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: lightgray;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: lightgray;

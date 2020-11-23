@@ -58,6 +58,7 @@ function searchheads(){
             var option = document.createElement("option");
             option.text = value;
             option.value = key;
+            option.id = key;
             HeadSelect.add(option);
             added.push(key);
         }
@@ -80,7 +81,7 @@ function updateHead() {
         HeadCommand = '/give @p player_head{SkullOwner:{Id:'+generateUUID()+',Name:"'+HeadName+'",Properties:{textures:[{Value:"'+HeadB64+'"}]}}}'
         setValue("GeneratedText",HeadCommand);
 
-        setText("HeadDesc","<br><br>"+HeadName+" ("+HeadFile+")<br><br><a href='"+HeadURL+"'>"+HeadURL+"</a>"+"<br><br><img src='"+HeadURL+"' class='textureimg'><br><br>");
+        setText("HeadDesc","<br><br>"+HeadName+" ("+HeadFile+")<br><br><a href='"+HeadURL+"'>"+HeadURL+"</a>"+"<br><br><img src='"+HeadURL+"' class='textureimg' alt='Loading "+HeadFile+"...' title='"+HeadName+"'><br><br>");
 
 
 

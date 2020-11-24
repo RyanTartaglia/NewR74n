@@ -9,13 +9,15 @@
     <meta name="viewport" content="width=devide-width, initial-scale=1.0">
     <meta name="twitter:image:alt" content="R74n">
     <title>Minecraft HD Heads - R74n</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
     <link rel="stylesheet" type="text/css" href="../normalize.css"/>
     <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
     <script src="scripts.js"></script>
     <script src="heads.js"></script>
     <script>
-      heads = sortOnKeys(heads);
 function sortOnKeys(dict) {
     var sorted = [];
     for(var key in dict) {
@@ -28,6 +30,7 @@ function sortOnKeys(dict) {
     }
     return tempDict;
 }
+heads = sortOnKeys(heads);
         
 function clearheads() {
     var selectElement = document.getElementById("HeadSelect");
@@ -54,7 +57,7 @@ function searchheads(){
         if (((value.indexOf("???") >= 0)||(value.indexOf("(Duplicate)") >= 0)) && (Search=="")) {
           continue;
         }
-        if (value.toLowerCase().indexOf(Search) >= 0) {
+        if ((value.toLowerCase().indexOf(Search) >= 0)|(key.toLowerCase().indexOf(Search) >= 0)) {
             var option = document.createElement("option");
             option.text = value;
             option.value = key;

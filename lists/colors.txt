@@ -1,0 +1,206 @@
+red
+light red
+dark red
+crimson
+maroon
+brown
+dark brown
+light brown
+orange
+dark orange
+light orange
+gold
+beige
+yellow
+dark yellow
+light yellow
+green
+dark green
+light green
+lime
+chartreuse
+blue
+dark blue
+light blue
+navy
+cyan
+teal
+violet
+indigo
+purple
+dark purple
+light purple
+black
+white
+gray
+light gray
+dark gray
+grey
+light grey
+dark grey
+silver
+pink
+magenta
+hot pink
+light pink
+dark pink
+salmon
+barn red
+blood red
+cardinal red
+carmine
+chili red
+chocolate cosmos
+cinnabar
+Cornell red
+carnelian
+scarlet
+brick red
+fire brick
+fire engine red
+garnet
+imperial red
+Indian red
+lust
+madder
+OU crimson
+Penn red
+redwood
+ruby
+rusty red
+Spanish red
+Turkey red
+vermilion
+vermillion
+coral
+coral pink
+salmon pink
+papaya whip
+peach
+apricot
+melon
+atomic tangerine
+tea rose
+carrot orange
+orange peel
+Princeton orange
+UT orange
+Spanish orange
+tangerine
+golden
+pumpkin
+saffron
+Giants orange
+tomato
+Syracuse orange
+bittersweet
+persimmon
+butterscotch
+Persian orange
+alloy orange
+burnt orange
+bittersweet shimmer
+jasper
+tiger's eye
+cream
+lemon chiffon
+xanthic
+unmellow yellow
+lemon
+maximum yellow
+mellow yellow
+royal yellow
+cyber yellow
+safety yellow
+khaki
+goldenrod
+Hunyadi yellow
+bright yellow
+bright red
+bright orange
+bright green
+bright blue
+bright purple
+pitch black
+pitch white
+Vantablack
+greenish yellow
+yellow-green
+red-orange
+artichoke green
+asparagus green
+avocado green
+fern green
+forest green
+jungle green
+laurel green
+mantis green
+mint
+mint leaf
+moss green
+dark moss green
+myrtle green
+pine green
+reseda green
+sap green
+shamrock green
+tea green
+olive
+emerald
+green earth
+Hooker's green
+jade
+malachite
+sea green
+lime green
+pale green
+pale red
+pale orange
+pale yellow
+pale blue
+pale purple
+bright mint
+dark pastel green
+pastel red
+pastel orange
+pastel yellow
+pastel green
+pastel blue
+pastel purple
+erin
+green-yellow
+harlequin
+neon red
+neon orange
+neon yellow
+neon green
+neon blue
+neon purple
+blurple
+screamin' green
+army green
+bottle green
+Brunswick green
+Castleton green
+celadon
+Dartmouth green
+feldgrau
+GO Transit green
+Gotham green
+Hunter green
+India green
+Islamic green
+Kelly green
+midnight green
+MSU green
+NDHU green
+Pakistan green
+Paris green
+Persian green
+rifle green
+Russian green
+Sacramento State green
+SGBUS green
+Spanish green
+UNT green
+UP forest green

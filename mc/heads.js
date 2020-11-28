@@ -857,4 +857,11 @@ heads = {
 'Nikolas-1.png':'??? Man',
 'kira.png':'??? Boy 👉 👈',
 
+
+'Untitled-79.png':'OnlyFans (RyanUwU) (Duplicate)',
+'onlyfans.png':'OnlyFans (RyanUwU)',
+'Untitled-80.png':'Right AirPod (RyanUwU)',
+'Untitled-81.png':'Left AirPod (RyanUwU)',
+'Untitled-82.png':'Samsung Galaxy Buds (RyanUwU)',
+
 }

@@ -863,5 +863,6 @@ heads = {
 'Untitled-80.png':'Right AirPod (RyanUwU)',
 'Untitled-81.png':'Left AirPod (RyanUwU)',
 'Untitled-82.png':'Samsung Galaxy Buds (RyanUwU)',
-
+'Untitled-83.png':'RyanUwU\'s House (RyanUwU)',
+'Untitled-84.png':'RyanUwU\'s Christmas House (RyanUwU)',
 }

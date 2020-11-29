@@ -17,15 +17,18 @@
       function savelist() {
         setCookie("itemlist",itemlist.join(" ||| "))
       }
-
-      itemlist = getCookie("itemlist");
-      if (itemlist==null) {
-        itemlist = ["air","earth","fire","water"];
-        savelist();
+      
+      function loadsave() {
+        itemlist = getCookie("itemlist");
+        if (itemlist==null) {
+          itemlist = ["air","earth","fire","water"];
+          savelist();
+        }
+        else {
+          itemlist = itemlist.split(" ||| ")
+        }
       }
-      else {
-        itemlist = itemlist.split(" ||| ")
-      }
+      loadsave();
     </script>
 
 </head>
@@ -35,8 +38,13 @@
 
 <a href="https://R74n.com" class="backbutton">⬅</a>
 <h1 class="pagetitle">Mix Everything!</h1><br>
-<div class="content">
+<div class="content" style="text-align:center;">
 
+<form id="InputForm">
+<span id="Combination"></span>
+<input type="text" autofocus style="text-align:center;">
+
+</form>
 
 
 

@@ -24,5 +24,5 @@ function cookieExists(name){
 }
 
 function setCookie(name,value) {
-  document.cookie = name + "=" + (value || "")  + "expires=Thu, 18 Dec 2100 12:00:00 UTC" + "; path=/";
+  document.cookie = name + "=" + (value || "")  + ";expires=Thu, 18 Dec 2100 12:00:00 UTC" + "; path=/";
 }

@@ -14,10 +14,17 @@
     <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
     <script src="../cookiescripts.js"></script>
     <script>
+      function savelist() {
+        setCookie("itemlist",itemlist.join(" ||| "))
+      }
+
       itemlist = getCookie("itemlist");
       if (itemlist==null) {
         itemlist = ["air","earth","fire","water"];
-        setCookie("itemlist",itemlist)
+        savelist();
+      }
+      else {
+        itemlist = itemlist.split(" ||| ")
       }
     </script>
 

@@ -23,6 +23,11 @@
         localStorage.setItem("itemlist",itemlist.join(" ||| "))
         localStorage.setItem("combolist",combolist.join(" ||| "))
       }
+      function resetsave() {
+        localStorage.removeItem("itemlist");
+        localStorage.removeItem("combolist");
+        location.reload();
+      }
       
       function loadsave() {
         itemlist = localStorage.getItem("itemlist")
@@ -153,7 +158,7 @@
 </form>
 <span id="ItemList" style="display:block;padding:20px;"></span>
 <span id="ComboList" style="display:block;padding-bottom:20px;"></span>
-
+<input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">
 
 
 

@@ -56,11 +56,25 @@
         if (newgame) {savelist();}
       }
 
+      function chooseweighted(items, chances) {
+        var sum = chances.reduce((acc, el) => acc + el, 0);
+        var acc = 0;
+        chances = chances.map(el => (acc = el + acc));
+        var rand = Math.random() * sum;
+        return items[chances.filter(el => el <= rand).length];
+      }
+      function weightedchances(items) {
+        var chances = [];
+        for (var n in items) {
+          chances.push(items.length-n)
+        }
+        return chances;
+      }
       function choosecombo(){
-
         document.getElementById("ResultInput").value = "";
-        var item1 = randomChoice(itemlist);
-        var item2 = randomChoice(itemlist);
+        var chances = weightedchances(itemlist);
+        var item1 = chooseweighted(itemlist,chances);//randomChoice(itemlist);
+        var item2 = chooseweighted(itemlist,chances);//randomChoice(itemlist);
         var combo = item1+" + "+item2;
         var combo2 = item2+" + "+item1;
         if (combokeys.includes(combo)||combokeys.includes(combo2)) {

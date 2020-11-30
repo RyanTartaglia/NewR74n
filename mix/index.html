@@ -20,8 +20,11 @@
     <script>
 
       function savelist() {
-        localStorage.setItem("itemlist",itemlist.join(" ||| "))
-        localStorage.setItem("combolist",combolist.join(" ||| "))
+        localStorage.setItem("itemlist",itemlist.join(" ||| "));
+        localStorage.setItem("combolist",combolist.join(" ||| "));
+      }
+      function saveoptions() {
+        localStorage.setItem("options",JSON.stringify(options))
       }
       function resetsave() {
         localStorage.removeItem("itemlist");
@@ -52,8 +55,21 @@
           combolist.splice(combolist.indexOf(""), 1);
           combokeys.splice(combokeys.indexOf(""), 1);
         }
+        options = JSON.parse(localStorage.getItem("options"));
+        if (options==null) {
+          options = {};
+          var newgame = true;
+        }
+        defaultoptions = {"more_operators":false,"ideas":false};
+        for (var key in defaultoptions) {
+          if (!(key in options)) {
+            value = defaultoptions[key];
+            options[key] = value
+            var newgame = true;
+          }
+        }
 
-        if (newgame) {savelist();}
+        if (newgame) {savelist();saveoptions();}
       }
 
       function chooseweighted(items, chances) {
@@ -75,8 +91,16 @@
         var chances = weightedchances(itemlist);
         var item1 = chooseweighted(itemlist,chances);//randomChoice(itemlist);
         var item2 = chooseweighted(itemlist,chances);//randomChoice(itemlist);
-        var combo = item1+" + "+item2;
-        var combo2 = item2+" + "+item1;
+        if (!options["more_operators"]) {
+          var combo = item1+" + "+item2;
+          var combo2 = item2+" + "+item1;
+        }
+        else {
+          var combo0 = bettercombo(item1,item2);
+          var combo = combo0[0];
+          if (combo0.length > 1) {var combo2 = combo0[1];}
+          else {var combo2 = combo}
+        }
         if (combokeys.includes(combo)||combokeys.includes(combo2)) {
           //console.log("AAAAA");
           choosecombo();
@@ -118,7 +142,7 @@
       function submitcombo() {
         var combo = document.getElementById("Combination").getAttribute("combo");
         var ResultBox = document.getElementById("ResultInput");
-        var newitem = finditem(ResultBox.value);
+        var newitem = finditem(ResultBox.value.toLowerCase());
         //console.log(newitem);
         if (newitem.includes(" + ")) {alert("Items cannot contain \" + \"");}
         else if (newitem.includes(": ")) {alert("Items cannot contain \": \"");}
@@ -147,7 +171,23 @@
           combotext = combotext+combo+"<br>"//+"<a class='deletebutton' onclick='deletecombo(&quot;"+combo+"&quot;)'>x</a><br>"
         }
         setText("ComboList",combotext);
-        
+      }
+      function toggle(option) {
+        options[option] = !options[option];
+        saveoptions();
+      }
+      function updatechecks() {
+        document.getElementById("OperatorCheckbox").checked = options["more_operators"];
+      }
+      combotemplates = ["ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 - ITEM2","ITEM1 × 2","ITEM1 ÷ 2","sqrt(ITEM1)","ITEM1²"];
+      function bettercombo(item1,item2) {
+        var combotemp = randomChoice(combotemplates);
+        var combo = combotemp.replaceAll("ITEM1",item1).replaceAll("ITEM2",item2);
+        if (combotemp.includes("ITEM2")) {
+          var combo2 = combotemp.replaceAll("ITEM1",item2).replaceAll("ITEM2",item1)
+        }
+        else {var combo2 = combo}
+        return [combo,combo2]
       }
 
 
@@ -162,7 +202,7 @@
 
 
 <a href="https://R74n.com" class="backbutton">⦉</a>
-<h1 class="pagetitle">Mix Everything!</h1><br>
+<h1 class="pagetitle">Mix-Up!</h1><br>
 <div class="content" style="text-align:center;">
 
 <form id="InputForm" onsubmit="submitcombo();return false;" autocomplete="off">
@@ -172,6 +212,13 @@
 </form>
 <span id="ItemList" style="display:block;padding:20px;"></span>
 <span id="ComboList" style="display:block;padding-bottom:20px;"></span>
+
+
+<input class="checkbox" id="OperatorCheckbox" type="checkbox" value="" onclick="toggle('more_operators');">
+<label for="OperatorCheckbox">More Operators</label>
+
+<br><br>
+
 <input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">
 
 
@@ -179,8 +226,7 @@
 
 
 
-
-<script>updatetext();choosecombo();</script>
+<script>updatetext();updatechecks();choosecombo();</script>
 
 </div>
 

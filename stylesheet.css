@@ -51,7 +51,7 @@ img, audio, video {vertical-align:middle;max-width:100%}
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-input[type=button], button {
+input[type=button], button, input[type=submit], .checkmark {
     background-color: rgb(107,107,107);
     color: rgb(255,255,255);
     box-shadow: 0px 1.75px rgb(26,26,26);
@@ -70,12 +70,14 @@ input[type=button], button {
     outline: 0;
     margin: 4px 0;
 }
-textarea, button, input[type=button] {
+textarea, button, input[type=button], input[type=submit], .checkmark {
     vertical-align: middle;
 }
-input[type=button]:active, button:active {
-    background-color: rgb(133, 133, 133);
+input[type=button]:active, button:active, input[type=submit]:active, .checkmark:active {
+    
+    filter: brightness(50%);
 }
+
 textarea, input[type=text] {
     background-color: rgb(107,107,107);
     color: rgb(255,255,255);
@@ -124,3 +126,57 @@ ul li.redbullet::before {
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: lightgray;
+}
+
+
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+}
+.checkbox + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+}
+.checkbox + label:before {
+    content: '';
+    margin-right: 5px;
+    margin-top: 2.5px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: rgb(107,107,107);
+    border-radius: 5px;
+    border-style: none;
+}
+.checkbox:hover + label:before {
+    filter: brightness(150%)
+}
+.checkbox:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+.checkbox:checked + label:before {
+    background: white;
+}
+.checkbox:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+}
+.checkbox:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+}
+.checkbox:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: black;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 black, 4px 0 0 black, 4px -2px 0 black, 4px -4px 0 black, 4px -6px 0 black, 4px -8px 0 black;
+    transform: rotate(45deg);
+    margin-top: 2.5px;
+}

@@ -46,7 +46,7 @@
         itemlist = localStorage.getItem("itemlist")
         var newgame = false;
         if (itemlist==null) {
-          itemlist = starters.split(",");
+          itemlist = starters.replaceAll(", ",",").replaceAll(" ,",",").split(",");
           var newgame = true;
         }
         else {itemlist = itemlist.split(" ||| ")}

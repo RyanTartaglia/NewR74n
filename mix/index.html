@@ -43,6 +43,10 @@
           var comboline = combolist[n];
           combokeys.push(comboline.split(": ")[0])
         }
+        if (combolist.includes("")) {
+          combolist.splice(combolist.indexOf(""), 1);
+          combokeys.splice(combokeys.indexOf(""), 1);
+        }
 
         if (newgame) {savelist();}
       }
@@ -113,7 +117,7 @@
       }
       function deletecombo(combo) {
         combolist.splice(combolist.indexOf(combo), 1);
-        combokeys.splice(combolist.indexOf(combo.split(": ")[0]), 1);
+        combokeys.splice(combokeys.indexOf(combo.split(": ")[0]), 1);
         updatetext();
       }
       function updatetext() {

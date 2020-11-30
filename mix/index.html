@@ -13,21 +13,123 @@
     <link rel="stylesheet" type="text/css" href="../normalize.css"/>
     <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
     <script src="../cookiescripts.js"></script>
+    <script src="../scripts.js"></script>
+    <style>
+      .deletebutton {margin-left:5px;cursor:pointer;}
+    </style>
     <script>
+
       function savelist() {
-        setCookie("itemlist",itemlist.join(" ||| "))
+        localStorage.setItem("itemlist",itemlist.join(" ||| "))
+        localStorage.setItem("combolist",combolist.join(" ||| "))
       }
       
       function loadsave() {
-        itemlist = getCookie("itemlist");
+        itemlist = localStorage.getItem("itemlist")
+        var newgame = false;
         if (itemlist==null) {
           itemlist = ["air","earth","fire","water"];
-          savelist();
+          var newgame = true;
+        }
+        else {itemlist = itemlist.split(" ||| ")}
+        combolist = localStorage.getItem("combolist")
+        if (combolist==null) {
+          combolist = [];
+          var newgame = true;
+        }
+        else {combolist = combolist.split(" ||| ")}
+        combokeys = [];
+        for (var n in combolist) {
+          var comboline = combolist[n];
+          combokeys.push(comboline.split(": ")[0])
+        }
+
+        if (newgame) {savelist();}
+      }
+
+      function choosecombo(){
+
+        document.getElementById("ResultInput").value = "";
+        var item1 = randomChoice(itemlist);
+        var item2 = randomChoice(itemlist);
+        var combo = item1+" + "+item2;
+        var combo2 = item2+" + "+item1;
+        if (combokeys.includes(combo)||combokeys.includes(combo2)) {
+          //console.log("AAAAA");
+          choosecombo();
         }
         else {
-          itemlist = itemlist.split(" ||| ")
+          setText("Combination",combo+" = ?");
+          document.getElementById("Combination").setAttribute("combo",combo);
         }
       }
+
+      function simplify(text) {
+        if (!text.match(/^'+$/g)) {text=text.replace("'","")}
+        if (!text.match(/^\-+$/g)) {text=text.replace("-","")}
+        return text.toLowerCase().replace(" ","");
+      }
+      function singular(text) {
+        if (text.length < 3) {return text}
+        else if (text.endsWith("ies")) {return text.slice(0,-3)+"y"}
+        else if (text.endsWith("ses")||text.endsWith("hes")) {return text.slice(0,-2)}
+        else if (text.endsWith("s")) {return text.slice(0,-1)}
+      }
+      function plural(text) {
+        if (text.length < 3) {return text}
+        else if (text.endsWith("y") && (!text.endsWith("ey"))) {return text.slice(0,-1)+"ies"}
+        else if (text.endsWith("s")||text.endsWith("ch")||text.endsWith("sh")||text.endsWith("th")) {return text+"es"}
+        else {return text+"s"}
+      }
+      function finditem(item) {
+        var simpleitem = simplify(item);
+        var itemsing = singular(simpleitem);
+        var itempl = plural(simpleitem);
+        for (var n in itemlist) {
+          var i = itemlist[n];
+          var simplei = simplify(i);
+          if ((simplei==simpleitem)||(simplei==itemsing)||(simplei==itempl)) {return i;}
+        }
+        return item;
+      }
+      function submitcombo() {
+        var combo = document.getElementById("Combination").getAttribute("combo");
+        var ResultBox = document.getElementById("ResultInput");
+        var newitem = finditem(ResultBox.value);
+        //console.log(newitem);
+        if (newitem.includes(" + ")) {alert("Items cannot contain \" + \"");}
+        else if (newitem.includes(": ")) {alert("Items cannot contain \": \"");}
+        else if (newitem.replaceAll(" ","").length == 0) {return}
+        else {
+          combolist.push(combo+": "+newitem);
+          combokeys.push(combo);
+          if (!itemlist.includes(newitem)) {
+            itemlist.push(newitem);
+          }
+          choosecombo();
+          savelist();
+          updatetext();
+        }
+      }
+      function deletecombo(combo) {
+        combolist.splice(combolist.indexOf(combo), 1);
+        combokeys.splice(combolist.indexOf(combo.split(": ")[0]), 1);
+        updatetext();
+      }
+      function updatetext() {
+        setText("ItemList",itemlist.join("<br>"));
+        combotext = "";
+        for (var n in combolist) {
+          combo = combolist[n];
+          combotext = combotext+combo+"<br>"//+"<a class='deletebutton' onclick='deletecombo(&quot;"+combo+"&quot;)'>x</a><br>"
+        }
+        setText("ComboList",combotext);
+        
+      }
+
+
+
+
       loadsave();
     </script>
 
@@ -36,21 +138,26 @@
 <body>
 
 
-<a href="https://R74n.com" class="backbutton">⬅</a>
+<a href="https://R74n.com" class="backbutton">⦉</a>
 <h1 class="pagetitle">Mix Everything!</h1><br>
 <div class="content" style="text-align:center;">
 
-<form id="InputForm">
-<span id="Combination"></span>
-<input type="text" autofocus style="text-align:center;">
+<form id="InputForm" onsubmit="submitcombo();return false;" autocomplete="off">
+<span id="Combination" style="font-size:25px;display:block;padding-bottom:20px;">Loading...</span>
+<input id="ResultInput" type="text" autofocus style="text-align:center;" placeholder="Type the result" title="Type the result of the above combination">
 
 </form>
+<span id="ItemList" style="display:block;padding:20px;"></span>
+<span id="ComboList" style="display:block;padding-bottom:20px;"></span>
 
 
 
 
 
 
+
+
+<script>updatetext();choosecombo();</script>
 
 </div>
 

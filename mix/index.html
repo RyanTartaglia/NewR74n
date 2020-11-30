@@ -25,12 +25,11 @@
       }
       function saveoptions() {
         localStorage.setItem("options",JSON.stringify(options));
-        var starters = document.getElementById("StarterBox").value.replaceAll(", ",",").replaceAll(" ,",",").split(",");
-        localStorage.setItem("starters",starters.join(", "));
       }
       function resetsave() {
         localStorage.removeItem("itemlist");
         localStorage.removeItem("combolist");
+        saveoptions();
         var starters = document.getElementById("StarterBox").value.replaceAll(", ",",").replaceAll(" ,",",").split(",");
         localStorage.setItem("starters",starters.join(", "));
         location.reload();
@@ -231,7 +230,7 @@
 <br><br>
 
 <input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">
-<input type="text" id="StarterBox">
+<input type="text" id="StarterBox" placeholder="Enter starters here" title="Separate starters with commas">
 
 
 

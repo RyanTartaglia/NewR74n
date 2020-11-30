@@ -24,19 +24,30 @@
         localStorage.setItem("combolist",combolist.join(" ||| "));
       }
       function saveoptions() {
-        localStorage.setItem("options",JSON.stringify(options))
+        localStorage.setItem("options",JSON.stringify(options));
+        var starters = document.getElementById("StarterBox").value.replaceAll(", ",",").replaceAll(" ,",",").split(",");
+        localStorage.setItem("starters",starters.join(", "));
       }
       function resetsave() {
         localStorage.removeItem("itemlist");
         localStorage.removeItem("combolist");
+        var starters = document.getElementById("StarterBox").value.replaceAll(", ",",").replaceAll(" ,",",").split(",");
+        localStorage.setItem("starters",starters.join(", "));
         location.reload();
       }
-      
+      function updatestarterbox() {
+        document.getElementById("StarterBox").value = localStorage.getItem("starters")
+      }
       function loadsave() {
+        var starters = localStorage.getItem("starters");
+        if (starters==null) {
+          starters = "air,earth,fire,water,void,life"
+          localStorage.setItem("starters",starters);
+        }
         itemlist = localStorage.getItem("itemlist")
         var newgame = false;
         if (itemlist==null) {
-          itemlist = ["air","earth","fire","water"];
+          itemlist = starters.split(",");
           var newgame = true;
         }
         else {itemlist = itemlist.split(" ||| ")}
@@ -220,13 +231,13 @@
 <br><br>
 
 <input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">
+<input type="text" id="StarterBox">
 
 
 
 
 
-
-<script>updatetext();updatechecks();choosecombo();</script>
+<script>updatetext();updatechecks();choosecombo();updatestarterbox();</script>
 
 </div>
 

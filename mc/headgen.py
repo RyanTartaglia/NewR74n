@@ -8,9 +8,9 @@ def decode(a):
 
 text = open("text.txt","r",encoding="utf8").read()
 
-heads = eval(open("heads.js","r",encoding="utf8").read())
+heads = eval(open("heads.js","r",encoding="utf8").read().split("heads = ",1)[-1])
 
-owners = ["LeoTheRavioli","instinct","RyanUwU","Runaiic","courteously","nsap","Runaiic","M-Seven","IllagerCaptain","DogeisCut","Panther","LeiCha","MadetheMeep","TB40"]
+owners = ["LeoTheRavioli","instinct","RyanUwU","Runaiic","courteously","nsap","Runaiic","M-Seven","IllagerCaptain","DogeisCut","Panther","LeiCha","MadetheMeep","TB40","403_","Psjpoj","Torphedo","Morgan#9416","hyfae","sxci","Miasmus","InterestingUsername","PinkPanther1046"]
 
 def save():
     savefile = open("heads.js","w",encoding="utf8")
@@ -21,10 +21,20 @@ def save():
 ##for line in text.splitlines():
 ##    file = line.split(": ",1)[0]
 ##    name = line.split(": ",1)[1]
-##    heads[file] = name
+##    if not file in heads: heads[file] = name
 ##save()
 ##input()
 
+##new = {}
+##for line in text.splitlines():
+##    if (not line in heads) and not line in new: new[line] = line.rsplit(".",1)[0]
+##print(str(new).replace(", ",",\n"))
+##input()
+
+new = {}
+
+normalnbt = '{textures: [{Value: "'
+text = text.replace('{textures:[{Value:"',normalnbt).replace("{textures:[{Value:'",normalnbt).replace("{textures: [{Value:'",normalnbt)
 for t in text.split('{textures: [{Value: "')[1:]:
     owner = None
     for o in owners:
@@ -33,11 +43,13 @@ for t in text.split('{textures: [{Value: "')[1:]:
             break
     encoded = t.split('"',1)[0]
     nbt = decode(encoded)
-    url = nbt.replace("url:",'"url":').split('"url":"',1)[1].split('"',1)[0]
-    file = url.split("wp-content/uploads/",1)[1]
+    url = nbt.replace('" :','":').replace(': "',':"').replace("url:",'"url":').split('"url":"',1)[1].split('"',1)[0]
+    try: file = url.split("wp-content/uploads/",1)[1]
+    except IndexError: file = url.split("://",1)[1]
     if file in heads: continue
     name = file.rsplit(".",1)[0]
     if not owner == None: name = name+" ("+owner+")"
-    heads[file] = name
-save()
+    new[file] = name
+print(str(new).replace(", ",",\n"))
+#save()
 

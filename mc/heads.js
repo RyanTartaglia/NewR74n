@@ -889,15 +889,6 @@ heads = {
 'agate.png':'Blue AirPods',
 'muted.png':'Muted (Kubajs70)',
 'abode.png':'Creator\'s Abode Logo',
-
-
-
-
-
-
-
-
-
 '896433-tf_bad_flat.png': 'TotalFreedom Sucks (Flat) (hyfae)',
 'Crown1_LeoTheRavioli.png': 'Crown (LeoTheRavioli)',
 'fjpoxos_HStickmin.png': 'Henry Stickmin (hyfae)',

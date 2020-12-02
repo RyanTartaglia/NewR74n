@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
     <link rel="stylesheet" type="text/css" href="../normalize.css"/>
     <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
-    <script src="../cookiescripts.js"></script>
     <script src="../scripts.js"></script>
     <style>
       .deletebutton {margin-left:5px;cursor:pointer;}
@@ -20,11 +19,13 @@
     <script>
 
       function savelist() {
-        localStorage.setItem("itemlist",itemlist.join(" ||| "));
-        localStorage.setItem("combolist",combolist.join(" ||| "));
+        var saves = JSON.parse(localStorage.getItem("saves"));
+        saves[currentsave] = {"items":itemlist,"combos":combolist};
+        localStorage.setItem("saves",JSON.stringify(saves));
       }
       function saveoptions() {
         localStorage.setItem("options",JSON.stringify(options));
+        localStorage.setItem("currentsave",currentsave)
       }
       function resetsave() {
         localStorage.removeItem("itemlist");
@@ -43,19 +44,27 @@
           starters = "air,earth,fire,water,void,life"
           localStorage.setItem("starters",starters);
         }
-        itemlist = localStorage.getItem("itemlist")
         var newgame = false;
-        if (itemlist==null) {
-          itemlist = starters.replaceAll(", ",",").replaceAll(" ,",",").split(",");
+        if (localStorage.getItem("saves")==null) {
+          currentsave = "save-1";
+          localStorage.setItem("saves",JSON.stringify({"save-1":
+            {
+            "items":starters.replaceAll(", ",",").replaceAll(" ,",",").split(","),
+            "combos":[]
+            } // new save
+          }));
           var newgame = true;
         }
-        else {itemlist = itemlist.split(" ||| ")}
-        combolist = localStorage.getItem("combolist")
-        if (combolist==null) {
-          combolist = [];
-          var newgame = true;
+        else {
+          currentsave = localStorage.getItem("currentsave");
+          if (currentsave==null) {
+            currentsave = Object.keys(JSON.parse(localStorage.getItem("saves")))[0];
+            var newgame = true;
+          }
         }
-        else {combolist = combolist.split(" ||| ")}
+        var savedata = JSON.parse(localStorage.getItem("saves"))[currentsave];
+        itemlist = savedata["items"];
+        combolist = savedata["combos"];
         combokeys = [];
         for (var n in combolist) {
           var comboline = combolist[n];
@@ -166,6 +175,7 @@
           choosecombo();
           savelist();
           updatetext();
+          updatesaves();
         }
       }
       function deletecombo(combo) {
@@ -199,6 +209,56 @@
         else {var combo2 = combo}
         return [combo,combo2]
       }
+      function updatesaves() {
+        var SaveSelect = document.getElementById("SaveSelect");
+        var saves = JSON.parse(localStorage.getItem("saves"));
+        var savenames = Object.keys(saves);
+        for (i = SaveSelect.options.length-1; i >= 0; i--) {
+          SaveSelect.options[i] = null;
+        }
+        for (var n in savenames) {
+          var savename = savenames[n];
+          var option = document.createElement("option");
+          option.value = savename;
+          option.text = savename+" - "+saves[savename]["combos"].length+" combos";
+          if (currentsave==savename) {
+            option.selected = true;
+          }
+          SaveSelect.appendChild(option);
+        }
+      }
+      function newsave(name=null) {
+        var saves = JSON.parse(localStorage.getItem("saves"));
+        var savenames = Object.keys(saves);
+        if (name==null) {
+          name = "save";
+          var n = 1;
+          while (savenames.includes(name+"-"+n)) {
+            n += 1;
+          }
+          name = name+"-"+n;
+          console.log(name);
+        }
+        if (!savenames.includes(name)) {
+          var starters = document.getElementById("StarterBox").value.replaceAll(", ",",").replaceAll(" ,",",").split(",");
+          localStorage.setItem("starters",starters.join(", "));
+          saveoptions();
+          saves[name] = {
+            "items":starters,
+            "combos":[]
+          };
+          localStorage.setItem("saves",JSON.stringify(saves));
+          localStorage.setItem("currentsave",name);
+        }
+        location.reload();
+      }
+      function switchsave() {
+        var SaveSelect = document.getElementById("SaveSelect");
+        saveoptions();
+        var savename = SaveSelect.options[SaveSelect.selectedIndex].value;
+        localStorage.setItem("currentsave",savename);
+        location.reload();
+      }
 
 
 
@@ -229,14 +289,16 @@
 
 <br><br>
 
-<input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">
+<select id="SaveSelect" onchange="switchsave();"></select>
+<!--<input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">-->
 <input type="text" id="StarterBox" placeholder="Enter starters here" title="Separate starters with commas">
+<input type="button" value="New Save" id="NewSaveButton" onclick="newsave();" style="display:inline-block;background-color:blue;">
 
 
 
 
 
-<script>updatetext();updatechecks();choosecombo();updatestarterbox();</script>
+<script>updatetext();updatechecks();choosecombo();updatestarterbox();updatesaves();</script>
 
 </div>
 

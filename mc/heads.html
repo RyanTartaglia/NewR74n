@@ -58,6 +58,7 @@ function searchheads(){
     added = [];
     for (var key in heads) {
         value = heads[key];
+        if (value.indexOf("(Hidden)") >= 0) {continue;}
         if (((value.indexOf("???") >= 0)||(value.indexOf("(Duplicate)") >= 0)) && (Search=="")) {
           continue;
         }
@@ -91,7 +92,11 @@ function updateHead() {
         HeadURL = "https://education.minecraft.net/wp-content/uploads/"+HeadFile;
         HeadTexture = '{"textures":{"SKIN":{"url":"'+HeadURL+'"}}}';
         HeadB64 = btoa(HeadTexture);
-        HeadCommand = '/give @p player_head{SkullOwner:{Id:'+generateUUID()+',Name:"'+HeadName+'",Properties:{textures:[{Value:"'+HeadB64+'"}]}}}'
+        ExtraNBT = "";
+        if (HeadName.includes("LeoTheRavioli")) {
+          ExtraNBT += ',display:{Lore:[\'[{"text":"made by ","color":"gray","italic":false},{"text":"Leo","color":"#DFB8FF","italic":false},{"text":"The","color":"#CFCAFF"},{"text":"Ravioli ","color":"#CCE1FF"},{"text":":-)","color":"gray"}]\',\'{"text":"Disclaimer: Not all textures were made myself","color":"gray"}\',\'{"text":"Please do not redistribute these as your own!","color":"gray"}\']}';
+        }
+        HeadCommand = '/give @p player_head{SkullOwner:{Id:'+generateUUID()+',Name:"'+HeadName+'",Properties:{textures:[{Value:"'+HeadB64+'"}]}}'+ExtraNBT+'}'
         setValue("GeneratedText",HeadCommand);
 
         setText("HeadDesc","<br><br>"+HeadName+" ("+HeadFile+")<br><br><a href='"+HeadURL+"'>"+HeadURL+"</a>"+"<br><br><img src='"+HeadURL+"' class='textureimg' alt='Loading "+HeadFile+"...' title='"+HeadName+"'><br><br>");

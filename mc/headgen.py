@@ -39,6 +39,7 @@ text = text.replace('{textures:[{Value:"',normalnbt).replace("{textures:[{Value:
 for t in text.split('{textures: [{Value: "')[1:]:
     ownercheck = t.replace(", {Slot:",",{Slot:").split(",{Slot:",1)[0].lower()
     if "lanc3y" in ownercheck and "rookrar2k19" in ownercheck: owner = "Lanc3y and Rookrar2k19"
+    elif "leo" in ownercheck and "ravioli" in ownercheck: owner = "LeoTheRavioli"
     else:
         owner = None
         for o in owners:

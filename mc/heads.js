@@ -927,7 +927,7 @@ heads = {
 'linuxglasses.png': 'Pixel Glasses',
 'headphones2.png': 'Red Pixel Headphones',
 'Bodyrolls.png': 'Tight Pants / Body Rolls',
-'pingu.png': 'Pingu',
+'pingu.png': 'Pingu (Psjpoj)',
 'AnonMask_LeoTheRavioli.png': 'Pixel Anonymous Hacker Mask (LeoTheRavioli)',
 'ArmorerHat1_LeoTheRavioli.png': 'Armorer Hat (LeoTheRavioli)',
 'Astronaut2_LeoTheRavioli.png': 'Astronaut Helmet 2 (LeoTheRavioli)',
@@ -1216,5 +1216,15 @@ heads = {
 'rickroll_face.png': 'Rick Astley Rickroll (IllagerCaptain)',
 'Ante124.BW-alpha.png': 'Tiny Black and White Dots',
 
+
+
+'RyanUwUPumpkin.png': 'Pumpkin (RyanUwU)',
+'RyanUwUJackoLit.png': 'Lit Jack-o\'-Lantern (RyanUwU)',
+'RyanUwUJacko.png': 'Jack-o\'-Lantern (RyanUwU)',
+'Goat-Helmet-Nov-4.png': 'Goat Fur Hat',
+'Angler-Helmet-Dec-4.png': 'Anglerfish Hat',
+'Jingle-Bell-Nov28.png': 'Jingle Bell Helmet',
+'Reindeer-Helmet-Nov28.png': 'Reindeer Hat',
+'tnt_head-1.png': 'TNT (DogeisCut)',
 
 }

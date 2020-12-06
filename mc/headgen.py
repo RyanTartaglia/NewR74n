@@ -51,7 +51,7 @@ for t in text.split('{textures: [{Value: "')[1:]:
     if not "url" in nbt: continue
     url = nbt.replace('" :','":').replace(': "',':"').replace("url:",'"url":').split('"url":"',1)[1].split('"',1)[0]
     try: file = url.split("wp-content/uploads/",1)[1]
-    except IndexError: file = url.split("://",1)[1]
+    except IndexError: continue#file = url.split("://",1)[1]
     if file in heads: continue
     name = file.rsplit(".",1)[0]
     if not owner == None: name = name+" ("+owner+")"

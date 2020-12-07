@@ -79,7 +79,7 @@
           options = {};
           var newgame = true;
         }
-        defaultoptions = {"more_operators":false,"ideas":false};
+        defaultoptions = {"more_operators":false,"ideas":false,"meta_operators":false};
         for (var key in defaultoptions) {
           if (!(key in options)) {
             value = defaultoptions[key];
@@ -110,7 +110,7 @@
         var chances = weightedchances(itemlist);
         var item1 = chooseweighted(itemlist,chances);//randomChoice(itemlist);
         var item2 = chooseweighted(itemlist,chances);//randomChoice(itemlist);
-        if (!options["more_operators"]) {
+        if (!(options["more_operators"]||options["meta_operators"])) {
           var combo = item1+" + "+item2;
           var combo2 = item2+" + "+item1;
         }
@@ -198,10 +198,19 @@
       }
       function updatechecks() {
         document.getElementById("OperatorCheckbox").checked = options["more_operators"];
+        document.getElementById("MetaCheckbox").checked = options["meta_operators"];
       }
       combotemplates = ["ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 - ITEM2","ITEM1 × 2","ITEM1 ÷ 2","sqrt(ITEM1)","ITEM1²"];
+      metatemplates = ["category(ITEM1)","opposite(ITEM1)","beginning(ITEM1)"];
       function bettercombo(item1,item2) {
-        var combotemp = randomChoice(combotemplates);
+        var temps = [];
+        if (options["more_operators"]) {
+          temps = temps.concat(combotemplates)
+        }
+        if (options["meta_operators"]) {
+          temps = temps.concat(metatemplates)
+        }
+        var combotemp = randomChoice(temps);
         var combo = combotemp.replaceAll("ITEM1",item1).replaceAll("ITEM2",item2);
         if (combotemp.includes("ITEM2")) {
           var combo2 = combotemp.replaceAll("ITEM1",item2).replaceAll("ITEM2",item1)
@@ -286,6 +295,8 @@
 
 <input class="checkbox" id="OperatorCheckbox" type="checkbox" value="" onclick="toggle('more_operators');">
 <label for="OperatorCheckbox">More Operators</label>
+<input class="checkbox" id="MetaCheckbox" type="checkbox" value="" onclick="toggle('meta_operators');">
+<label for="MetaCheckbox">Meta Operators</label>
 
 <br><br>
 

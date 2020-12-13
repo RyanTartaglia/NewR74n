@@ -1226,5 +1226,6 @@ heads = {
 'Jingle-Bell-Nov28.png': 'Jingle Bell Helmet',
 'Reindeer-Helmet-Nov28.png': 'Reindeer Hat',
 'tnt_head-1.png': 'TNT (DogeisCut)',
+'AlourkMayor.png': 'Alourk for Mayor (Unconventional)'
 
 }

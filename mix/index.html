@@ -6,7 +6,7 @@
     <meta name="description" content="Mix-Up!">
     <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, 4755, elements, elemental, alchemy, little alchemy">
     <meta name="author" content="R74n">
-    <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:image:alt" content="R74n">
     <title>Mix-Up!</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
@@ -15,12 +15,35 @@
     <script src="../scripts.js"></script>
     <style>
       .deletebutton {margin-left:5px;cursor:pointer;}
+      #OptionsBox {
+        position:fixed;
+        top:0px;
+        left:0px;
+        bottom:0px;
+        background-color:rgb(39, 39, 39);
+        width:100%;
+        padding-top:15px;
+        padding-bottom:15px;
+        overflow-y:auto;
+      }
+      #OptionsX::before {content:"✖"}
+      #OptionsX {
+        position:fixed;
+        top:0px;
+        right:0px;
+        height:50px;
+        width:50px;
+        padding:10px;
+        background-color:gray;
+        font-size: 45px;
+        cursor:pointer;
+      }
     </style>
     <script>
 
       function savelist() {
         var saves = JSON.parse(localStorage.getItem("saves"));
-        saves[currentsave] = {"items":itemlist,"combos":combolist};
+        saves[currentsave] = {"items":itemlist,"combos":combolist,"starters":saves[currentsave]["starters"]};
         localStorage.setItem("saves",JSON.stringify(saves));
       }
       function saveoptions() {
@@ -50,7 +73,8 @@
           localStorage.setItem("saves",JSON.stringify({"save-1":
             {
             "items":starters.replaceAll(", ",",").replaceAll(" ,",",").split(","),
-            "combos":[]
+            "combos":[],
+            "starters":starters.split(",")
             } // new save
           }));
           var newgame = true;
@@ -113,12 +137,15 @@
         if (!(options["more_operators"]||options["meta_operators"])) {
           var combo = item1+" + "+item2;
           var combo2 = item2+" + "+item1;
+          if (options["ideas"]) {var idea = randomIdea(item1,item2)}
         }
         else {
           var combo0 = bettercombo(item1,item2);
           var combo = combo0[0];
           if (combo0.length > 1) {var combo2 = combo0[1];}
           else {var combo2 = combo}
+          if (options["ideas"] && combo.includes(" + ")) {var idea = randomIdea(item1,item2)}
+          else {var idea = "..."}
         }
         if (combokeys.includes(combo)||combokeys.includes(combo2)) {
           //console.log("AAAAA");
@@ -127,6 +154,9 @@
         else {
           setText("Combination",combo+" = ?");
           document.getElementById("Combination").setAttribute("combo",combo);
+        }
+        if (!(idea==null)) {
+          document.getElementById("Idea").innerHTML = idea
         }
       }
 
@@ -194,11 +224,19 @@
       }
       function toggle(option) {
         options[option] = !options[option];
+        if (option == "ideas") {
+          var IdeaBox = document.getElementById("Idea");
+          if (IdeaBox.style.display === "none") {IdeaBox.style.display = "block";}
+          else {IdeaBox.style.display = "none";}
+          IdeaBox.innerHTML = "..."
+        }
         saveoptions();
       }
       function updatechecks() {
         document.getElementById("OperatorCheckbox").checked = options["more_operators"];
         document.getElementById("MetaCheckbox").checked = options["meta_operators"];
+        document.getElementById("IdeaCheckbox").checked = options["ideas"];
+        if (options["ideas"]) {document.getElementById("Idea").style.display = "block";}
       }
       combotemplates = ["ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 - ITEM2","ITEM1 × 2","ITEM1 ÷ 2","sqrt(ITEM1)","ITEM1²"];
       metatemplates = ["category(ITEM1)","opposite(ITEM1)","beginning(ITEM1)"];
@@ -236,7 +274,7 @@
           SaveSelect.appendChild(option);
         }
       }
-      function newsave(name=null) {
+      function newsave(name=null,data=null) {
         var saves = JSON.parse(localStorage.getItem("saves"));
         var savenames = Object.keys(saves);
         if (name==null) {
@@ -250,12 +288,23 @@
         }
         if (!savenames.includes(name)) {
           var starters = document.getElementById("StarterBox").value.replaceAll(", ",",").replaceAll(" ,",",").split(",");
+          if (starters.length == 1 && starters[0] == "") {
+            starters = ["air","earth","fire","water","life","void"]
+          }
+
           localStorage.setItem("starters",starters.join(", "));
           saveoptions();
-          saves[name] = {
-            "items":starters,
-            "combos":[]
-          };
+          if (data==null){
+            saves[name] = {
+              "items":starters,
+              "combos":[],
+              "starters":starters,
+            };
+          }
+          else {
+            if (data["starters"]==undefined) {data["starters"]=data["items"]}
+            saves[name] = data;
+          }
           localStorage.setItem("saves",JSON.stringify(saves));
           localStorage.setItem("currentsave",name);
         }
@@ -267,6 +316,69 @@
         var savename = SaveSelect.options[SaveSelect.selectedIndex].value;
         localStorage.setItem("currentsave",savename);
         location.reload();
+      }
+      function toggleOptions() {
+        var OptionsBox = document.getElementById("OptionsBox");
+        if (OptionsBox.style.display === "none") {OptionsBox.style.display = "block";}
+        else {OptionsBox.style.display = "none";}
+      }
+      function randomIdea(item1,item2) {
+        if (item2==null) {
+          return "inspiration unavailable"
+        }
+        else {
+          if (randomChoice([0,1])) {var item1temp=item1;item1=item2;item2=item1temp}
+          return "idea: "+item1+" "+randomChoice(["is added to","hits","touches","fused with"])+" "+item2
+        }
+      }
+      function copyText(text){
+        var element = document.createElement('textarea');
+        document.body.appendChild(element);
+        element.innerHTML = text;
+        element.select();
+        document.execCommand('copy');
+        setValue("CopyButton","Copied");
+        document.body.removeChild(element);
+      }
+      function formatsave() {
+        var FormatSelect = document.getElementById("FormatSelect");
+        var format = FormatSelect.options[FormatSelect.selectedIndex].value;
+        var savedata = JSON.parse(localStorage.getItem("saves"))[currentsave];
+        if (format=="mixup") {var text = JSON.stringify(savedata)}
+        else if (format=="plaintext") {var text=itemlist.join("\n")+"\n\n"+combolist.join("\n")}
+        else if (format=="plaintextitems") {var text=itemlist.join("\n")}
+        else if (format=="plaintextcombos") {var text=combolist.join("\n")}
+        else if (format=="elem4") {
+          var text = "Title="+currentsave+"\nDescription="+combolist.length+" combinations. Imported from Mix-Up!\nVersion=1.0\n\n#Imported from a Mix-Up! game, more specifically \""+currentsave+"\"\n#r74n.com/mix\n\nDefault: #ffffff";
+          for (var n in savedata["starters"]) {
+            var item = savedata["starters"][n];
+            text += "\n"+item+" (Default)";
+          }
+          for (var n in savedata["combos"]) {
+            var combo = savedata["combos"][n];
+            if (combo.includes(" + ")) {text += "\n"+combo.replaceAll(": "," = ")+" (Default)";}
+          }
+        }
+        else if (format=="csv") {
+          var text = '"Combination","Result"'
+          for (var n in savedata["combos"]) {
+            var combo = savedata["combos"][n];
+            text += '\n"'+combo.split(": ")[0]+'","'+combo.split(": ")[1]+'"';
+          }
+        }
+
+        return text
+      }
+      function importsave() {
+        var ImportText = document.getElementById("ImportText");
+        try {var savedata = JSON.parse(ImportText.value);}
+        catch(err) {alert("Your save data is malformed!\n\n"+err.message);return false}
+        if (!savedata.contructor == Object) {alert("Your save data must be a JSON dictionary!");return false}
+        if (savedata["items"]==undefined) {savedata["items"]=["corrupted save"]}
+        if (savedata["combos"]==undefined) {savedata["combos"]=[]}
+        newsave(null,savedata);
+
+
       }
 
 
@@ -285,31 +397,85 @@
 <div class="content" style="text-align:center;">
 
 <form id="InputForm" onsubmit="submitcombo();return false;" autocomplete="off">
-<span id="Combination" style="font-size:25px;display:block;padding-bottom:20px;">Loading...</span>
+<span id="Combination" style="font-size:25px;display:block;padding-bottom:20px;">loading...</span>
+<span id="Idea" style="display:none;font-size:20px;margin-bottom:20px;font-style:italic">inspiration unavailable</span>
 <input id="ResultInput" type="text" autofocus style="text-align:center;" placeholder="Type the result" title="Type the result of the above combination">
 
 </form>
 <span id="ItemList" style="display:block;padding:20px;"></span>
+<input type="button" onclick="toggleOptions();return false" value="Show Options" style="margin-bottom:20px">
 <span id="ComboList" style="display:block;padding-bottom:20px;"></span>
 
+<div id="OptionsBox" style="display:none">
 
-<input class="checkbox" id="OperatorCheckbox" type="checkbox" value="" onclick="toggle('more_operators');">
-<label for="OperatorCheckbox">More Operators</label>
-<input class="checkbox" id="MetaCheckbox" type="checkbox" value="" onclick="toggle('meta_operators');">
-<label for="MetaCheckbox">Meta Operators</label>
+  <div id="OptionsX" onclick="toggleOptions();return false"></div>
 
-<br><br>
+  <h3>Options</h3>
+  <input class="checkbox" id="OperatorCheckbox" type="checkbox" value="" onclick="toggle('more_operators');">
+  <label for="OperatorCheckbox">More Operators</label>
+  <br>
+  <input class="checkbox" id="MetaCheckbox" type="checkbox" value="" onclick="toggle('meta_operators');">
+  <label for="MetaCheckbox">Meta Operators</label>
+  <br>
+  <input class="checkbox" id="IdeaCheckbox" type="checkbox" value="" onclick="toggle('ideas');">
+  <label for="IdeaCheckbox">Show Inspiration</label>
+  
+  <hr>
+  
+  <h4>Saves</h4>
+  <label for="SaveSelect">Select a Save</label>
+  <select id="SaveSelect" onchange="switchsave();"></select>
+  <br><br>
+  <!--<input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">-->
+  <input type="text" id="StarterBox" placeholder="Enter starters here" title="Separate starters with commas">
+  <input type="button" value="New Save" id="NewSaveButton" onclick="newsave();" style="display:inline-block;background-color:blue;">
+  <br><br>
+  <select id="PresetSelect" onchange="document.getElementById('StarterBox').value = getSelected('PresetSelect').value">
+    <option selected disabled hidden>Curated Presets</option>
+    <option value="air,earth,fire,water,life,void">Mix-Up! Default</option>
+    <option value="air,earth,fire,water">Classical 4</option>
+    <option value="air,earth,fire,water,aether">Classical 5 (Aether)</option>
+    <option value="bread,beef,pressure,fire,vegetable,tomato,cheese,milk,egg,apple,sugar,water">Cooking</option>
+    <option value="egg,time,evolution,plant,water,land,death">Life</option>
+    <optgroup label="Other Games">
+      <option value="air,fire,land,water">Doodle Alchemy</option>
+      <option value="beast,air,earth,fire,water,light,order,human,apple">Doodle Devil</option>
+      <option value="egg,worm,mouse,anchovy">Doodle Farm</option>
+      <option value="life,magic,sky,mountains,flatlands">Doodle Kingdom</option>
+      <option value="building,crime,metal bar,person,wallet">Doodle Mafia</option>
+      <option value="fire,water,snow">Card-Jitsu</option>
+    </optgroup>
+  </select>
 
-<select id="SaveSelect" onchange="switchsave();"></select>
-<!--<input type="button" value="Reset Save Data" id="ResetButton" onclick="resetsave();" style="display:inline-block;padding-bottom:20px;background-color:red">-->
-<input type="text" id="StarterBox" placeholder="Enter starters here" title="Separate starters with commas">
-<input type="button" value="New Save" id="NewSaveButton" onclick="newsave();" style="display:inline-block;background-color:blue;">
+  <hr>
+  <h4>Export</h4>
+  <label for="FormatSelect">Select a Format</label>
+  <select id="FormatSelect">
+    <option selected value="mixup">Mix-Up! Save</option>
+    <option value="plaintext">Plain Text</option>
+    <option value="plaintextitems">Plain Text (Items)</option>
+    <option value="plaintextcombos">Plain Text (Combos)</option>
+    <option value="elem4">Elemental 4 Pack</option>
+    <option value="csv">CSV</option>
+  </select>
+  <input type="button" value="Download" id="DownloadButton" onclick="downloadFile(currentsave,formatsave());return false">
+  <input type="button" value="Copy" id="CopyButton" onclick="copyText(formatsave());return false">
+  
+  <hr>
+  <h4>Import</h4>
+  You can only import saves in the Mix-Up! format.
+  <br><br>
+  <input type="text" placeholder="Paste save data" id="ImportText">
+  <input type="button" value="Import" id="ImportButton" onclick="importsave();return false" style="background-color:blue">
+  
+
+</div>
 
 
 
 
-
-<script>updatetext();updatechecks();choosecombo();updatestarterbox();updatesaves();</script>
+<script>updatetext();updatechecks();choosecombo();updatestarterbox();updatesaves();
+</script>
 
 </div>
 

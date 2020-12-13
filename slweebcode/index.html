@@ -3,38 +3,46 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Tools for generating UUIDs for Minecraft.">
-    <meta name="keywords" content="R74n, RyanUwU, slweeb, 4755, uwu, head, mob, uuid, command, entity">
+    <meta name="description" content="R74n">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, 4755, uwu, sl, weeb, AntisocialWeeb, social">
     <meta name="author" content="R74n">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:image:alt" content="R74n">
-    <title>Minecraft UUID Generator - R74n</title>
+    <title>R74n</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
     <link rel="stylesheet" type="text/css" href="../normalize.css"/>
     <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
-    <script src="scripts.js"></script>
+    <script>
+      function toHash(s) {
+        var hash = 0, i, chr, len;
+        if (s.length === 0) return hash;
+        for (i = 0, len = s.length; i < len; i++) {
+          chr   = s.charCodeAt(i);
+          hash  = ((hash << 5) - hash) + chr;
+          hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+      };
+      function encrypt(s,key) {
+        key = toHash(key);
+        var encrypted = "";
+        
+      }
+    </script>
 
 </head>
 
 <body>
 
 
-<a href="." class="backbutton">⦉</a>
-<h1 class="pagetitle">Minecraft UUID Generator</h1><br>
+<a href="https://R74n.com" class="backbutton">⦉</a>
+<h1 class="pagetitle">Page Name</h1><br>
 <div class="content">
 
-Click the button to generate a UUID.
-<br><br>
-<input type="button" value="Generate UUID" onclick="setValue('GeneratedText',generateUUID());show();">
 
-<br><br>
-<div style="display:none" id="GeneratedDiv">
-Your UUID:
-<input type="button" value="Copy" id="CopyButton" onclick="copyText();">
-<br><br>
-<textarea id="GeneratedText" style="width:500px"></textarea>
 
-</div>
+
+
 
 
 

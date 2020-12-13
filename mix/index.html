@@ -150,6 +150,7 @@
         if (combokeys.includes(combo)||combokeys.includes(combo2)) {
           //console.log("AAAAA");
           choosecombo();
+          return false;
         }
         else {
           setText("Combination",combo+" = ?");
@@ -239,7 +240,7 @@
         if (options["ideas"]) {document.getElementById("Idea").style.display = "block";}
       }
       combotemplates = ["ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 + ITEM2","ITEM1 - ITEM2","ITEM1 × 2","ITEM1 ÷ 2","sqrt(ITEM1)","ITEM1²"];
-      metatemplates = ["category(ITEM1)","opposite(ITEM1)","beginning(ITEM1)"];
+      metatemplates = ["category(ITEM1)","opposite(ITEM1)","beginning(ITEM1)","similar(ITEM1)"];
       function bettercombo(item1,item2) {
         var temps = [];
         if (options["more_operators"]) {
@@ -430,6 +431,7 @@
   <input type="text" id="StarterBox" placeholder="Enter starters here" title="Separate starters with commas">
   <input type="button" value="New Save" id="NewSaveButton" onclick="newsave();" style="display:inline-block;background-color:blue;">
   <br><br>
+  <label for="SaveSelect">Starter Presets</label>
   <select id="PresetSelect" onchange="document.getElementById('StarterBox').value = getSelected('PresetSelect').value">
     <option selected disabled hidden>Curated Presets</option>
     <option value="air,earth,fire,water,life,void">Mix-Up! Default</option>

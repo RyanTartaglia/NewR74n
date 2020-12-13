@@ -323,13 +323,14 @@
         if (OptionsBox.style.display === "none") {OptionsBox.style.display = "block";}
         else {OptionsBox.style.display = "none";}
       }
+      ideatemplates = ["ITEM1 is added to ITEM2","ITEM1 hits ITEM2","ITEM1 touches ITEM2","ITEM1 fused with ITEM2","ITEM1 ITEM2?"];
       function randomIdea(item1,item2) {
         if (item2==null) {
           return "inspiration unavailable"
         }
         else {
           if (randomChoice([0,1])) {var item1temp=item1;item1=item2;item2=item1temp}
-          return "idea: "+item1+" "+randomChoice(["is added to","hits","touches","fused with"])+" "+item2
+          return "idea: "+randomChoice(ideatemplates).replaceAll("ITEM1",item1).replaceAll("ITEM2",item2)
         }
       }
       function copyText(text){
@@ -435,6 +436,7 @@
   <select id="PresetSelect" onchange="document.getElementById('StarterBox').value = getSelected('PresetSelect').value">
     <option selected disabled hidden>Curated Presets</option>
     <option value="air,earth,fire,water,life,void">Mix-Up! Default</option>
+    <option value="fire,water,air,life,dirt,void,electricity,plant,metal,rock">Mix-Up! Tenfold</option>
     <option value="air,earth,fire,water">Classical 4</option>
     <option value="air,earth,fire,water,aether">Classical 5 (Aether)</option>
     <option value="bread,beef,pressure,fire,vegetable,tomato,cheese,milk,egg,apple,sugar,water">Cooking</option>
@@ -451,6 +453,7 @@
 
   <hr>
   <h4>Export</h4>
+  <div style="display:inline-block">
   <label for="FormatSelect">Select a Format</label>
   <select id="FormatSelect">
     <option selected value="mixup">Mix-Up! Save</option>
@@ -459,10 +462,12 @@
     <option value="plaintextcombos">Plain Text (Combos)</option>
     <option value="elem4">Elemental 4 Pack</option>
     <option value="csv">CSV</option>
-  </select>
+  </select></div>
+  <div style="display:inline-block">
   <input type="button" value="Download" id="DownloadButton" onclick="downloadFile(currentsave,formatsave());return false">
   <input type="button" value="Copy" id="CopyButton" onclick="copyText(formatsave());return false">
-  
+  </div>
+
   <hr>
   <h4>Import</h4>
   You can only import saves in the Mix-Up! format.

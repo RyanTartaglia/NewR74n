@@ -190,9 +190,10 @@ hr {
 }
 
 .lidesc {margin-left:10px;}
+.lidesc::before {content:"↳ "}
 .cw[open="false"] {cursor:pointer;background-color:rgb(39, 39, 39);padding:5px;border-radius:20px;line-height:2;}
 .desc {display:block;margin-left:10px;}
-.desc::before {content:"↳"}
+.desc::before {content:"↳ "}
 .wordtxt {}
 .wordsep {color:rgb(85, 85, 85);}
 .worddef {color:lightgray;font-style:italic;}

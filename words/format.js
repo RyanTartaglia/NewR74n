@@ -9,8 +9,9 @@ for (var n in elements) {
     for (var i in lines) {
         var line = lines[i];
         if (line.includes(" - ")) {
-            var word = line.split(" - ",1)[0];
-            var defin = line.split(" - ",2)[1];
+            var components = line.split(' - ');
+            var word = components.shift();
+            var defin = components.join(' - ');
             newlines.push('<span class="wordline"><span class="wordtxt">'+word+'</span><span class="wordsep"> - </span><span class="worddef">'+defin+'</span></span>')
         }
         else {newlines.push(line)}

@@ -16,6 +16,12 @@
     <style>
       h3 {margin-bottom:0px}
     </style>
+    <script>
+      function randomChoice(l){return l[Math.floor(Math.random() * l.length)];}
+      function clearSelection(){if (window.getSelection) {window.getSelection().removeAllRanges();}else if (document.selection) {document.selection.empty();}}
+
+      
+    </script>
 </head>
 
 <body>
@@ -25,38 +31,70 @@
 <h1 class="pagetitle">Twitter Slang List</h1><br>
 <div class="content" style="line-height:1.4;font-size:25px">
 
+
+<div id="InputsDiv">
+<input type="button" value="Show Changes" onclick="var RC=document.getElementById('RecentChanges');if(RC.style.display==='none'){RC.style.display='block';this.value='Hide Changes'}else{RC.style.display='none';this.value='Show Changes'}">
+</div>
+
+<div id="RecentChanges" style="display:none;padding-bottom:20px">Recent Changes (Dec 19, 2020)
+<ul class="toc">
+  <li><a href="#MCYT">MCYT section</a></li>
+  <li>15 new <a href="#General">general Twitter words</a></li>
+  <li>12 new <a href="#Communities">communities</a></li>
+  <li><a href="#/rp">/rp</a> and <a href="#/dsmp">/dsmp</a></li>
+  <li><a href="#comfort character">comfort character</a>, <a href="#hc">hc</a>, <a href="#wbk">wbk</a></li>
+  <li>K-pop: <a href="#enha">enha</a>, <a href="#en-">en-</a>, <a href="#02z">02z</a></li>
+  <li class="graybullet">Moved some things around</li>
+  <li class="graybullet">Started listing group chats behind the scenes...</li>
+</ul></div>
+
 Table of Contents
 <ul class="toc">
   <li><a href="#General">General Twitter Slang</a></li>
   <li><a href="#Stan">General Stan Twitter Slang</a></li>
-  <li><a href="#KPop">K-Pop Stan Slang</a></li>
+  <li><a href="#KPop">K-pop Stan Slang</a></li>
+  <li><a href="#MCYT">Minecraft YouTubers Slang</a></li>
   <li><a href="#Warnings">Content Warnings</a></li>
   <li><a href="#Tone">Tone Indicator List</a></li>
   <li><a href="#Inclusive">Inclusive Terms (LGBTQ+, Race, etc)</a></li>
   <li><a href="#Communities">Twitter "twt" Community List</a></li>
 </ul>
 
+
+
 <h3 id="General"><a href="#General">General Twitter Slang</a></h3>
 <div class="wordlist">acc - account
 alt - alternate account
-avi - avatar
+avi - avatar, profile picture
 bang, blow up, pop off - (of a tweet) to get a lot of interactions
 banger - a tweet that gets a lot of interactions
-cc - a CuriousCat or message on it, OR carbon copy: mentioning someone who you want to see your tweet
-dm - direct message
-dni - do not interact
-f4f - follow for follow
+byf - before you follow
+cc - a CuriousCat or message on it, OR content creator, OR carbon copy: mentioning someone who you want to see your tweet
+dm - direct message, a way of privately messaging
+dms open, open dms - user has opted into allowing anyone to direct message them
+dn - display name
+dni - do not interact, do not follow/comment/message etc. if x
+drafts - tweets that weren't sent but saved by the user for later
+f4f - follow for follow, user will follow back if you follow
+fan acc - an account used to be a fan of someone or something
 fav, fave - favorite, now likes
 fb - follow back
 fleet - a disappearing story on Twitter, similar to Instagram stories
 gc - group chat
+__gc - an acronym for the name of a group chat, with other letters in place of the underscores
+gdm - group direct message, a group chat
 gimmick account - an account with a theme, or gimmick
-ifb - I follow back
+ic - profile icon
+ia - inactive, or instant accept
+ifb - I follow back, user will follow back if you follow
 layout - the theme and name of an account
-lrt - last retweet
+lrt - last retweet, used to tell you to refer to the last thing someone retweeted
+mbf - must be following
 notifs, notis - opted-in notifications that are sent when an account posts
 notification squad, noti gang - a group of users that opted in to receiving notifications for when an account posts
+oc - original content
 op - original poster, original post
+parody - an account pretending to be someone or something that it is not as a joke or character
 pfp - profile picture
 priv - private account usually used for more personal matters
 qt, qrt - quote tweet, or retweet with comment
@@ -64,6 +102,8 @@ ratio'd, ratioed - to have a reply to your tweet get more likes
 ratio - (positive) to get more likes on a tweet than another, or (negative) to get more replies or quote tweets than likes
 reply guy - a person that replies to many posts, especially women's
 reply guying - to reply to many posts
+rl - real life
+rl acc - an account for your real life personality and real life things
 rt - retweet
 sb - soft block, blocking and unblocking to prevent direct messages
 subtweeting - tweeting about somebody without mentioning their name
@@ -71,12 +111,14 @@ thread - a chain of tweet replies
 tl - timeline
 trends - hashtags or phrases that are being talked about, show up on trending tab
 Twitter guy - the unknown person that writes the descriptions for trends
-untag - to remove from the list of people mentioned when replying</div>
+untag - to remove from the list of people mentioned when replying
+@ - Twitter username, or handle
+@ing - to mention a Twitter username (@example)
+@ me next time - said when it is obvious someone is talking about them, usually sarcastic</div>
 
 <h3 id="Stan"><a href="#Stan">General Stan Twitter Slang</a></h3>
 <div class="wordlist">anisd - anitwitter selfie day
 asf, af - as fuck
-bg - boy group, a K-Pop group consisting of only men
 bio chain - multiple accounts with consecutive lyrics in their bio
 bop - good song
 cancel culture - trend of boycotting people or things
@@ -84,13 +126,14 @@ cancel - to boycott
 cancelled, canceled, over - boycotted
 carrd - a page on carrd.co
 chile - child
+comfort character - a character that someone likes and feels comforted by
 d word, d*e - die
 d worded - deactivated
 eye-, I- - speechless
 fancam - recording of a person performing
 flop - to get less interactions on a tweet than suspected
-gg - girl group, a K-Pop group consisting of only women
 going dark - turning your profile picture and header black in shame
+hc - headcanon, someone's personal interpretation of canon
 hunny - honey
 irl, irls - people in real life
 keysmash - string of random letters
@@ -103,14 +146,14 @@ kinning - to believe you're similar to a character
 locals - people outside of the community
 moots, mutuals - users that you follow that follow you back
 noomf - not one of my followers
-oomf - one of my followers, one of my friends, sometimes just a sound similar to oof
+oomf - one of my followers, one of my friends, sometimes just "followers" or a sound similar to oof
 oomirls - one of my in real life friends
 oop-, and I oop - caught off guard
 periodt - period, strong emphasis
 queen - an idol, someone looked up to
 s worded, sus'd, sussed - suspended
 selca - a selfie
-selfie day, selca day - a hashtag for a certain community encouraging members to post selfies. i.e. #dttwtselfieday, #anitwtselfieday
+selfie day, selca day - a hashtag for a certain community encouraging members to post selfies. (e.g., #dttwtselfieday, #anitwtselfieday)
 shade - trash talking
 ship - a real or fictional relationship between two people
 sis - sister
@@ -127,15 +170,20 @@ tanking - underperforming
 tea - gossip or drama
 tsd - Thai selca day
 ub, ult - ultimate bias, favorite person or group
+wbk - we been knew
 wig snatched, wig gone, wig flew - shocked
 yas - yes</div>
 
-<h3 id="KPop"><a href="#KPop">K-Pop Stan Slang</a></h3>
-<div class="wordlist">¹²⁷, small 127 - NCT 127
+<h3 id="KPop"><a href="#KPop">K-pop Stan Slang</a></h3>
+<div class="wordlist">02z - 02 liners, born in 2002
+¹²⁷, small 127 - NCT 127
 ⁷, small 7 - lucky number found throughout BTS, like 7 members, 7 years together, and the Map of the Soul: 7 album
 ARMY - fanbase for BTS, stands for Adorable Representative MC for Youth
 armyweeb - a fan of BTS who likes anime
+bg - boy group, a K-pop group consisting of only men
 bp - BLACKPINK
+enha, en- - ENHYPHEN
+gg - girl group, a K-pop group consisting of only women
 jpop, j-pop - Japanese pop music
 kpop, k-pop - Korean pop music
 NCTzen - a fan of NCT
@@ -143,6 +191,19 @@ ptg - PENTAGON
 ratmy - (derogatory) a fan of BTS
 skz - Stray Kids
 STAY - fanbase for Stray Kids</div>
+
+<h3 id="MCYT"><a href="#MCYT">Minecraft YouTubers Slang</a></h3>
+<div class="wordlist">Also see: <a href="#/dsmp">/dsmp</a>, <a href="#/rp">/rp</a>, <a href="#mcyttwt">mcyttwt</a>, <a href="#dsmptwt">dsmptwt</a>
+arg - alternate reality game
+dnf - DreamNotFound, ship of GeorgeNotFound and Dream
+dreamgender - a xenogender with the attachment to Dream
+dsmp!dream - Dream's character on DreamSMP
+Ghostbur - WilburSoot's ghost character on DreamSMP
+mcc - Minecraft Championship
+mcu - Minecraft Ultimate
+mcyt - Minecraft YouTubers
+sbi - sleepyboisinc (Technoblade, Wilbur Soot, and Ph1lza)
+</div>
 
 <h3 id="Warnings"><a href="#Warnings">Content Warnings</a></h3>
 <div class="wordlist">//, cw, cw//, //cw - content warning
@@ -152,6 +213,7 @@ nsfw, nsfw//, //nsfw - not safe for work, adult content, nudity, etc</div>
 <h3 id="Tone"><a href="#Tone">Tone Indicators / Mood Indicators List</a></h3>
 <div class="wordlist">/c - copypasta, meme
 /cb - clickbait
+/dsmp - DreamSMP
 /f - fake
 /g, /gen - genuine, genuine question
 /hj - half joking
@@ -174,6 +236,7 @@ nsfw, nsfw//, //nsfw - not safe for work, adult content, nudity, etc</div>
 /r - romantic
 /ref - reference
 /rh, /rt - rhetorical question
+/roleplay, /rp - roleplaying
 /s - sarcasm, sarcastic
 /srs - serious
 /sx, /x - sexual intent, sexual
@@ -200,7 +263,9 @@ bbhtwt - BadBoyHalo
 bedtimetwt - Dreamteam and sleepyboisinc
 bllktwt - Blue Lock
 booktwt - books
+breadtwt - BadBoyHalo and a6d
 bsdtwt - Bungou Stray Dogs
+chaostwt - triotwt and dttwt
 clingytwt, dbtwt - Tubbo and Tommyinnit
 csmtwt - Chainsaw Man
 dcsttwt, drsttwt - Dr. Stone
@@ -213,18 +278,25 @@ genshintwt - Genshin Impact
 happytwt - BadBoyHalo and Skeppy
 hermittwt - Hermitcraft
 honktwt - KarlJacobs
+honQtwt - KarlJacobs and Quackity
 hqtwt - Haikyuu
 hxhtwt - Hunter × Hunter
 imastwt - iDOLM@STER
 jjktwt - Jujutsu Kaisen
-kpoptwt - K-Pop
+kpoptwt - K-pop
+mctwt - Minecraft
 mcyttwt, mcytwt, mcyters - Minecraft YouTubers
 mhatwt - My Hero Academia
 narutwt - Naruto
 nsfwtwt - not safe for work things, 18+
+nsfwdttwt - Dreamteam (Not Safe For Work)
+nsfwmcyttwt - Minecraft YouTubers (Not Safe For Work)
 optwt - One Piece
+orphantwt - Technoblade and Skeppy
 pjsekai - Project Sekai
+purpledtwt - Purpled
 quacktwt - Quackity
+rivalstwt - Dream and Technoblade
 saikitwt - The Disastrous Life of Saiki K.
 skeppytwt - Skippy
 sleepytwt - sleepyboisinc (Technoblade, Wilbur Soot, and Ph1lza)
@@ -232,6 +304,9 @@ stantwt - stans
 staytwt, skztwt - Stray Kids
 studytwt - studying
 tbhktwt - Toilet-bound Hanako-kun
+technotwt - Technoblade
+tiredtwt - Bed Wars YouTubers
+triotwt, muffintwt - BadBoyHalo, Skeppy, and a6d
 tpntwt - The Promised Neverland
 yaoitwt - Yaoi
 yiptwt - Fundy</div>

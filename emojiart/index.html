@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="description" content="R74n">
-    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, pixel art, emoji, unicode, text art, ascii art">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, pixel art, emoji, unicode, text art, ascii art, generator">
     <meta name="author" content="R74n">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:image:alt" content="R74n">
-    <title>Emoji Art Drawer - R74n</title>
+    <title>Emoji Art Canvas - R74n</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
     <link rel="stylesheet" type="text/css" href="../normalize.css"/>
     <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
@@ -73,30 +73,34 @@
         location.hash = "Generated";
       }
       function fill(emoji) {
-        var children = document.getElementById("Canvas").children;
-        for (var i = 0; i < children.length; i++) {
-          var pixel = children[i];
-          if (pixel.tagName=="SPAN") {pixel.innerHTML=emoji}
+        if (confirm("Are you sure you want to clear the entire canvas?")) {
+          var children = document.getElementById("Canvas").children;
+          for (var i = 0; i < children.length; i++) {
+            var pixel = children[i];
+            if (pixel.tagName=="SPAN") {pixel.innerHTML=emoji}
+          }
         }
       }
 
-      function resize(height,width) {
-        var Canvas = document.getElementById("Canvas");
-        Canvas.innerHTML = "";
-        if (height>30) {height=30}
-        if (width>30) {width=30}
-        for (var x = 0; x<height; x++) {
-          for (var y = 0; y<width; y++) {
-            var element = document.createElement("span");
-            element.innerHTML = "➖";
-            element.setAttribute("id",x+"-"+y)
-            element.setAttribute("draggable","true")
-            element.style.cursor = "pointer";
-            element.setAttribute("onclick","this.innerHTML=currentemoji;currentpos=this.id");
-            element.setAttribute("ondragover","this.innerHTML=currentemoji;currentpos=this.id");
-            Canvas.appendChild(element);
+      function resize(height,width,force=false) {
+        if (force || confirm("Are you sure you want to clear the entire canvas?")) {
+          var Canvas = document.getElementById("Canvas");
+          Canvas.innerHTML = "";
+          if (height>30) {height=30}
+          if (width>30) {width=30}
+          for (var x = 0; x<height; x++) {
+            for (var y = 0; y<width; y++) {
+              var element = document.createElement("span");
+              element.innerHTML = "➖";
+              element.setAttribute("id",x+"-"+y)
+              element.setAttribute("draggable","true")
+              element.style.cursor = "pointer";
+              element.setAttribute("onclick","this.innerHTML=currentemoji;currentpos=this.id");
+              element.setAttribute("ondragover","this.innerHTML=currentemoji;currentpos=this.id");
+              Canvas.appendChild(element);
+            }
+            Canvas.innerHTML += "<br>"
           }
-          Canvas.innerHTML += "<br>"
         }
       }
       window.onload = function() {
@@ -115,7 +119,7 @@
         }
         setEmoji("⬛️");
 
-        resize(8,8);
+        resize(8,8,true);
       }
     </script>
 
@@ -125,7 +129,7 @@
 
 
 <a href="https://R74n.com" class="backbutton">⦉</a>
-<h1 class="pagetitle">Emoji Art Drawer</h1><br>
+<h1 class="pagetitle">Emoji Art Canvas</h1><br>
 <div class="content">
 
 

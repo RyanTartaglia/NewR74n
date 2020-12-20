@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="R74n">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, pixel art, emoji, unicode, text art, ascii art">
+    <meta name="author" content="R74n">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="twitter:image:alt" content="R74n">
+    <title>Emoji Art Drawer - R74n</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="../normalize.css"/>
+    <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
+    <style>
+      .emojibtn {
+        transition: .2s
+      }
+      .emojibtn:hover, .emojibtn[clicked=true] {transform: scale(1.5);margin-left:10px;margin-right:10px;font-size:25px}
+      #Canvas {-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+    </style>
+    <script>
+      emojis = {
+        "➖":"#404040",
+        "⬛️":"#333333",
+        "⬜️":"#ffffff",
+        "🟥":"#ff0000",
+        "🟧":"#ff9300",
+        "🟨":"#fffb00",
+        "🟩":"#00f900",
+        "🟦":"#0433ff",
+        "🟪":"#ff40ff",
+        "🟫":"#aa7942",
+        "🎛":"#c2c3c3",
+        "🔳":"#8a8a8a",
+        "🔲":"#b5b5b5",
+        "ℹ️":"#5eb0b0",
+        "👁":"#9a6509",
+      }
+      currentemoji = "➖";
+      function setEmoji(emoji) {
+        if (emoji==currentemoji) {return}
+        var element = document.getElementById(emoji);
+        element.setAttribute("clicked","true");
+        var oldelement = document.getElementById(currentemoji);
+        oldelement.removeAttribute("clicked");
+        currentemoji = emoji;
+      }
+      function generate() {
+        document.getElementById("CopyButton").value = "Copy";
+        var newtext = "";
+        var children = document.getElementById("Canvas").children;
+        for (var i = 0; i < children.length; i++) {
+          var pixel = children[i];
+          if (pixel.tagName=="BR") {newtext += "\n"}
+          else {newtext += pixel.innerHTML}
+        }
+        var lines = newtext.split("\n");
+        var newlines = [];
+        for (var i=0;i<lines.length;i++) {
+          var line = lines[i];
+          while (line.endsWith("➖")) {
+            line = line.slice(0, -1)
+          }
+          newlines.push(line);
+        }
+        newtext = newlines.join("\n");
+        while (newtext.endsWith("\n")) {newtext = newtext.slice(0, -1)}
+        var GeneratedText = document.getElementById("GeneratedText");
+        GeneratedText.innerHTML = newtext;
+        GeneratedText.select();
+        document.getElementById("Generated").style.display = "block";
+        location.hash = "Generated";
+      }
+      function fill(emoji) {
+        var children = document.getElementById("Canvas").children;
+        for (var i = 0; i < children.length; i++) {
+          var pixel = children[i];
+          if (pixel.tagName=="SPAN") {pixel.innerHTML=emoji}
+        }
+      }
+
+      function resize(height,width) {
+        var Canvas = document.getElementById("Canvas");
+        Canvas.innerHTML = "";
+        if (height>30) {height=30}
+        if (width>30) {width=30}
+        for (var x = 0; x<height; x++) {
+          for (var y = 0; y<width; y++) {
+            var element = document.createElement("span");
+            element.innerHTML = "➖";
+            element.setAttribute("id",x+"-"+y)
+            element.setAttribute("draggable","true")
+            element.style.cursor = "pointer";
+            element.setAttribute("onclick","this.innerHTML=currentemoji;currentpos=this.id");
+            element.setAttribute("ondragover","this.innerHTML=currentemoji;currentpos=this.id");
+            Canvas.appendChild(element);
+          }
+          Canvas.innerHTML += "<br>"
+        }
+      }
+      window.onload = function() {
+        location.hash = "";
+        var EmojisBox = document.getElementById("EmojisBox");
+        for (var emoji in emojis) {
+          var color = emojis[emoji];
+          var element = document.createElement("input");
+          element.setAttribute("type","button");
+          element.setAttribute("id",emoji);
+          element.setAttribute("value",emoji);
+          element.setAttribute("class","emojibtn");
+          element.style.backgroundColor = color;
+          element.setAttribute("onclick","setEmoji('"+emoji+"')");
+          EmojisBox.appendChild(element);
+        }
+        setEmoji("⬛️");
+
+        resize(8,8);
+      }
+    </script>
+
+</head>
+
+<body>
+
+
+<a href="https://R74n.com" class="backbutton">⦉</a>
+<h1 class="pagetitle">Emoji Art Drawer</h1><br>
+<div class="content">
+
+
+<div id="ControlsBox" style="padding-bottom:20px;">
+<div style="display:inline-block">
+  <input type="button" value="Generate" onclick="generate();">
+  <input type="button" value="Fill" onclick="fill(currentemoji);">
+  <input type="button" value="Clear" onclick="fill('➖');">
+</div>
+  <div style="display:inline-block">
+  <input id="HeightBox" type="number" max="30" placeholder="Height" value="8" min="1">
+  x
+  <input id="WidthBox" type="number" max="30" placeholder="Width" value="8" min="1">
+  <input type="button" value="Reset and Resize" onclick="resize(parseInt(document.getElementById('HeightBox').value),parseInt(document.getElementById('WidthBox').value))">
+</div>
+<!--
+  Fill
+  Clear
+  
+-->
+</div>
+<div id="EmojisBox" style="padding-bottom:20px;"></div>
+<div id="Canvas" style="padding-bottom:20px;font-size:40px;line-height:1;white-space:nowrap;width:auto;display:block;overflow-x:scroll;overflow-y:hidden"></div>
+
+<div id="Generated" style="display:none">
+<textarea id="GeneratedText" style="margin-bottom:20px;display:block;height:300px;width:300px;"></textarea>
+<input type="button" value="Generate" onclick="generate();">
+<input type="button" value="Copy" onclick="document.getElementById('GeneratedText').select();document.execCommand('copy');this.value='Copied'" id="CopyButton">
+</div>
+
+
+
+
+</div>
+
+
+
+
+<!-- i like having this but ublock blocks these things anyway -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-93720349-6');
+</script>
+
+
+
+</body>
+</html>

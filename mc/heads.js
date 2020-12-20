@@ -1226,6 +1226,8 @@ heads = {
 'Jingle-Bell-Nov28.png': 'Jingle Bell Helmet',
 'Reindeer-Helmet-Nov28.png': 'Reindeer Hat',
 'tnt_head-1.png': 'TNT (DogeisCut)',
-'AlourkMayor.png': 'Alourk for Mayor (Unconventional)'
+'AlourkMayor.png': 'Alourk for Mayor (Unconventional)',
+'TestMask1.png': 'Test Mask (Ch40s_)',
+'HDTemplate-ps1024-tadolol.png': 'Tado World Domination (Tado#0001)',
 
 }

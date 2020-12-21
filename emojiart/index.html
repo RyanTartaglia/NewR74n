@@ -46,6 +46,25 @@
         oldelement.removeAttribute("clicked");
         currentemoji = emoji;
       }
+      function linesStartWith(text,string) {
+        var lines = text.split("\n");
+        for (var i=0;i<lines.length;i++) {
+          var line = lines[i];
+          if (!(line.startsWith(string))) {return false}
+        }
+        return true
+      }
+      function clearLineStarts(text,string) {
+        while (linesStartWith(text,string)) {
+          var lines = text.split("\n");
+          var newlines = [];
+          for (var i=0;i<lines.length;i++) {
+            newlines.push(lines[i].substring(1))
+          }
+          text = newlines.join("\n");
+        }
+        return text
+      }
       function generate() {
         document.getElementById("CopyButton").value = "Copy";
         var newtext = "";
@@ -66,6 +85,8 @@
         }
         newtext = newlines.join("\n");
         while (newtext.endsWith("\n")) {newtext = newtext.slice(0, -1)}
+        while (newtext.startsWith("\n")) {newtext = newtext.substring(1)}
+        newtext = clearLineStarts(newtext,"➖");
         var GeneratedText = document.getElementById("GeneratedText");
         GeneratedText.innerHTML = newtext;
         GeneratedText.select();
@@ -87,7 +108,9 @@
           var Canvas = document.getElementById("Canvas");
           Canvas.innerHTML = "";
           if (height>30) {height=30}
+          else if (height<1) {height=1}
           if (width>30) {width=30}
+          else if (width<1) {width=1}
           for (var x = 0; x<height; x++) {
             for (var y = 0; y<width; y++) {
               var element = document.createElement("span");
@@ -139,10 +162,10 @@
   <input type="button" value="Fill" onclick="fill(currentemoji);">
   <input type="button" value="Clear" onclick="fill('➖');">
 </div>
-  <div style="display:inline-block">
-  <input id="HeightBox" type="number" max="30" placeholder="Height" value="8" min="1">
-  x
+<div style="display:inline-block">
   <input id="WidthBox" type="number" max="30" placeholder="Width" value="8" min="1">
+  x
+  <input id="HeightBox" type="number" max="30" placeholder="Height" value="8" min="1">
   <input type="button" value="Reset and Resize" onclick="resize(parseInt(document.getElementById('HeightBox').value),parseInt(document.getElementById('WidthBox').value))">
 </div>
 <!--

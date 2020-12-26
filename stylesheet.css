@@ -118,6 +118,7 @@ ul li::before {
   }
 li.redbullet::before {color:red;}
 li.graybullet::before {color:gray;}
+li.yellowbullet::before {color:yellow;}
 ol {list-style: none; counter-reset: li}
 ol li::before {content: counter(li); color: lime;display: inline-block; width: 1em;margin-left: -1em}
 ol li {counter-increment: li}

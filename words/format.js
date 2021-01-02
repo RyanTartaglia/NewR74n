@@ -42,7 +42,7 @@ InputsDiv.innerHTML = "<form onsubmit='search();return false' style='padding-bot
 "+InputsDiv.innerHTML;
 var AllWordsDataList = document.getElementById("AllWordsDatalist");
 allwords.sort(function (a, b) {
-    return a.toLowerCase().localeCompare(b.toLowerCase());
+    return a.replaceAll(/[\-_\/\.,'"]|an? /g,"").toLowerCase().localeCompare(b.replaceAll(/[\-_\/\.,'"]|an? /g,"").toLowerCase());
 });
 var temphtml = "";
 for (var i in allwords) {

@@ -1230,4 +1230,17 @@ heads = {
 'TestMask1.png': 'Test Mask (Ch40s_)',
 'HDTemplate-ps1024-tadolol.png': 'Tado World Domination (Tado#0001)',
 
+
+'1ultimathule22222.png': 'Ultima Thule',
+'dogbat.png': 'Dog in Bat Costume',
+'mayagang.png': 'MayroSMM',
+'potett.png': 'Dog with Wings',
+'hallo.png': 'NSFW Ahri Art (Broken)',
+'mysdrelflol11asdad2wawsdasdcascaawvsdvvsd.png': '??? (Broken)',
+'user-avatars/smith-anderson/funnyfunnycat_1.png': 'Cat Staring (Broken)',
+'lion-png-lion-png-clipart-png-image-1366.png': 'Lion (Broken)',
+'dad2.png': 'Owl',
+'MicheleObama2.png': 'Michelle Obama (Broken)',
+'owu-cube.png': '???',
+'reddit2.png': 'Reddit Logo (Gray)',
 }

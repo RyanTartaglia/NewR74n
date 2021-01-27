@@ -1243,4 +1243,9 @@ heads = {
 'MicheleObama2.png': 'Michelle Obama (Broken)',
 'owu-cube.png': '???',
 'reddit2.png': 'Reddit Logo (Gray)',
+'yagotest.png':'??? Man (SheezChill)',
+'suisui.png':'Suisei Hoshimachi',
+'twogaou.png':'NSFW Hentai Art',
+'ub.png':'Ugly Bastard Anime Man',
+
 }

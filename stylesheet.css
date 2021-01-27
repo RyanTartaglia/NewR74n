@@ -15,7 +15,10 @@ a:active, a:hover:active {color: rgb(255, 179, 255);}
 a:hover {color: rgb(255, 121, 255);}
 
 
-.pagetitle, .backbutton, .R74nicon {font-size: 40px;display: inline-block;margin:0px;vertical-align: middle;}
+
+.pagetitle, .backbutton, .R74nicon {display: inline-block;margin:0px;vertical-align: middle;margin-left:10px}
+.pagetitle, .R74nicon {font-size:4.5vw}
+.backbutton {font-size:60px}
 .pagetitle {margin-left: 10px;}
 .R74nicon {height:50px;width:50px;transition:3s;}
 
@@ -117,6 +120,7 @@ ul li::before {
     margin-left: -1em; /* Also needed for space (tweak if needed) */
   }
 li.redbullet::before {color:red;}
+li.glowbullet::before {text-shadow: 0px 0px 20px,0px 0px 20px,0px 0px 20px,0px 0px 20px,0px 0px 20px,0px 0px 20px,0px 0px 20px;}
 li.graybullet::before {color:gray;}
 li.yellowbullet::before {color:yellow;}
 ol {list-style: none; counter-reset: li}

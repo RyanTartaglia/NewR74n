@@ -335,7 +335,6 @@ window.addEventListener("load",function(){
       }
     }
 
-    OriginalEmojiTag.appendChild(EmojiTag);
     OriginalEmojiTag.setAttribute("loaded","true");
 
 
@@ -363,6 +362,8 @@ window.addEventListener("load",function(){
     }
     EmojiTag.style.webkitUserDrag = "none";
     EmojiTag.style.userDrag = "none";
+
+    OriginalEmojiTag.appendChild(EmojiTag);
 
   }
 

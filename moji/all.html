@@ -20,6 +20,8 @@
     <script>
       window.addEventListener("load",function(){
 
+        var EmojiCount = document.getElementById("EmojiCount");
+        EmojiCount.innerHTML = "Total Emoji Count: "+Object.keys(R74mojiData).length;
         var EmojiList = document.getElementById("EmojiList");
         for (var EmojiType in R74mojiData) {
           EmojiList.innerHTML += '<emoji type="'+EmojiType+'"></emoji>';
@@ -39,6 +41,8 @@
 <h1 class="pagetitle">R74moji</h1><br>
 <div class="content">
 
+<span id="EmojiCount"></span>
+<br><br>
 <span id="EmojiList"></span>
 
 

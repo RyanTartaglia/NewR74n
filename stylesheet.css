@@ -213,3 +213,8 @@ hr {
 .toc {margin:0px;}
 
 .divblock {display:inline-block;margin:0.4rem;padding:0.4rem;vertical-align:middle;max-width:500px;}
+
+table {border-collapse:collapse}
+td, th {border:0.5px solid gray;padding:5px;padding-left:10px}
+th {background-color:#00ffff;color:black}
+tr:nth-child(odd){background-color: #272727;}

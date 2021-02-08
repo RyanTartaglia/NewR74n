@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="R74n">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, 4755, uwu, sl, weeb, AntisocialWeeb, social">
+    <meta name="author" content="R74n">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="twitter:image:alt" content="R74n">
+    <title>R74moji, Free Pixel Emoji - R74n</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="../normalize.css"/>
+    <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
+    <!--
+    <style>
+      .R74moji {background-image:url("image/pensive.png");background-size:100% 100%;width:1.75em;height:1.75em;min-width:1em;min-height:1em;display:inline-block;vertical-align:middle;margin-bottom:0.3em}
+    </style>
+    -->
+    <script>
+      window.addEventListener("load",function(){
+
+        var EmojiTable = document.getElementById("EmojiTable");
+        for (var EmojiType in R74mojiData) {
+          var EmojiData = R74mojiData[EmojiType];
+          var Row = document.createElement("tr");
+          var Col1 = document.createElement("td");
+          Col1.style.textAlign = "center";
+          Col1.style.fontSize = "35px";
+          Col1.innerHTML = '<emoji type="'+EmojiType+'"></emoji>';
+          Row.appendChild(Col1);
+          
+          var Col2 = document.createElement("td");
+          Col2.innerHTML = EmojiType;
+          Row.appendChild(Col2);
+
+          var Col3 = document.createElement("td");
+          Col3.innerHTML = EmojiData[0];
+          Row.appendChild(Col3);
+
+          EmojiTable.appendChild(Row);
+        }
+
+      })
+    </script>
+    <script src="load.js"></script>
+    <!--<script src="https://r74n.com/moji/load.js"></script>-->
+
+</head>
+
+<body>
+
+
+<a href="https://R74n.com" class="backbutton">⦉</a>
+<h1 class="pagetitle">R74moji</h1><br>
+<div class="content">
+
+Here is my emoji/emoticon set! It's mainly for faces so many emojis will not be included. Also, many are not in Unicode, because this isn't supposed to be an official emoji set, but more like fun emoticons.
+<br><br>
+If you'd like to add them to your site, <a href="docs">click here for documentation</a>.
+<br><br>
+<a href="all">View Every Emoji</a>
+<br><br>
+Upcoming:
+<ul>
+  <li>Sticker Packs for Signal, WhatsApp, Telegram, Gboard, etc.</li>
+  <li>More real emojis, more hand gestures, emotes from plenty of platforms and messaging apps</li>
+  <li>Potentially hundreds more emojis in the future!</li>
+</ul>
+
+<!--look at my sunglasses <emoji type="sunglasses"></emoji> so cool
+
+<br><br>
+
+<textarea style="width:500px"></textarea>
+-->
+
+
+<table style="width:100%" id="EmojiTable">
+  <tr>
+    <th>R74moji</th>
+    <th>Code</th>
+    <th>Name</th>
+  </tr>
+</table>
+
+
+
+
+
+
+</div>
+
+
+
+
+<!-- i like having this but ublock blocks these things anyway -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-93720349-6');
+</script>
+
+
+
+</body>
+</html>

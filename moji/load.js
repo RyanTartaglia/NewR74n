@@ -109,7 +109,7 @@ R74mojiData = {
   "frown2":["Slightly Frowning Face","🙁"],
   "gas_mask":["Face with Gas Mask","🙂🥽🌫"],
   "gasp":["Gasping Face","😱🟡"],
-  "giggle":["Giggling Face with Hand over Mouth","😊🤭"],
+  "giggle":["Giggling Face with Hand over Mouth","🤭"],
   "glass_head":["Face with Glass Head","🙂🧠🪟"],
   "glasses_push":["Face Pushing Glasses","😌👓👈"],
   "glasses":["Face with Glasses","🙂👓"],
@@ -170,14 +170,14 @@ R74mojiData = {
   "nose_face":["Face with Visible Nose","🙂👃"],
   "nosebleed":["Face with Nosebleed","🙁👃🩸"],
   "ok_face":["Face with OK Eyes","🙂🆗"],
-  "oops":["Surprised Face with Hand over Mouth","🤭"],
+  "oops":["Surprised Face with Hand over Mouth","🫢"],
   "oops2":["Slightly Surprised Face with Hand over Mouth","😲🤭"],
-  "pacifier":["Face with Baby Pacifier","☺️👶"],
+  "pacifier_old":["Face with Baby Pacifier (Old Version)","☺️👶"],
   "pacman":["PAC-MAN","😮🧀🧀🧀"],
   "party_hat_face":["Face with Party Hat","☺️🥳"],
   "party_horn_face":["Face Blowing Party Horn","🥳💨"],
   "party":["Partying Face","🥳"],
-  "peeking":["Face Peeking Through Hands","🙈😮"],
+  "peeking":["Face Peeking Through Hands","🫣"],
   "pensive_cowboy":["Sad Cowboy","😔🤠"],
   "pensive_flushed":["Pensive Flushed Face","😔😳"],
   "pensive_headphones":["Pensive Face with Headphones","😔🎧"],
@@ -304,9 +304,104 @@ R74mojiData = {
   "yum":["Smiling Face with Tongue Out","😋"],
   "zany":["Zany Face","🤪"],
   "zipper_mouth":["Face with Mouth Zippered Shut","🤐"],
+  "a_mouth":["Face with 'A' Mouth •A•","•A•"],
+  "anxious":["Grinning Face with Cold Sweat","😅😨"],
+  "bang_head":["Head Banging Against Brick Wall","😑💢🧱"],
+  "black_smiling_face":["U+263B ☻ Black Smiling Face","☻"],
+  "c_mouth":["Face with 'C' Mouth :c",":c"],
+  "coin_eyes":["Face with Coin Eyes and Dollar Tongue","🤑🪙🪙"],
+  "colon_d":["Reversed Face with 'D' Mouth D:","D:"],
+  "cross_eyed_tongue":["Cross Eyed Face with Tongue Out","🤪😛"],
+  "d_colon":["Face with 'D' Mouth :D",":D"],
+  "dead_mouthless":["Dead Face with No Mouth","😵😶"],
+  "dead_smile":["Dead Face Smiling","😵🙂"],
+  "dead_tongue":["Dead Face with Tongue Out","😵👅"],
+  "disappointed2":["Disappointed Face","😞😞"],
+  "dotted_face":["Dotted Face","🫥"],
+  "dotted_smile":["Dotted Smiling Face","🫥🙂"],
+  "earth_face":["Earth Face","🌎🙂"],
+  "earth":["Planet Earth","🌎"],
+  "eating":["Face Eating with Cheek Full","☺️😋"],
+  "eye_lips_eye":["Eye Lips Eye Face 👁👄👁","👁👄👁"],
+  "flushed_left":["Flushed Face Looking to Left","⬅️😳"],
+  "frown_emoticon":["Frowning Emoticon :(",":("],
+  "global_warming_face":["Earth Face on Fire","🔥🌎😵🔥"],
+  "global_warming":["Planet Earth on Fire","🔥🌎🔥"],
+  "happy_flowers":["Smiling Face with Flowers","🌺☺️🌸"],
+  "happy_flushed":["Smiling Flushed Face","😳☺️"],
+  "heart_squeeze":["Face Squeezing Heart and Squinting","😣🧡"],
+  "i_mouth":["Face with 'I' Mouth :I",":I"],
+  "l_mouth":["Face with 'L' Mouth :L",":L"],
+  "licking_lips":["Face Licking Lips","☺️👅"],
+  "lips_kiss":["Face with Red Lips Blowing Kiss","😘💋"],
+  "lips":["Face with Red Lips","🙂👄"],
+  "looking_up_tongue":["Face Looking Up with Tongue Out",""],
+  "mitosis":["Face Replicating via Mitosis","⬅️😮😮➡️"],
+  "moon":["Moon","🌑"],
+  "neutral_sob":["Sobbing Face With Eyes Straight","T-T"],
+  "owo":["OwO Face","OwO"],
+  "petrified":["White Dead Face","😵⚪️"],
+  "pig":["Pig Face","🐷"],
+  "rainbow_heart_eyes":["Face with Rainbow Heart Eyes","😍🌈"],
+  "replacement":["Replacement Face","[?]"],
+  "robot":["Robot Face","🤖"],
+  "s_mouth":["Face with 'S' Mouth :S",":S"],
+  "sad_lines":["Sad Face with Blue Lines","😓😨"],
+  "si":["Katakana Si Face ㋛","㋛"],
+  "silly_old":["Winking Face with Tongue Out (Old Version)",""],
+  "sleeping_mask":["Face with Sleeping Mask","😴😴"],
+  "smelling_flower":["Face Smelling Flower","😤🌺"],
+  "smile_emoticon":["Smiling Emoticon :)",":)"],
+  "sorrow":["Face Squinting and Crying","😣😭"],
+  "drool_heart_eyes":["Drooling Face with Heart Eyes","😍🤤"],
+  "scowl":["Scowling Face","😲😲😲😲😲"],
+  "high":["High Face Smiling with Pink Eyes","☺️🔴🔴"],
+  "pink_eyes":["Frowning Face with Pink Eyes","🙁🔴🔴"],
+  "weed":["High Face Smoking Weed","🍁🚬😌"],
+  "bonk":["Flushed Face Being Hit with Hammer","😳🔨"],
+  "caveman":["Caveman Face",""],
+  "cyclops":["Cyclops Face","🟡👁"],
+  "ogre":["Ogre Face",""],
+  "vampire":["Vampire Face","🧛🏻"],
+  "vampire_yellow":["Vampire Face (Yellow)","🧛"],
+  "pumpkin":["Pumpkin","🎃🎃"],
+  "rainbow_face":["Rainbow Face Grinning","😄🌈"],
+  "jack_o_lantern":["Jack-o'-Lantern","🎃"],
+  "visor_glasses":["Face with Visor Glasses","😕😎😎"],
+  "8bit":["8-Bit Pixelized Face","🙂👾"],
+  "muppet":["Muppet Face",""],
+  "alien":["Alien Face","👽"],
+  "alien2":["Strange Alien Face","👽🟡"],
+  "bike_helmet":["Face with Bike Helmet","🙂🚲⛑"],
+  "man_black_hair":["Man with Black Hair","👨🏻"],
+  "snowy_head":["Face with Snow on Head","❄️❄️❄️😕❄️❄️❄️"],
+  "hiding":["Black Face with Eyes Showing","👁‍🗨👁‍🗨"],
+  "crown":["Face with Crown","🤴"],
+  "https":["Face with Floating Lock","🙂🔒"],
+  "rofl2":["Rolling on the Floor Laughing","🤣😆"],
+  "cat_ears":["Face with Cat Ear Headband","🙂🐱"],
+  "squint_covering_ears":["Face Squinting and Covering Ears","🙉😣"],
+  "hippie":["Hippie Face","🙂🌈✌️"],
+  "peace":["Face with Peace Sign Hand","🙂✌️"],
+  "mustache_old":["Face with Mustache (Old Version)",""],
+  "baby":["Baby Face with Pacifier","👶"],
+  "stricken":["Fearful Face with Lines","〰️😨〰️"],
+  "suggestive":["Face Smiling and Raising Eyebrows","🙂🤨"],
+  "taped_mouth":["Face with Mouth Taped Shut","😶❌"],
+  "tu":["Katakana Tu Face ㋡","㋡"],
+  "ultrashock":["Old Samsung Shocked Emoji","😰😱😱"],
+  "v_mouth":["Face with 'V' Mouth :V",":V"],
+  "wavy_mouth":["Face with Wavy Mouth","•~•"],
+  "white_frowning_face":["U+2639 ☹ White Frowning Face",""],
+  "white_smiling_face":["U+263A ☺ White Smiling Face",""],
+  "x_mouth":["Face with 'X' Mouth :X",":X"],
+  "z_mouth":["Face with 'Z' Mouth :Z",":Z"],
+  "zany_smile":["Zany Face Smiling","🙂🤪"],
+  "zany_old":["Zany Face (Old Version)",""],
   //"":["",""]
 }
 /*
+l = "".split(".png");
 a = "";
 for (var i in l) {
   a += '  "'+l[i]+'":["'+l[i]+'",""],\n'
@@ -341,9 +436,10 @@ window.addEventListener("load",function(){
     var EmojiType = EmojiTag.getAttribute("type");
 
     if (!(R74mojiData[EmojiType]==undefined)) {
-      var ImageURL = "https://r74n.com/moji/png/"+EmojiType+".png"
+      var ImageURL = "https://r74n.com/moji/png/"+EmojiType+".png";
+      var invalid = false
     }
-    else {var ImageURL = "https://r74n.com/moji/png/faceless.png"}
+    else {var ImageURL = "https://r74n.com/moji/png/replacement.png";var invalid=true}
     EmojiTag.setAttribute("src",ImageURL);
     EmojiTag.style.width = "1.75em";
     EmojiTag.style.height = "1.75em";
@@ -353,12 +449,18 @@ window.addEventListener("load",function(){
     EmojiTag.style.verticalAlign = "middle";
     EmojiTag.style.marginBottom = "0.3em";
     EmojiTag.style.cursor = "text";
-    EmojiTag.setAttribute("title",R74mojiData[EmojiType][0]);
-    if (R74mojiData[EmojiType][1]=="") {
-      EmojiTag.setAttribute("alt","[?]");
+    if (invalid) {
+      EmojiTag.setAttribute("title",R74mojiData[EmojiType][0]);
+      if (R74mojiData[EmojiType][1]=="") {
+        EmojiTag.setAttribute("alt","[?]");
+      }
+      else {
+        EmojiTag.setAttribute("alt",R74mojiData[EmojiType][1]);
+      }
     }
     else {
-      EmojiTag.setAttribute("alt",R74mojiData[EmojiType][1]);
+      EmojiTag.setAttribute("title","Invalid Emoji ("+EmojiType+")");
+      EmojiTag.setAttribute("alt","[?]");
     }
     EmojiTag.style.webkitUserDrag = "none";
     EmojiTag.style.userDrag = "none";

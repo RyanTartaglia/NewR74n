@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="R74n">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, 4755, uwu, sl, weeb, AntisocialWeeb, social">
+    <meta name="author" content="R74n">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="twitter:image:alt" content="R74n">
+    <title>Unit Converter - R74n</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="../normalize.css"/>
+    <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
+
+    <script>
+
+      unitdata = {
+        /*
+        "category": {
+          "unit":["unit to base","base to unit"]
+        }
+        */
+        "data": { //base: bytes
+          "bit":0.125,
+          "nibble":0.5,
+          "byte":1,
+          "kilobyte":0.001, //1 byte to kilobytes
+          "kibibyte":1/1024,
+          "megabyte":1000000,
+          "mebibyte":1/1.049e+6,
+          "gigabyte":1000000000,
+          "gibibyte":1/1.074e+9,
+          "terabyte":1000000000000,
+          "tebibyte":1/1.1e+12,
+          "petabyte":1000000000000000,
+          "pebibyte":1/1.126e+15,
+          "exabyte": 1000000000000000000,
+          "exbibyte":1/1.153e+18,
+         "zettabyte":1000000000000000000000,
+          "zebibyte":1/9.223e+18,
+         "yottabyte":1000000000000000000000000,
+          "yobibyte":1/9.223e+18,
+          "kilobit":0.008,
+          "kibibit":0.0078125,
+          "megabit":8e-6,
+          "mebibit":1/131072,
+          "gigabit":8e-9,
+          "gibibit":1/1.342e+8,
+          "terabit":8e-12,
+          "tebibit":1/1.374e+11,
+          "petabit":8e-15,
+          "pebibit":1/1.407e+14,
+          "exabit":8e-18,
+          "exbibit":1/1.441e+17,
+          "zettabit":8e-21,
+          "zebibit":9.223e+18,
+          "yottabit":8e-24,
+          "yobibit":9.223e+18,
+
+
+          /*
+          "byte":["X","X"],
+          "bit":["X*8","X/8"],
+          "kilobit":["X*125","X/125"],
+          "kibibit":["X*128","X/128"],
+          "megabit":["X*125000","X/125000"],
+          "mebibit":["X*131072","X/131072"],
+          "gigabit":["X*1.25e+8","X/1.25e+8"],
+          "gibibit":["X*1.342e+8","X/1.342e+8"],
+          "terabit":["X*1.25e+11","X/1.25e+11"],
+          "tebibit":["X*1.374e+11","X/1.374e+11"],
+          "petabit":["X*1.25e+14","X/1.25e+14"],
+          "pebibit":["X*1.407e+14","X/1.407e+14"],
+          "exabit":["X/1.25e+17","X*1.25e+17"],
+          "exbibit":["X/1.441e+17","X*1.441e+17"],
+          "zettabit":["X/9.223e+18","X*9.223e+18"],
+          "zebibit":["X/9.223e+18","X*9.223e+18"],
+          "yottabit":["X/9.223e+18","X*9.223e+18"],
+          "yobibit":["X/9.223e+18","X*9.223e+18"],
+
+          "kilobyte":["X/1000","X*1000"],
+          "kibibyte":["X/1024","X*1024"],
+          "megabyte":["X/1e+6","X*1e+6"],
+          "mebibyte":["X/1.049e+6","X*1.049e+6"],
+          "gigabyte":["X/1e+9","X*1e+9"],
+          "gibibyte":["X/1.074e+9","X*1.074e+9"],
+          "terabyte":["X/1e+12","X*1e+12"],
+          "tebibyte":["X/1.1e+12","X*1.1e+12"],
+          "petabyte":["X/1e+15","X*1e+15"],
+          "pebibyte":["X/1.126e+15","X*1.126e+15"],
+          "exabyte":["X/1.0e18","X*1.0e18"],
+          "exbibyte":["X/1.1529215e18","X*1.1529215e18"],
+          "zettabyte":["X/1.0e21","X*1.0e21"],
+          "yottabyte":["X/1.0e24","X*1.0e24"],
+          "kilobyte":["X/1000","X*1000"],
+          "kilobyte":["X/1000","X*1000"],
+          "kilobyte":["X/1000","X*1000"],
+          "kilobyte":["X/1000","X*1000"],
+          "kilobyte":["X/1000","X*1000"],
+          "kilobyte":["X/1000","X*1000"],
+          "kilobyte":["X/1000","X*1000"],
+          */
+          
+        }
+      };
+
+      function sanitize(string) {
+        return string.replace(/[^\-\d.]/g, '');
+      }
+      function calc(fn) {
+        return new Function('return ' + fn)();
+      }
+      function convert(type,x,xunit,yunit) {
+        x = parseFloat(x);
+        var base = x*unitdata[type][xunit];
+        var final = base/unitdata[type][yunit];
+        return final
+      }
+      
+    </script>
+<script src="https://r74n.com/moji/load.js"></script>
+
+</head>
+
+<body>
+
+
+<a href="https://R74n.com" class="backbutton">⦉</a>
+<h1 class="pagetitle">Unit Converter</h1><br>
+<div class="content">
+
+<input type="text" style="width:275px;height:40px;font-size:38px;vertical-align:middle;">
+<select style="height:60px;font-size:35px;vertical-align:middle;">
+  <option>t</option>
+</select>
+
+
+
+
+
+
+</div>
+
+
+
+
+<!-- i like having this but ublock blocks these things anyway -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-93720349-6');
+</script>
+
+
+
+</body>
+</html>

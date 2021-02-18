@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="R74n">
+    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, 4755, uwu, sl, weeb, AntisocialWeeb, social">
+    <meta name="author" content="R74n">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="twitter:image:alt" content="R74n">
+    <title>R74n</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="../normalize.css"/>
+    <link rel="icon" href="../favicon.ico" type="image/gif" sizes="16x16">
+
+    <style>
+      @media only screen and (max-width: 750px) {
+        #Canvas {width:75%!important}
+      }
+      #Canvas {background-color:rgb(218, 218, 218);width:40%;margin-left:auto;margin-right:auto;display:block}
+    </style>
+    <script>
+      window.onload = function(){
+        Canvas = document.getElementById("Canvas");
+        ctx = Canvas.getContext('2d');
+        Canvas.addEventListener("mousedown",function(e){drawing = true; draw(e)})
+        Canvas.addEventListener("mousemove",draw)
+        Canvas.addEventListener("mouseup",function(){drawing = false})
+      }
+      powders = {};
+      powdertype = "sand";
+      drawing = false;
+      function draw(e){
+        if (drawing) {
+          var x = e.clientX;
+          var y = e.clientY;
+          var pos = x+","+y;
+          console.log(x+","+y);
+          if (powders[pos]==undefined) {
+            var imageData = ctx.getImageData(0, 0, Canvas.width, Canvas.height);
+            imageData.data = [255,0,255,1];
+            ctx.putImageData(imageData, 0, 0);
+          }
+        }
+      }
+    </script>
+<script src="https://r74n.com/moji/load.js"></script>
+
+</head>
+
+<body>
+
+
+<a href="https://R74n.com" class="backbutton">⦉</a>
+<h1 class="pagetitle">Page Name</h1><br>
+<div class="content">
+
+
+<canvas id="Canvas" width="100" height="100"></canvas>
+
+
+
+
+
+
+</div>
+
+
+
+
+<!-- i like having this but ublock blocks these things anyway -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-93720349-6');
+</script>
+
+
+
+</body>
+</html>

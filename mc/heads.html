@@ -93,8 +93,10 @@ function updateHead() {
         HeadTexture = '{"textures":{"SKIN":{"url":"'+HeadURL+'"}}}';
         HeadB64 = btoa(HeadTexture);
         ExtraNBT = "";
-        if (HeadName.includes("LeoTheRavioli")) {
-          ExtraNBT += ',display:{Lore:[\'[{"text":"made by ","color":"gray","italic":false},{"text":"Leo","color":"#DFB8FF","italic":false},{"text":"The","color":"#CFCAFF"},{"text":"Ravioli ","color":"#CCE1FF"},{"text":":-)","color":"gray"}]\',\'{"text":"Disclaimer: Not all textures were made myself","color":"gray"}\',\'{"text":"Please do not redistribute these as your own!","color":"gray"}\']}';
+        for (var key in SpecialNBT) {
+          if (HeadName.includes("("+key+")")) {
+            ExtraNBT += SpecialNBT[key]
+          }
         }
         HeadCommand = '/give @p player_head{SkullOwner:{Id:'+generateUUID()+',Name:"'+HeadName+'",Properties:{textures:[{Value:"'+HeadB64+'"}]}}'+ExtraNBT+'}'
         setValue("GeneratedText",HeadCommand);
@@ -103,6 +105,12 @@ function updateHead() {
   
 
 
+      }
+
+      SpecialNBT = {
+        "LeoTheRavioli":',display:{Lore:[\'[{"text":"made by ","color":"gray","italic":false},{"text":"Leo","color":"#DFB8FF","italic":false},{"text":"The","color":"#CFCAFF"},{"text":"Ravioli ","color":"#CCE1FF"},{"text":":-)","color":"gray"}]\',\'{"text":"Disclaimer: Not all textures were made myself","color":"gray"}\',\'{"text":"Please do not redistribute these as your own!","color":"gray"}\']}',
+        "Panther":'display:{Lore:[\'{"text":"Join darkst.one for more!","color":"white"}\']}',
+        
       }
 
     </script>

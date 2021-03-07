@@ -5,3 +5,20 @@ loop through Items
   itemid = item["id"]
   itemnbt = item["tag"]
   "/give @p "+itemid+str(itemnbt)
+
+
+
+
+
+
+
+
+
+
+notes:
+
+replace darkst.one with panther
+give lore with server ip
+
+captain patches -> phleer
+

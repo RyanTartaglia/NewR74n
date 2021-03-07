@@ -11,7 +11,9 @@ text = open("text.txt","r",encoding="utf8").read()
 heads = eval(open("heads.js","r",encoding="utf8").read().split("heads = ",1)[-1])
 
 owners = ["LeoTheRavioli","instinct","RyanUwU","Runaiic","courteously","nsap","Runaiic","M-Seven","IllagerCaptain","DogeisCut","Panther","LeiCha","MadetheMeep","TB40","403_","Psjpoj","Torphedo","Morgan#9416","hyfae","sxci","Miasmus","InterestingUsername","PinkPanther1046","Kubajs70","iIFrozenFireIi","FleshlyIsTaken",
-          "VisualCPlusPlus","SuicideMuffin","AceAxer","fleshly_","darkes","OperatorTheDope","GioVarquez","Nullmc"]
+          "VisualCPlusPlus","SuicideMuffin","AceAxer","fleshly_","darkes","OperatorTheDope","GioVarquez","Nullmc",
+
+"videogamesm12","Phleer","CaptainPatches","Captain Patches","fairygirl12","presidentkanst","shdwosx","VENOMFIONN","darkst.one"]
 
 def save():
     savefile = open("heads.js","w",encoding="utf8")
@@ -37,7 +39,9 @@ new = {}
 normalnbt = '{textures: [{Value: "'
 text = text.replace('{textures:[{Value:"',normalnbt).replace("{textures:[{Value:'",normalnbt).replace("{textures: [{Value:'",normalnbt)
 for t in text.split('{textures: [{Value: "')[1:]:
-    ownercheck = t.replace(", {Slot:",",{Slot:").split(",{Slot:",1)[0].lower()
+    ownercheck = t.replace(", {Slot:",",{Slot:").split(",{Slot:",1)[0]
+    namecheck = ownercheck
+    ownercheck = ownercheck.lower()
     if "lanc3y" in ownercheck and "rookrar2k19" in ownercheck: owner = "Lanc3y and Rookrar2k19"
     elif "leo" in ownercheck and "ravioli" in ownercheck: owner = "LeoTheRavioli"
     else:
@@ -53,9 +57,15 @@ for t in text.split('{textures: [{Value: "')[1:]:
     try: file = url.split("wp-content/uploads/",1)[1]
     except IndexError: continue#file = url.split("://",1)[1]
     if file in heads: continue
-    name = file.rsplit(".",1)[0]
+    #name = file.rsplit(".",1)[0]
+    try:
+        nametemp = namecheck.replace(",Name:'",',Name:"').split(',Name:"',1)[1]
+    except: name = file.rsplit(".",1)[0]
+    else:
+        name = nametemp.replace("'}",'"}').split("\"",1)[0]
     if not owner == None: name = name+" ("+owner+")"
     new[file] = name
 print(str(new).replace(", ",",\n"))
+print(len(new))
 #save()
 

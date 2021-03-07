@@ -1,0 +1,8 @@
+
+window.addEventListener("load",function(){
+
+console.log("%c Welcome to R74n ","position: absolute; top: 50%; right: 50%; transform: translate(50%,-50%); text-transform: uppercase; font-family: verdana; font-size: 3em; font-weight: 700; color: #00ffff; text-shadow: 1px 1px 1px #14c9c9, 1px 2px 1px #14c9c9, 1px 3px 1px #14c9c9, 1px 4px 1px #14c9c9, 1px 5px 1px #14c9c9, 1px 13px 6px rgba(16,16,16,0.4), 1px 22px 10px rgba(16,16,16,0.2), 1px 25px 35px rgba(16,16,16,0.2), 1px 30px 60px rgba(16,16,16,0.4);padding:10px")
+
+
+
+})

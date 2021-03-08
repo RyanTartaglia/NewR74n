@@ -1,0 +1,1 @@
+tellraw @p {"text":"R74n","bold":true,"color":"#00FFFF","clickEvent":{"action":"open_url","value":"https://R74n.com"},"hoverEvent":{"action":"show_text","contents":[]}}

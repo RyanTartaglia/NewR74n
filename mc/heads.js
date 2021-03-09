@@ -1557,6 +1557,11 @@ heads = {
 'Dirt64.png': 'HD Dirt Block (Panther)',
 'kittyfilter3.png': 'Blushy Kitty Ears (Panther)',
 'kittyeyes2.png': 'Blushy Kitty Ears and Eyes (Panther)',
-
+'jetgoreHD-S.png':'NSFW Bloody Jet Engine (Alco_Rs11)',
+'nobghdbooghead-s1.png':'Grotesque 3D Steve Head (Alco_Rs11)',
+'alcopfphd.png':'Train (Alco_Rs11)',
+'hdlobster.png':'Lobster (Alco_Rs11)',
+'subsignfull-1.png':'Pedestrian Underpass Sign (Alco_Rs11)',
+'subsignfull.png':'Pedestrian Underpass Sign (Duplicate) (Alco_Rs11)',
 
 }

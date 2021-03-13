@@ -21,12 +21,12 @@ This HTML and its contents are property of R74n.com.
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Huge library of 1000+ HD heads for Minecraft.">
-    <meta name="keywords" content="R74n, ryan, RyanUwU, slweeb, heads, player heads, HD, HD heads, 4K heads, realistic heads, database">
+    <meta name="description" content="Huge library of 1000+ HD player head textures and skins for Minecraft.">
+    <meta name="keywords" content="R74n, RyanUwU, slweeb, heads, player heads, HD, HD heads, 4K heads, realistic heads, database, player skull">
     <meta name="author" content="R74n">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:image:alt" content="R74n">
-    <title>Minecraft HD Heads - R74n</title>
+    <title id="TitleTag">Minecraft HD Heads - R74n</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
@@ -125,6 +125,7 @@ function updateHead(file) {
       }
       HeadSelect.value = HeadFile;
     }
+    document.getElementById("TitleTag").innerHTML = HeadName.split(" (")[0]+" Minecraft HD Head - R74n"
 
     HeadURL = "https://education.minecraft.net/wp-content/uploads/"+HeadFile;
     HeadTexture = '{"textures":{"SKIN":{"url":"'+HeadURL+'"}}}';
@@ -147,18 +148,39 @@ function updateHead(file) {
       SpecialNBT = {
         "LeoTheRavioli":',display:{Lore:[\'[{"text":"made by ","color":"gray","italic":false},{"text":"Leo","color":"#DFB8FF","italic":false},{"text":"The","color":"#CFCAFF"},{"text":"Ravioli ","color":"#CCE1FF"},{"text":":-)","color":"gray"}]\',\'{"text":"Disclaimer: Not all textures were made myself","color":"gray"}\',\'{"text":"Please do not redistribute these as your own!","color":"gray"}\']}',
         "Panther":'display:{Lore:[\'{"text":"Join darkst.one for more!","color":"white"}\']}',
+        "RyanUwU":',Enchantments:[{id:"minecraft:unbreaking",lvl:4755s}],CanDestroy:["minecraft:bedrock"],display:{Lore:[\{"text":"    "}\,\{"text":"by RyanUwU","color":"dark_gray","italic":false}\,\{"text":"    "}\,\{"text":"加我的不和谐我会和你做爱","color":"dark_purple","obfuscated":true,"bold":true,"italic":false}\,\{"text":"Minecraft: RyanUwU","color":"dark_purple","italic":false}\,\{"text":"Twitter: @slweeb","color":"dark_purple","italic":false}\,\{"text":"Discord: ryan#4755","color":"dark_purple","italic":false}\,\{"text":"R74n.com/box","color":"dark_purple","italic":false}\,\{"text":"加我的不和谐我会和你做爱","color":"dark_purple","obfuscated":true,"bold":true,"italic":false}\]}'
         
       }
 
 window.addEventListener("load",function(){
   var URLSearch = location.search.substring(1);
   if (!(URLSearch=="")) {
-    if (!(URLSearch.includes("."))) {
-      URLSearch += ".png"
+    if (URLSearch=="all_heads") {
+      for (var key in heads) {
+        var headimg = document.createElement("img");
+        headimg.setAttribute("src","https://education.minecraft.net/wp-content/uploads/"+key)
+        document.body.appendChild(headimg)
+      }
     }
-    updateHead(URLSearch)
+    else {
+      if (!(URLSearch.includes("."))) {
+        URLSearch += ".png"
+      }
+      updateHead(URLSearch)
+    }
   }
 })
+
+function URLs(nsfw=false) {
+  var urllist = [];
+  for (var key in heads) {
+    value = heads[key];
+    if (nsfw || !(value.includes("NSFW"))) {
+      urllist.push("https://r74n.com/mc/heads?"+key.split('.').slice(0, -1).join('.'))
+    }
+  }
+  console.log(urllist.join("\n"))
+}
 
     </script>
 

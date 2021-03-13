@@ -15,3 +15,17 @@ https://r74n.com/moji
 https://r74n.com/moji/docs
 https://r74n.com/moji/all
 https://r74n.com/PogChamp/
+https://r74n.com/icons/favicon
+https://r74n.com/icons/aframe
+https://r74n.com/icons/aframe-small
+https://r74n.com/icons/favicon.pdf
+https://r74n.com/icons/ascii-art-small-textarea
+https://r74n.com/icons/ascii-art-textarea
+https://r74n.com/icons/box-drawings-black
+https://r74n.com/icons/box-drawings-small-textarea
+https://r74n.com/icons/box-drawings-textarea
+https://r74n.com/icons/box-drawings
+https://r74n.com/icons/braille-art-small-textarea
+https://r74n.com/icons/braille-art-textarea
+https://r74n.com/icons/braille-art-tiny-textarea.html
+https://r74n.com/icons/text

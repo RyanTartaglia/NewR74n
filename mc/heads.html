@@ -109,35 +109,56 @@ function searchheads(){
 
 
 
-function updateHead() {
-        var HeadSelect = document.getElementById("HeadSelect");
-        var Selected = HeadSelect.options[HeadSelect.selectedIndex];
-        var HeadFile = Selected.value;
-        var HeadName = Selected.text;
-
-        HeadURL = "https://education.minecraft.net/wp-content/uploads/"+HeadFile;
-        HeadTexture = '{"textures":{"SKIN":{"url":"'+HeadURL+'"}}}';
-        HeadB64 = btoa(HeadTexture);
-        ExtraNBT = "";
-        for (var key in SpecialNBT) {
-          if (HeadName.includes("("+key+")")) {
-            ExtraNBT += SpecialNBT[key]
-          }
-        }
-        HeadCommand = '/give @p player_head{SkullOwner:{Id:'+generateUUID()+',Name:"'+HeadName+'",Properties:{textures:[{Value:"'+HeadB64+'"}]}}'+ExtraNBT+'}'
-        setValue("GeneratedText",HeadCommand);
-
-        setText("HeadDesc","<br><br>"+HeadName+" ("+HeadFile+")<br><br><a href='"+HeadURL+"'>"+HeadURL+"</a>"+"<br><br><img src='"+HeadURL+"' class='textureimg' alt='Loading "+HeadFile+"...' title='"+HeadName+"'><br><br>");
-  
-
-
+function updateHead(file) {
+    var HeadSelect = document.getElementById("HeadSelect");
+    if (file==undefined) {
+      var Selected = HeadSelect.options[HeadSelect.selectedIndex];
+      var HeadFile = Selected.value;
+      var HeadName = Selected.text;
+      window.history.replaceState(null, null, "?"+HeadFile);
+    }
+    else {
+      var HeadFile = file;
+      var HeadName = heads[HeadFile];
+      if (HeadName==undefined) {
+        HeadName = HeadFile.split('.').slice(0, -1).join('.');
       }
+      HeadSelect.value = HeadFile;
+    }
+
+    HeadURL = "https://education.minecraft.net/wp-content/uploads/"+HeadFile;
+    HeadTexture = '{"textures":{"SKIN":{"url":"'+HeadURL+'"}}}';
+    HeadB64 = btoa(HeadTexture);
+    ExtraNBT = "";
+    for (var key in SpecialNBT) {
+      if (HeadName.includes("("+key+")")) {
+        ExtraNBT += SpecialNBT[key]
+      }
+    }
+    HeadCommand = '/give @p player_head{SkullOwner:{Id:'+generateUUID()+',Name:"'+HeadName+'",Properties:{textures:[{Value:"'+HeadB64+'"}]}}'+ExtraNBT+'}'
+    setValue("GeneratedText",HeadCommand);
+
+    setText("HeadDesc","<br><br>"+HeadName+" ("+HeadFile+")<br><br><a href='"+HeadURL+"'>"+HeadURL+"</a>"+"<br><br><img src='"+HeadURL+"' class='textureimg' alt='"+HeadFile+" does not exist' title='"+HeadName+"'><br><br>");
+    show();
+
+
+  }
 
       SpecialNBT = {
         "LeoTheRavioli":',display:{Lore:[\'[{"text":"made by ","color":"gray","italic":false},{"text":"Leo","color":"#DFB8FF","italic":false},{"text":"The","color":"#CFCAFF"},{"text":"Ravioli ","color":"#CCE1FF"},{"text":":-)","color":"gray"}]\',\'{"text":"Disclaimer: Not all textures were made myself","color":"gray"}\',\'{"text":"Please do not redistribute these as your own!","color":"gray"}\']}',
         "Panther":'display:{Lore:[\'{"text":"Join darkst.one for more!","color":"white"}\']}',
         
       }
+
+window.addEventListener("load",function(){
+  var URLSearch = location.search.substring(1);
+  if (!(URLSearch=="")) {
+    if (!(URLSearch.includes("."))) {
+      URLSearch += ".png"
+    }
+    updateHead(URLSearch)
+  }
+})
 
     </script>
 
@@ -172,7 +193,7 @@ NSFW images are specified as such.
 
 <br><br>
 
-<select name="boxes" id="HeadSelect" onchange="updateHead();show();" style="max-width:100%;">
+<select name="boxes" id="HeadSelect" onchange="updateHead();" style="max-width:100%;">
   <option selected disabled hidden value="">Select a Head</option>
 </select>
 <br><br>

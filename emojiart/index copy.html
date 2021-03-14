@@ -114,9 +114,7 @@ This HTML and its contents are property of R74n.com.
           newlines.push(line);
         }
         newtext = newlines.join("\n");
-        var a = LZUTF8.compress(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|Untitled Piece");
-        var temp = b64EncodeUnicode(ab2str(a)).replaceAll("=","-");
-        window.history.replaceState(null, null, "?"+temp);//"?"+b64EncodeUnicode(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|Untitled Piece").replaceAll("=","-"));
+        window.history.replaceState(null, null, "?"+b64EncodeUnicode(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|Untitled Piece").replaceAll("=","-"));
         while (newtext.endsWith("\n")) {newtext = newtext.slice(0, -1)}
         while (newtext.startsWith("\n")) {newtext = newtext.substring(1)}
         newtext = clearLineStarts(newtext,"➖");
@@ -188,17 +186,6 @@ This HTML and its contents are property of R74n.com.
               return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
           }).join(''));
       }
-      function ab2str(buf) {
-        return String.fromCharCode.apply(null, new Uint16Array(buf));
-      }
-      function str2ab(str) {
-        var buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
-        var bufView = new Uint16Array(buf);
-        for (var i=0, strLen=str.length; i < strLen; i++) {
-          bufView[i] = str.charCodeAt(i);
-        }
-        return buf;
-      }
       window.addEventListener("load",function() {
         location.hash = "";
         var EmojisBox = document.getElementById("EmojisBox");
@@ -216,10 +203,7 @@ This HTML and its contents are property of R74n.com.
         setEmoji("⬛️");
 
         if (!(location.search=="")) {
-          var ArtData = LZUTF8.decompress(new Uint8Array(str2ab(b64DecodeUnicode(location.search.substring(1).replaceAll("-","=")))).filter(function(x,count=0){
-    return count%2==0;
-    count ++
-})).split("|");
+          var ArtData = b64DecodeUnicode(location.search.substring(1).replaceAll("-","=")).split("|");
           console.log(ArtData);
           if (ArtData[2].startsWith("[")) {var pixels = JSON.parse(ArtData[2])}
           else {

@@ -216,12 +216,14 @@ This HTML and its contents are property of R74n.com.
         setEmoji("⬛️");
 
         if (!(location.search=="")) {
-          var ArtData = LZUTF8.decompress(new Uint8Array(str2ab(b64DecodeUnicode(location.search.substring(1).replaceAll("-","=")))).filter(function(x,count=0){
+          var b64 = b64DecodeUnicode(location.search.substring(1).replaceAll("-","="));
+          var b64Data = b64.split("|");
+          var ArtData = LZUTF8.decompress(new Uint8Array(str2ab(b64)).filter(function(x,count=0){
     return count%2==0;
     count ++
 })).split("|");
           console.log(ArtData);
-          if (ArtData[2].startsWith("[")) {var pixels = JSON.parse(ArtData[2])}
+          if (b64Data[2].startsWith("[")) {var pixels = JSON.parse(b64Data[2])}
           else {
             var pixels = ArtData[2].split("—");
           }

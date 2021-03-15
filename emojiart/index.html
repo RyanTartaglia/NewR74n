@@ -63,7 +63,9 @@ This HTML and its contents are property of R74n.com.
         "🔳":"#8a8a8a",
         "🔲":"#b5b5b5",
         "ℹ️":"#5eb0b0",
-        "👁":"#9a6509",
+        "🏳️‍🌈":"#ffffff",
+        
+        //"👁":"#9a6509",
       }
       currentemoji = "➖";
       function setEmoji(emoji) {
@@ -93,8 +95,11 @@ This HTML and its contents are property of R74n.com.
         }
         return text
       }
-      function generate() {
+      function generate(jump=true) {
         document.getElementById("CopyButton").value = "Copy";
+        var NameBox = document.getElementById("NameBox");
+        var piecename = NameBox.value.replaceAll("<","≤").replaceAll(">","≥")
+        if (piecename=="" || /^\s+$/.test(piecename)) {piecename = "Untitled Piece";NameBox.value=piecename}
         var newtext = "";
         var b64list = [];
         var children = document.getElementById("Canvas").children;
@@ -114,7 +119,7 @@ This HTML and its contents are property of R74n.com.
           newlines.push(line);
         }
         newtext = newlines.join("\n");
-        var a = LZUTF8.compress(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|Untitled Piece");
+        var a = LZUTF8.compress(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|"+piecename);
         var temp = b64EncodeUnicode(ab2str(a)).replaceAll("=","-");
         window.history.replaceState(null, null, "?"+temp);//"?"+b64EncodeUnicode(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|Untitled Piece").replaceAll("=","-"));
         while (newtext.endsWith("\n")) {newtext = newtext.slice(0, -1)}
@@ -127,8 +132,10 @@ This HTML and its contents are property of R74n.com.
         var GeneratedLink = document.getElementById("GeneratedLink");
         GeneratedLink.innerHTML = "https://R74n.com/emojiart/"+location.search
         GeneratedLink.setAttribute("href","https://R74n.com/emojiart/"+location.search)
-        location.hash = "Generated";
-        console.log(b64list)
+        var ArtworkName = document.getElementById("ArtworkName");
+        ArtworkName.innerHTML = piecename.replaceAll("<","≤").replaceAll(">","≥")
+        if (jump) {location.hash = "Generated";}
+        //console.log(b64list)
       }
       function fill(emoji) {
         if (confirm("Are you sure you want to clear the entire canvas?")) {
@@ -137,6 +144,8 @@ This HTML and its contents are property of R74n.com.
             var pixel = children[i];
             if (pixel.tagName=="SPAN") {pixel.innerHTML=emoji}
           }
+          NameBox = document.getElementById("NameBox");
+          NameBox.value = "Untitled Piece";
         }
       }
 
@@ -164,6 +173,8 @@ This HTML and its contents are property of R74n.com.
             }
             Canvas.innerHTML += "<br>"
           }
+          NameBox = document.getElementById("NameBox");
+          NameBox.value = "Untitled Piece";
         }
       }
       var emojiStringToArray = function (str) {
@@ -199,6 +210,12 @@ This HTML and its contents are property of R74n.com.
         }
         return buf;
       }
+      function togglemore() {
+        MoreBox = document.getElementById("MoreOptions");
+        MoreButton = document.getElementById("MoreButton");
+        if (MoreBox.style.display == "none") {MoreBox.style.display="block";MoreButton.value="Hide Options"}
+        else {MoreBox.style.display="none";MoreButton.value="More Options"}
+      }
       window.addEventListener("load",function() {
         location.hash = "";
         var EmojisBox = document.getElementById("EmojisBox");
@@ -222,13 +239,15 @@ This HTML and its contents are property of R74n.com.
     return count%2==0;
     count ++
 })).split("|");
-          console.log(ArtData);
+          var piecename = ArtData[3];
+          document.getElementById("NameBox").value = piecename.replaceAll("<","≤").replaceAll(">","≥");
+          //console.log(ArtData);
           if (b64Data[2].startsWith("[")) {var pixels = JSON.parse(b64Data[2])}
           else {
             var pixels = ArtData[2].split("—");
           }
           resize(parseInt(ArtData[0]),parseInt(ArtData[1]),force=true);
-          console.log(pixels)
+          //console.log(pixels)
           var count = 0;
           for (var y=0; y<canvassize[1]; y++) {
             for (var x=0; x<canvassize[0]; x++) {
@@ -237,11 +256,109 @@ This HTML and its contents are property of R74n.com.
               count++
             }
           }
+          generate(jump=false);
 
 
         }
         else {resize(8,8,true);}
+
+        document.getElementById("FileInput").addEventListener('change', importFile);;
       })
+
+      function importFile(e) {
+        if (!confirm("Are you sure you want to import this image?\n\nYou will lose your current piece. It may take a few seconds.")) {return false}
+          var canvas = document.getElementById("ImportCanvas");
+          canvas.setAttribute("width",canvassize[0]);
+          canvas.setAttribute("height",canvassize[1]);
+          var ctx = canvas.getContext("2d");
+          var img = new Image;
+          img.src = URL.createObjectURL(e.target.files[0]);
+          img.onload = function() {
+              ctx.drawImage(img,0,0,canvassize[0],canvassize[1]);
+          var data = ctx.getImageData(0, 0, canvassize[0], canvassize[1]).data
+          var pixels = [];
+          for(let i = 0; i < data.length; i += 4) {
+            const red = data[i];
+            const green = data[i + 1];
+            const blue = data[i + 2];
+            const alpha = data[i + 3];
+            if (alpha < 127.5) {pixels.push("➖")}
+            else {
+              pixels.push(closestEmoji([red,green,blue]))
+            }
+            var count = 0;
+            for (var y=0; y<canvassize[1]; y++) {
+              for (var x=0; x<canvassize[0]; x++) {
+                var e = document.getElementById(y+"-"+x);
+                e.innerHTML = pixels[count]
+                count++
+              }
+            }
+            generate(jump=false);
+            //console.log(red+","+green+","+blue+","+alpha)
+          }}
+      }
+      emojicolors = {
+"[0,0,0]":"⬛️",
+"[0,0,255]":"🟦",
+"[0,255,255]":"🟦",
+"[170,121,66]":"🟫",
+"[0,255,0]":"🟩",
+"[160,249,0]":"🟩",
+"[255,147,0]":"🟧",
+"[148,33,146]":"🟪",
+"[255,0,0]":"🟥",
+"[255,179,233]":"🟥",
+"[255,255,255]":"⬜️",
+"[255,251,0]":"🟨",
+"[146,146,146]":"⬜️",
+"[77,77,77]":"⬛️",
+"[194,195,195]":"⬜️",
+"[183,90,0]":"🟧",
+"[112,55,0]":"🟫",
+"[84,220,255]":"🟦",
+"[20,131,0]":"🟩",
+"[31,98,20]":"🟩",
+"[255,115,99]":"🟥",
+"[211,105,95]":"🟥",
+"[79,60,133]":"🟪",
+"[255,253,217]":"⬜️",
+"[58,97,219]":"🟦",
+"[226,120,147]":"🟪",
+"[193,163,120]":"🟧",
+"[211,197,176]":"⬜️",
+"[198,59,52]":"🟥",
+"[156,36,21]":"🟥",
+"[152,204,138]":"🟩",
+"[230,212,136]":"🟨",
+"[90,67,48]":"🟫",
+
+    }
+      function colorDistance(c1,c2) {
+        //[r1,g1,b1] = c1;
+        //[r2,g2,b2] = c2;
+        r1=c1[0];r2=c2[0];
+        g1=c1[1];g2=c2[1];
+        b1=c1[2];b2=c2[2];
+        var sumOfSquares = 0;
+        sumOfSquares += Math.pow(r1 - r2, 2);
+        sumOfSquares += Math.pow(g1 - g2, 2);
+        sumOfSquares += Math.pow(b1 - b2, 2);
+        //console.log(Math.sqrt(sumOfSquares))
+        return Math.sqrt(sumOfSquares);
+      }
+      function closestEmoji(rgb) {
+        var colors = Object.keys(emojicolors);
+        colors.sort(function(a,b){
+          return colorDistance(JSON.parse(a),rgb) - colorDistance(JSON.parse(b),rgb)
+        });
+        var closestcolor = colors[0];
+        //console.log(closestcolor);
+        //console.log(colors);
+        var emoji = emojicolors[closestcolor];
+        return emoji;
+      }
+      
     </script>
 
     <script src="https://R74n.com/moji/load.js"></script>
@@ -277,10 +394,23 @@ This HTML and its contents are property of R74n.com.
 <div id="EmojisBox" style="padding-bottom:20px;"></div>
 <div id="Canvas" style="padding-bottom:20px;font-size:40px;line-height:1;white-space:nowrap;width:auto;display:block;overflow-x:scroll;overflow-y:hidden"></div>
 
+<input id="MoreButton" type="button" value="More Options" onclick="togglemore();">
+<div id="MoreOptions" style="display:none">
+  <form onsubmit="generate();return false">
+    <label for="namepiece">Name Piece: </label>
+    <input id="NameBox" type="text" placeholder="Name" value="Untitled Piece" name="namepiece">
+    <br><br><label for="importimg">Import Image: </label>
+    <input type="file" id="FileInput" name="importimg">
+</form>
+</div>
+
 <div id="Generated" style="display:none">
+<br>
 <textarea id="GeneratedText" style="margin-bottom:20px;display:block;height:300px;width:300px;"></textarea>
 <input type="button" value="Generate" onclick="generate();">
 <input type="button" value="Copy" onclick="document.getElementById('GeneratedText').select();document.execCommand('copy');this.value='Copied'" id="CopyButton">
+<br><br>
+<strong id="ArtworkName"></strong>
 <br><br>
 You can also share this URL with anyone and they can edit it:<br>
 <a id="GeneratedLink" href=""></a>
@@ -288,6 +418,8 @@ You can also share this URL with anyone and they can edit it:<br>
 
 
 
+
+<canvas id="ImportCanvas" style="display:none" width="8" height="8"></canvas>
 
 </div>
 

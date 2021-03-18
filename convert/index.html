@@ -58,7 +58,7 @@ This HTML and its contents are property of R74n.com.
       }
 
       function selectType(e) {
-        currenttype = e.options[e.options.selectedIndex].getAttribute("type");
+        currenttype = e.options[e.options.selectedIndex].getAttribute("value");
         var ValueBox1 = document.getElementById("ValueBox1");
         var UnitSelect1 = document.getElementById("UnitSelect1");
         var ValueBox2 = document.getElementById("ValueBox2");
@@ -76,14 +76,14 @@ This HTML and its contents are property of R74n.com.
           if (!(aliases[key]==undefined)) {option.text += " / "+aliases[key]}
           if (!(abbrs[key]==undefined)) {option.text += " ("+abbrs[key]+")"}
           option.setAttribute("unit",key);
-          option.setAttribute("id",key+"-1");
+          option.setAttribute("value",key+"-1");
           UnitSelect1.add(option)
           var option = document.createElement("option");
           option.text = key;
           if (!(aliases[key]==undefined)) {option.text += " / "+aliases[key]}
           if (!(abbrs[key]==undefined)) {option.text += " ("+abbrs[key]+")"}
           option.setAttribute("unit",key);
-          option.setAttribute("id",key+"-2");
+          option.setAttribute("value",key+"-2");
           UnitSelect2.add(option)
         }
         unit1=UnitSelect1.options[UnitSelect1.options.selectedIndex].getAttribute('unit')
@@ -99,7 +99,24 @@ This HTML and its contents are property of R74n.com.
       }
       
       window.addEventListener("load", function(){
-        
+        var URLSearch = location.search.substring(1);
+        if (!(URLSearch=="")) {
+          var query = URLSearch.split("/")
+          var TypeSelect = document.getElementById("TypeSelect");
+          var ValueBox1 = document.getElementById("ValueBox1");
+          var UnitSelect1 = document.getElementById("UnitSelect1");
+          var ValueBox2 = document.getElementById("ValueBox2");
+          var UnitSelect2 = document.getElementById("UnitSelect2");
+          if (!(query[0]==undefined)) {
+            TypeSelect.value = query[0]
+            console.log(query)
+            selectType(TypeSelect)}
+          if (!(query[1]==undefined || query[1]=="")) {ValueBox1.value = query[1]}
+          if (!(query[2]==undefined)) {UnitSelect1.value = query[2]+"-1"; unit1=query[2]}
+          if (!(query[3]==undefined)) {UnitSelect2.value = query[3]+"-2"; unit2=query[3]}
+
+          update()
+        }
 
       })
     </script>
@@ -146,8 +163,8 @@ todo:
 
 <select id="TypeSelect" onchange="selectType(this)">
   <option disabled selected>Select a Unit Type</option>
-  <option type="data">Digital Storage (Bytes, Bits)</option>
-  <option type="length">Length (Meters, Inches)</option>
+  <option value="data">Digital Storage (Bytes, Bits)</option>
+  <option value="length">Length (Meters, Inches)</option>
 </select>
 
 <br><br>

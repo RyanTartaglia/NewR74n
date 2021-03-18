@@ -26,7 +26,7 @@ This HTML and its contents are property of R74n.com.
     <meta name="author" content="R74n">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:image:alt" content="R74n">
-    <title>Unit Converter - R74n</title>
+    <title id="TitleTag">Unit Converter - R74n</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
     <link rel="stylesheet" type="text/css" href="../normalize.css"/>
     <link rel="apple-touch-icon" sizes="180x180" href="https://R74n.com/icons/apple-touch-icon.png?v=R74n-2">
@@ -97,6 +97,15 @@ This HTML and its contents are property of R74n.com.
         var y = convert(currenttype,x,unit1,unit2);
         document.getElementById("ValueBox2").value = y
       }
+
+      function toTitleCase(str) {
+        return str.replace(
+          /\w\S*/g,
+          function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          }
+        );
+      }
       
       window.addEventListener("load", function(){
         var URLSearch = location.search.substring(1);
@@ -112,9 +121,21 @@ This HTML and its contents are property of R74n.com.
             console.log(query)
             selectType(TypeSelect)}
           if (!(query[1]==undefined || query[1]=="")) {ValueBox1.value = query[1]}
-          if (!(query[2]==undefined)) {UnitSelect1.value = query[2]+"-1"; unit1=query[2]}
-          if (!(query[3]==undefined)) {UnitSelect2.value = query[3]+"-2"; unit2=query[3]}
-
+          if (!(query[2]==undefined || query[2]=="")) {UnitSelect1.value = query[2]+"-1"; unit1=query[2]}
+          if (!(query[3]==undefined || query[3]=="")) {UnitSelect2.value = query[3]+"-2"; unit2=query[3]}
+          var TitleTag = document.getElementById("TitleTag")
+          if (query.length==1) {
+            TitleTag.innerHTML = "Convert "+TypeSelect.options[TypeSelect.options.selectedIndex].text+" Online - R74n"
+          }
+          else if (query.length==2) {
+            TitleTag.innerHTML = "Convert "+query[1]+" "+TypeSelect.options[TypeSelect.options.selectedIndex].text+" Online - R74n"
+          }
+          else if (query.length==3) {
+            TitleTag.innerHTML = "Convert "+query[1]+" "+toTitleCase(query[2])+" Online - R74n"
+          }
+          else if (query.length==4) {
+            TitleTag.innerHTML = "Convert "+query[1]+" "+toTitleCase(query[2])+" to "+toTitleCase(query[3])+" Online - R74n"
+          }
           update()
         }
 

@@ -103,8 +103,40 @@ unitdata = {
     "milliradian":180/1000*Math.PI,
     "minute of arc":0.0166667,
     "second of arc":0.000277778,
+  },
+  "metric":{//base: none
+    "tera":10**12,
+    "giga":10**9,
+    "mega":10**6,
+    "kilo":10**3,
+    "hecto":10**2,
+    "deca":10**1,
+    "none":1,
+    "deci":10**-1,
+    "centi":10**-2,
+    "milli":10**-3,
+    "micro":10**-6,
+    "nano":10**-9,
+    "pico":10**-12,
+    "peta":10**15,
+    "exa":10**18,
+    "zetta":10**21,
+    "yotta":10**24,
+    "kibi":2**10,
+    "mebi":2**20,
+    "gibi":2**30,
+    "tebi":2**40,
+    "pebi":2**50,
+    "exbi":2**60,
+    "zebi":2**70,
+    "yobi":2**80,
+    "myria":10000,
+    "double":2,
+    "demi":0.5,
 
-    
+
+
+
   }
 
 
@@ -118,6 +150,7 @@ aliases = {
   "rod":"pole / perch",
   "meter":"metre",
   "femtometer":"fermi",
+  "myria":"myrio",
 
   
 }
@@ -126,5 +159,6 @@ aliases = {
 abbrs = {
   "bit":"b","byte":"B","nibble":"nybble","kilobyte":"kB","kibibyte":"KiB","megabyte":"MB","mebibyte":"MiB","gigabyte":"GB","gibibyte":"GiB","terabyte":"TB","tebibyte":"TiB","petabyte":"PB","pebibyte":"PiB","exabyte":"EB","exbibyte":"EiB","zettabyte":"ZB","zebibyte":"ZiB","yottabyte":"YB","yobibyte":"YiB","kilobit":"kbit","kibibit":"Kibit","megabit":"Mbit","mebibit":"Mibit","gigabit":"Gbit","gibibit":"Gibit","terabit":"Tbit","tebibit":"Tibit","petabit":"Pbit","pebibit":"Pibit","exabit":"Ebit","exbibit":"Eibit","zettabit":"Zbit","zebibit":"Zibit","yottabit":"Ybit","yobibit":"Yibit","inch":"in","foot":"ft","yard":"yd","mile":"mi","yoctometer":"ym","zeptometer":"zm","attometer":"am","femtometer":"fm","picometer":"pm","nanometer":"nm","micrometer":"µm","millimeter":"mm","centimeter":"cm","decimeter":"dm","meter":"m","decameter":"dam","hectometer":"hm","kilometer":"km","megameter":"Mm","gigameter":"Gm","terameter":"Tm","petameter":"Pm","exameter":"Em","zettameter":"Zm","yottameter":"Ym","ångström":"Å","x unit":"xu","R74meter":"R74m","nautical mile":"M","earth radius":"R⊕","lunar distance":"LD","astronomical unit":"au","light year":"ly","parsec":"pc","gigaparsec":"Gpc","planck length":"𝓁P",
   "degree":"°","radian":"rad","gradian":"gon","milliradian":"mrad","minute of arc":"'","second of arc":'"',
+  "tera":"T","giga":"G","mega":"M","kilo":"k","hecto":"h","deca":"da","deci":"d","centi":"c","milli":"m","micro":"µ","nano":"n","pico":"p","peta":"P","exa":"E","zetta":"Z","yotta":"Y","kibi":"Ki","mebi":"Mi","gibi":"Gi","tebi":"Ti","pebi":"Pi","exbi":"Ei","zebi":"Zi","yobi":"Yi","myria":"My",
   
 }

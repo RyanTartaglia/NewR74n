@@ -207,6 +207,7 @@ todo:
   <option value="data">Digital Storage (Bytes, Bits)</option>
   <option value="length">Length (Meters, Inches)</option>
   <option value="angle">Angle (Degrees, Radians)</option>
+  <option value="metric">Arbitrary Metric (Milli, Centi)</option>
 </select>
 
 <br><br>
@@ -221,9 +222,9 @@ todo:
 <select id="UnitSelect2" onchange="unit2=this.options[this.options.selectedIndex].getAttribute('unit');update()"></select>
 <form style="margin-top:50px">Sort Units By:
 <input type="radio" name="sortbtn" selected onclick="updateSort('name')"><label for="name">Name</label>
-<input type="radio" name="sortbtn" selected onclick="updateSort('value')"><label for="name">Value</label>
-<input type="radio" name="sortbtn" selected onclick="updateSort('symbol')"><label for="name">Symbol</label>
-<input type="radio" name="sortbtn" selected onclick="updateSort('nosort')"><label for="name">None</label>
+<input type="radio" name="sortbtn" onclick="updateSort('value')"><label for="name">Value</label>
+<input type="radio" name="sortbtn" onclick="updateSort('symbol')"><label for="name">Symbol</label>
+<input type="radio" name="sortbtn" onclick="updateSort('nosort')"><label for="name">None</label>
 </form>
 </div>
 </div>

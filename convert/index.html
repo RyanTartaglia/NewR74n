@@ -107,7 +107,7 @@ This HTML and its contents are property of R74n.com.
     <script src="https://R74n.com/load.js"></script>
     <style>
       input[type="number"] {width:275px;height:40px;font-size:33px;vertical-align:middle;}
-      select {height:60px;font-size:33px;vertical-align:middle;}
+      select {height:60px;font-size:33px;vertical-align:middle;max-width:90%}
       #BoxLeft, #BoxRight, #Arrow {display:block}
       #BoxLeft {margin-top:25px}
       #Arrow {font-size:30px;padding:20px}
@@ -117,6 +117,9 @@ This HTML and its contents are property of R74n.com.
         #Arrow {padding:20px}
         #BoxLeft, #BoxRight, #Arrow {display:block}
         #Box select, #Box input[type="number"] {font-size:20px}
+      }
+      @media only screen and (max-width: 700px) {
+        input[type="number"] {margin-bottom:10px;display:block!important}
       }
     </style>
 

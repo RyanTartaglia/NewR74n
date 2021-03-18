@@ -74,7 +74,7 @@ unitdata = {
     "scandinavian mile":10000,
     "line":0.0021166666666666664,
     "league":4800,
-    "R74meter":1.7526,
+    "R74meter":2034.159,
     "fathom":1.8288,
     "nautical mile":1852,
     "chain":20.1168,

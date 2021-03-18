@@ -39,97 +39,8 @@ This HTML and its contents are property of R74n.com.
     <meta name="msapplication-config" content="https://R74n.com/icons/browserconfig.xml?v=R74n-2">
     <meta name="theme-color" content="#000000">
 
+    <script src="unitdata.js"></script>
     <script>
-
-      unitdata = {
-        /*
-        "category": {
-          "unit":["unit to base","base to unit"]
-        }
-        */
-        "data": { //base: bytes
-          "bit":0.125,
-          "nibble":0.5,
-          "byte":1,
-          "kilobyte":0.001, //1 byte to kilobytes
-          "kibibyte":1/1024,
-          "megabyte":1000000,
-          "mebibyte":1/1.049e+6,
-          "gigabyte":1000000000,
-          "gibibyte":1/1.074e+9,
-          "terabyte":1000000000000,
-          "tebibyte":1/1.1e+12,
-          "petabyte":1000000000000000,
-          "pebibyte":1/1.126e+15,
-          "exabyte": 1000000000000000000,
-          "exbibyte":1/1.153e+18,
-         "zettabyte":1000000000000000000000,
-          "zebibyte":1/9.223e+18,
-         "yottabyte":1000000000000000000000000,
-          "yobibyte":1/9.223e+18,
-          "kilobit":0.008,
-          "kibibit":0.0078125,
-          "megabit":8e-6,
-          "mebibit":1/131072,
-          "gigabit":8e-9,
-          "gibibit":1/1.342e+8,
-          "terabit":8e-12,
-          "tebibit":1/1.374e+11,
-          "petabit":8e-15,
-          "pebibit":1/1.407e+14,
-          "exabit":8e-18,
-          "exbibit":1/1.441e+17,
-          "zettabit":8e-21,
-          "zebibit":9.223e+18,
-          "yottabit":8e-24,
-          "yobibit":9.223e+18,
-
-
-          /*
-          "byte":["X","X"],
-          "bit":["X*8","X/8"],
-          "kilobit":["X*125","X/125"],
-          "kibibit":["X*128","X/128"],
-          "megabit":["X*125000","X/125000"],
-          "mebibit":["X*131072","X/131072"],
-          "gigabit":["X*1.25e+8","X/1.25e+8"],
-          "gibibit":["X*1.342e+8","X/1.342e+8"],
-          "terabit":["X*1.25e+11","X/1.25e+11"],
-          "tebibit":["X*1.374e+11","X/1.374e+11"],
-          "petabit":["X*1.25e+14","X/1.25e+14"],
-          "pebibit":["X*1.407e+14","X/1.407e+14"],
-          "exabit":["X/1.25e+17","X*1.25e+17"],
-          "exbibit":["X/1.441e+17","X*1.441e+17"],
-          "zettabit":["X/9.223e+18","X*9.223e+18"],
-          "zebibit":["X/9.223e+18","X*9.223e+18"],
-          "yottabit":["X/9.223e+18","X*9.223e+18"],
-          "yobibit":["X/9.223e+18","X*9.223e+18"],
-
-          "kilobyte":["X/1000","X*1000"],
-          "kibibyte":["X/1024","X*1024"],
-          "megabyte":["X/1e+6","X*1e+6"],
-          "mebibyte":["X/1.049e+6","X*1.049e+6"],
-          "gigabyte":["X/1e+9","X*1e+9"],
-          "gibibyte":["X/1.074e+9","X*1.074e+9"],
-          "terabyte":["X/1e+12","X*1e+12"],
-          "tebibyte":["X/1.1e+12","X*1.1e+12"],
-          "petabyte":["X/1e+15","X*1e+15"],
-          "pebibyte":["X/1.126e+15","X*1.126e+15"],
-          "exabyte":["X/1.0e18","X*1.0e18"],
-          "exbibyte":["X/1.1529215e18","X*1.1529215e18"],
-          "zettabyte":["X/1.0e21","X*1.0e21"],
-          "yottabyte":["X/1.0e24","X*1.0e24"],
-          "kilobyte":["X/1000","X*1000"],
-          "kilobyte":["X/1000","X*1000"],
-          "kilobyte":["X/1000","X*1000"],
-          "kilobyte":["X/1000","X*1000"],
-          "kilobyte":["X/1000","X*1000"],
-          "kilobyte":["X/1000","X*1000"],
-          "kilobyte":["X/1000","X*1000"],
-          */
-          
-        }
-      };
 
       function sanitize(string) {
         return string.replace(/[^\-\d.]/g, '');
@@ -137,16 +48,77 @@ This HTML and its contents are property of R74n.com.
       function calc(fn) {
         return new Function('return ' + fn)();
       }
+
       function convert(type,x,xunit,yunit) {
         x = parseFloat(x);
         var base = x*unitdata[type][xunit];
-        var final = base/unitdata[type][yunit];
+        var goal = unitdata[type][yunit];
+        var final = base/goal;
         return final
       }
+
+      function selectType(e) {
+        currenttype = e.options[e.options.selectedIndex].getAttribute("type");
+        var ValueBox1 = document.getElementById("ValueBox1");
+        var UnitSelect1 = document.getElementById("UnitSelect1");
+        var ValueBox2 = document.getElementById("ValueBox2");
+        var UnitSelect2 = document.getElementById("UnitSelect2");
+        UnitSelect1.innerHTML = "";
+        UnitSelect2.innerHTML = "";
+        ValueBox1.value = "";
+        ValueBox2.value = "";
+
+        var keys = Object.keys(unitdata[currenttype]).sort(function (a, b) {return a.toLowerCase().localeCompare(b.toLowerCase());});
+        for (var n in keys) {
+          var key = keys[n];
+          var option = document.createElement("option");
+          option.text = key;
+          if (!(aliases[key]==undefined)) {option.text += " / "+aliases[key]}
+          if (!(abbrs[key]==undefined)) {option.text += " ("+abbrs[key]+")"}
+          option.setAttribute("unit",key);
+          option.setAttribute("id",key+"-1");
+          UnitSelect1.add(option)
+          var option = document.createElement("option");
+          option.text = key;
+          if (!(aliases[key]==undefined)) {option.text += " / "+aliases[key]}
+          if (!(abbrs[key]==undefined)) {option.text += " ("+abbrs[key]+")"}
+          option.setAttribute("unit",key);
+          option.setAttribute("id",key+"-2");
+          UnitSelect2.add(option)
+        }
+        unit1=UnitSelect1.options[UnitSelect1.options.selectedIndex].getAttribute('unit')
+        unit2=UnitSelect2.options[UnitSelect2.options.selectedIndex].getAttribute('unit')
+        
+        document.getElementById("Box").style.display = "inline-block";
+      }
+
+      function update() {
+        var x = parseFloat(document.getElementById("ValueBox1").value);
+        var y = convert(currenttype,x,unit1,unit2);
+        document.getElementById("ValueBox2").value = y
+      }
       
+      window.addEventListener("load", function(){
+        
+
+      })
     </script>
     <script src="https://R74n.com/moji/load.js"></script>
     <script src="https://R74n.com/load.js"></script>
+    <style>
+      input[type="number"] {width:275px;height:40px;font-size:33px;vertical-align:middle;}
+      select {height:60px;font-size:33px;vertical-align:middle;}
+      #BoxLeft, #BoxRight, #Arrow {display:block}
+      #BoxLeft {margin-top:25px}
+      #Arrow {font-size:30px;padding:20px}
+      #Arrow::before {content:"↓";}
+      .content {text-align:center}
+      @media only screen and (max-width: 1080px) {
+        #Arrow {padding:20px}
+        #BoxLeft, #BoxRight, #Arrow {display:block}
+        #Box select, #Box input[type="number"] {font-size:20px}
+      }
+    </style>
 
 </head>
 
@@ -157,13 +129,24 @@ This HTML and its contents are property of R74n.com.
 <h1 class="pagetitle">Unit Converter</h1><br>
 <div class="content">
 
-<input type="text" style="width:275px;height:40px;font-size:38px;vertical-align:middle;">
-<select style="height:60px;font-size:35px;vertical-align:middle;">
-  <option>t</option>
+<select id="TypeSelect" onchange="selectType(this)">
+  <option disabled selected>Select a Unit Type</option>
+  <option type="data">Digital Storage (Bytes, Bits)</option>
+  <option type="length">Length (Meters, Inches)</option>
 </select>
 
-
-
+<br><br>
+<div id="Box" style="display:none">
+<div id="BoxLeft">
+<input id="ValueBox1" type="number" placeholder="Enter Number" oninput="update()">
+<select id="UnitSelect1" onchange="unit1=this.options[this.options.selectedIndex].getAttribute('unit');update()"></select>
+</div>
+<div id="Arrow"></div>
+<div id="BoxRight">
+<input id="ValueBox2" readonly type="number" placeholder="Enter Number" oninput="updateR()">
+<select id="UnitSelect2" onchange="unit2=this.options[this.options.selectedIndex].getAttribute('unit');update()"></select>
+</div>
+</div>
 
 
 

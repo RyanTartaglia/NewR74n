@@ -5,7 +5,7 @@ https://r74n.com/icons/apple-touch-icon.png
 https://r74n.com/icons/avatar.png
 https://r74n.com/icons/black_bg.png
 https://r74n.com/icons/black.png
-https://r74n.com/icons/favicon_package_v0.16
+https://r74n.com/icons/favicon_package_v0.16/
 https://r74n.com/icons/favicon_package_v0.16.zip
 https://r74n.com/icons/favicon.bmp
 https://r74n.com/icons/favicon.cur
@@ -42,7 +42,7 @@ https://r74n.com/icons/mstile-310x150.png
 https://r74n.com/icons/mstile-310x310.png
 https://r74n.com/icons/safari-pinned-tab.svg
 https://r74n.com/icons/site.webmanifest
-https://r74n.com/icons/Views
+https://r74n.com/icons/Views/
 https://r74n.com/icons/favicon_2.ico
 https://r74n.com/icons/favicon_old.obj
 https://r74n.com/icons/favicon.abc
@@ -285,3 +285,9 @@ https://r74n.com/icons/trans.png
 https://r74n.com/icons/twirl.png
 https://r74n.com/icons/white_border_black.png
 https://r74n.com/icons/yellow.png
+config/favicon.json
+Views/Shared/
+Views/Shared/_Favicons.cshtml
+Views/Shared/_Layout.cshtml
+pixijs/
+pixijs/favicon.jsonpixijs/favicon.png

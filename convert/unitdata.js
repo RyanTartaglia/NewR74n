@@ -88,6 +88,7 @@ unitdata = {
     "planck length":1.6e-35,
     "human hair thickness":8e-5,
     "football field":110,
+    "hubble length":136234518805163518552178688,
 
 
 

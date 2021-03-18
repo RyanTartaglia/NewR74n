@@ -89,11 +89,27 @@ unitdata = {
     "human hair thickness":8e-5,
     "football field":110,
     "hubble length":136234518805163518552178688,
+    "pixel":0.0002645833,
+    "en":0.0001757299,
+    "twip":0.0000176389,
+    "pica":0.00423333,
+    "hand":0.1016,
+    "lunar radius":1737125.91,
+  },
+  "angle":{//base: degree
+    "degree":1,
+    "radian":180/Math.PI,
+    "gradian":0.9,
+    "milliradian":180/1000*Math.PI,
+    "minute of arc":0.0166667,
+    "second of arc":0.000277778,
 
-
-
-
+    
   }
+
+
+
+
 };
 
 aliases = {
@@ -109,5 +125,6 @@ aliases = {
 
 abbrs = {
   "bit":"b","byte":"B","nibble":"nybble","kilobyte":"kB","kibibyte":"KiB","megabyte":"MB","mebibyte":"MiB","gigabyte":"GB","gibibyte":"GiB","terabyte":"TB","tebibyte":"TiB","petabyte":"PB","pebibyte":"PiB","exabyte":"EB","exbibyte":"EiB","zettabyte":"ZB","zebibyte":"ZiB","yottabyte":"YB","yobibyte":"YiB","kilobit":"kbit","kibibit":"Kibit","megabit":"Mbit","mebibit":"Mibit","gigabit":"Gbit","gibibit":"Gibit","terabit":"Tbit","tebibit":"Tibit","petabit":"Pbit","pebibit":"Pibit","exabit":"Ebit","exbibit":"Eibit","zettabit":"Zbit","zebibit":"Zibit","yottabit":"Ybit","yobibit":"Yibit","inch":"in","foot":"ft","yard":"yd","mile":"mi","yoctometer":"ym","zeptometer":"zm","attometer":"am","femtometer":"fm","picometer":"pm","nanometer":"nm","micrometer":"µm","millimeter":"mm","centimeter":"cm","decimeter":"dm","meter":"m","decameter":"dam","hectometer":"hm","kilometer":"km","megameter":"Mm","gigameter":"Gm","terameter":"Tm","petameter":"Pm","exameter":"Em","zettameter":"Zm","yottameter":"Ym","ångström":"Å","x unit":"xu","R74meter":"R74m","nautical mile":"M","earth radius":"R⊕","lunar distance":"LD","astronomical unit":"au","light year":"ly","parsec":"pc","gigaparsec":"Gpc","planck length":"𝓁P",
-
+  "degree":"°","radian":"rad","gradian":"gon","milliradian":"mrad","minute of arc":"'","second of arc":'"',
+  
 }

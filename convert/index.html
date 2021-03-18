@@ -57,18 +57,29 @@ This HTML and its contents are property of R74n.com.
         return final
       }
 
-      function selectType(e) {
-        currenttype = e.options[e.options.selectedIndex].getAttribute("value");
+      function getSymbol(unit) {
+        if (!(abbrs[unit]==undefined)) {return abbrs[unit]}
+        else {return ""}
+      }
+
+      function selectType(e,justUpdate=false) {
         var ValueBox1 = document.getElementById("ValueBox1");
         var UnitSelect1 = document.getElementById("UnitSelect1");
         var ValueBox2 = document.getElementById("ValueBox2");
         var UnitSelect2 = document.getElementById("UnitSelect2");
         UnitSelect1.innerHTML = "";
         UnitSelect2.innerHTML = "";
-        ValueBox1.value = "";
-        ValueBox2.value = "";
+        if (!(justUpdate)) {
+          ValueBox1.value = "";
+          ValueBox2.value = "";
+          currenttype = e.options[e.options.selectedIndex].getAttribute("value");
+        }
 
-        var keys = Object.keys(unitdata[currenttype]).sort(function (a, b) {return a.toLowerCase().localeCompare(b.toLowerCase());});
+        var unsorted = Object.keys(unitdata[currenttype]);
+        if (sorting=="name") {var keys = unsorted.sort(function (a, b) {return a.toLowerCase().localeCompare(b.toLowerCase());});}
+        else if (sorting=="value") {var keys = unsorted.sort(function (a, b) {return unitdata[currenttype][a]-unitdata[currenttype][b]});}
+        else if (sorting=="symbol") {var keys = unsorted.sort(function (a, b) {return getSymbol(a).toLowerCase().localeCompare(getSymbol(b).toLowerCase());});}
+        else if (sorting=="nosort") {var keys = unsorted}
         for (var n in keys) {
           var key = keys[n];
           var option = document.createElement("option");
@@ -140,6 +151,12 @@ This HTML and its contents are property of R74n.com.
         }
 
       })
+
+      sorting = "name";
+      function updateSort(method){
+        sorting = method;
+        selectType(undefined,true);
+      }
     </script>
     <script src="https://R74n.com/moji/load.js"></script>
     <script src="https://R74n.com/load.js"></script>
@@ -151,6 +168,7 @@ This HTML and its contents are property of R74n.com.
       #Arrow {font-size:30px;padding:20px}
       #Arrow::before {content:"↓";}
       .content {text-align:center}
+      input[type="radio"] {display:inline-block}
       @media only screen and (max-width: 1080px) {
         #Arrow {padding:20px}
         #BoxLeft, #BoxRight, #Arrow {display:block}
@@ -158,7 +176,9 @@ This HTML and its contents are property of R74n.com.
       }
       @media only screen and (max-width: 700px) {
         input[type="number"] {margin-bottom:10px;display:block!important;width:300px}
+        input[type="radio"] {display:block}
       }
+      input[type="radio"] {width:20px;height:20px;vertical-align:middle;}
     </style>
 
 </head>
@@ -186,6 +206,7 @@ todo:
   <option disabled selected>Select a Unit Type</option>
   <option value="data">Digital Storage (Bytes, Bits)</option>
   <option value="length">Length (Meters, Inches)</option>
+  <option value="angle">Angle (Degrees, Radians)</option>
 </select>
 
 <br><br>
@@ -198,6 +219,12 @@ todo:
 <div id="BoxRight">
 <input id="ValueBox2" readonly type="number" placeholder="Enter Number" oninput="updateR()">
 <select id="UnitSelect2" onchange="unit2=this.options[this.options.selectedIndex].getAttribute('unit');update()"></select>
+<form style="margin-top:50px">Sort Units By:
+<input type="radio" name="sortbtn" selected onclick="updateSort('name')"><label for="name">Name</label>
+<input type="radio" name="sortbtn" selected onclick="updateSort('value')"><label for="name">Value</label>
+<input type="radio" name="sortbtn" selected onclick="updateSort('symbol')"><label for="name">Symbol</label>
+<input type="radio" name="sortbtn" selected onclick="updateSort('nosort')"><label for="name">None</label>
+</form>
 </div>
 </div>
 

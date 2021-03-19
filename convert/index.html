@@ -97,16 +97,40 @@ This HTML and its contents are property of R74n.com.
           option.setAttribute("value",key+"-2");
           UnitSelect2.add(option)
         }
+        UnitSelect2.options[1].setAttribute("selected","selected")
         unit1=UnitSelect1.options[UnitSelect1.options.selectedIndex].getAttribute('unit')
         unit2=UnitSelect2.options[UnitSelect2.options.selectedIndex].getAttribute('unit')
         
         document.getElementById("Box").style.display = "inline-block";
       }
 
+      changes = [1,5,10,20,50,100,500,1000,-1,-10,-100,-1000]
+
+      function updateMore(x) {
+        if (isNaN(x)) {x=0}
+        var MoreLeft = document.getElementById("MoreLeft");
+        var MoreRight = document.getElementById("MoreRight");
+        MoreLeft.innerHTML = "";
+        MoreRight.innerHTML = "";
+        for (var n in changes) {
+          n = changes[n];
+          MoreLeft.innerHTML += '(+'+n+') <a href="?'+currenttype+'/'+(x+n)+'/'+unit1+'/'+unit2+'">'+(x+n)+' '+unit1+' to '+unit2+'</a><br>'
+        }
+        for (var key in unitdata[currenttype]) {
+          MoreRight.innerHTML += '<a href="?'+currenttype+'/'+x+'/'+unit1+'/'+key+'">'+x+' '+unit1+' to '+key+'</a><br>'
+        }
+      }
+
       function update() {
         var x = parseFloat(document.getElementById("ValueBox1").value);
         var y = convert(currenttype,x,unit1,unit2);
-        document.getElementById("ValueBox2").value = y
+        if (isNaN(y)) {
+          document.getElementById("ValueBox2").value = "";
+        }
+        else {
+          document.getElementById("ValueBox2").value = y;
+        }
+        updateMore(x)
       }
 
       function toTitleCase(str) {
@@ -148,6 +172,7 @@ This HTML and its contents are property of R74n.com.
             TitleTag.innerHTML = "Convert "+query[1]+" "+toTitleCase(query[2])+" to "+toTitleCase(query[3])+" Online - R74n"
           }
           update()
+          document.getElementById("MoreBox").style.display = "block"
         }
 
       })
@@ -169,10 +194,14 @@ This HTML and its contents are property of R74n.com.
       #Arrow::before {content:"↓";}
       .content {text-align:center}
       input[type="radio"] {display:inline-block}
+      #MoreLeft, #MoreRight {display:inline-block;vertical-align:top;padding:40px}
+      #MoreLeft {text-align:left}
+      #MoreRight {text-align:right}
       @media only screen and (max-width: 1080px) {
         #Arrow {padding:20px}
         #BoxLeft, #BoxRight, #Arrow {display:block}
         #Box select, #Box input[type="number"] {font-size:20px}
+        #MoreLeft, #MoreRight {display:block;padding:25px}
       }
       @media only screen and (max-width: 700px) {
         input[type="number"] {margin-bottom:10px;display:block!important;width:300px}
@@ -220,14 +249,37 @@ todo:
 <div id="BoxRight">
 <input id="ValueBox2" readonly type="number" placeholder="Enter Number" oninput="updateR()">
 <select id="UnitSelect2" onchange="unit2=this.options[this.options.selectedIndex].getAttribute('unit');update()"></select>
+</div>
 <form style="margin-top:50px">Sort Units By:
-<input type="radio" name="sortbtn" selected onclick="updateSort('name')"><label for="name">Name</label>
-<input type="radio" name="sortbtn" onclick="updateSort('value')"><label for="name">Value</label>
-<input type="radio" name="sortbtn" onclick="updateSort('symbol')"><label for="name">Symbol</label>
-<input type="radio" name="sortbtn" onclick="updateSort('nosort')"><label for="name">None</label>
-</form>
+  <input type="radio" name="sortbtn" selected onclick="updateSort('name')"><label for="name">Name</label>
+  <input type="radio" name="sortbtn" onclick="updateSort('value')"><label for="name">Value</label>
+  <input type="radio" name="sortbtn" onclick="updateSort('symbol')"><label for="name">Symbol</label>
+  <input type="radio" name="sortbtn" onclick="updateSort('nosort')"><label for="name">None</label>
+  </form>
 </div>
+
+<div id="MoreBox" style="display:none">
+  <div id="MoreLeft">
+    <a href="?data">Data Storage Conversion</a><br>
+    <a href="?length">Length Conversion</a><br>
+    <a href="?angle">Angle Conversion</a><br>
+    <a href="?metric">Arbitrary Conversion</a><br>
+  </div>
+  <div id="MoreRight">
+    <a href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
+    <a href="?length/1/inch/feet">Inches to Feet</a><br>
+    <a href="?length/1/inch/meter">Inches to Meters</a><br>
+    <a href="?length/1/meter/inch">Meters to Inches</a><br>
+    <a href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
+    <a href="?data/1/megabyte/kilobyte">Megabytes to Kilobytes</a><br>
+    <a href="?data/1/megabyte/gigabyte">Megabytes to Gigabytes</a><br>
+    <a href="?angle/1/degree/radian">Degrees to Radians</a><br>
+    <a href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
+  </div>
 </div>
+
+
+
 
 
 

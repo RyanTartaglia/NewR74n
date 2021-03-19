@@ -102,6 +102,7 @@ This HTML and its contents are property of R74n.com.
         unit2=UnitSelect2.options[UnitSelect2.options.selectedIndex].getAttribute('unit')
         
         document.getElementById("Box").style.display = "inline-block";
+        //updateMore(0);
       }
 
       changes = [1,5,10,20,50,100,500,1000,-1,-10,-100,-1000]
@@ -172,8 +173,8 @@ This HTML and its contents are property of R74n.com.
             TitleTag.innerHTML = "Convert "+query[1]+" "+toTitleCase(query[2])+" to "+toTitleCase(query[3])+" Online - R74n"
           }
           update()
-          document.getElementById("MoreBox").style.display = "block"
         }
+      document.getElementById("MoreBox").style.display = "block"
 
       })
 

@@ -107,9 +107,15 @@ This HTML and its contents are property of R74n.com.
           UnitSelect2.add(option)
         }
         UnitSelect2.options[1].setAttribute("selected","selected")
-        unit1=UnitSelect1.options[UnitSelect1.options.selectedIndex].getAttribute('unit')
-        unit2=UnitSelect2.options[UnitSelect2.options.selectedIndex].getAttribute('unit')
-        
+        if (justUpdate) {
+          UnitSelect1.value = unit1+"-1";
+          UnitSelect2.value = unit2+"-2";
+        }
+        else {
+          unit1=UnitSelect1.options[UnitSelect1.options.selectedIndex].getAttribute('unit')
+          unit2=UnitSelect2.options[UnitSelect2.options.selectedIndex].getAttribute('unit')
+        }
+
         document.getElementById("Box").style.display = "inline-block";
         updateMore(0);
       }
@@ -255,7 +261,8 @@ todo:
   <option value="paper-quantity">Paper Quantity (Sheets, Reams)</option>
   <option value="temperature">Temperature (Fahrenheit, Celsius)</option>
   <option value="time">Time (Hours, Days)</option>
-  <option value="money">Money (USD, Robux)</option>
+  <option value="solid-angle">Solid Angle (Square Degrees, Steradians)</option>
+  <option value="pepper">Pepper Heat (Scoville Units, ASTA)</option>
   
 </select>
 
@@ -287,17 +294,26 @@ todo:
     <a href="?number">Number Conversion</a><br>
     <a href="?death">Death Conversion</a><br>
     <a href="?paper-quantity">Paper Quantity Conversion</a><br>
+    <a href="?temperature">Temperature Conversion</a><br>
+    <a href="?time">Time Conversion</a><br>
+    <a href="?solid-angle">Solid Angle Conversion</a><br>
+    <a href="?pepper">Pepper Heat Conversion</a><br>
   </div>
   <div id="MoreRight">
-    <a href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
-    <a href="?length/1/inch/foot">Inches to Feet</a><br>
+    <a href="?length/5/inch/centimeter">Inches to Centimeters</a><br>
+    <a href="?length/12/inch/foot">Inches to Feet</a><br>
     <a href="?length/1/inch/meter">Inches to Meters</a><br>
     <a href="?length/1/meter/inch">Meters to Inches</a><br>
-    <a href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
     <a href="?data/1/megabyte/kilobyte">Megabytes to Kilobytes</a><br>
     <a href="?data/1/megabyte/gigabyte">Megabytes to Gigabytes</a><br>
     <a href="?angle/1/degree/radian">Degrees to Radians</a><br>
     <a href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
+    <a href="?temperature/32/fahrenheit/celsius">Fahrenheit to Celsius</a><br>
+    <a href="?temperature/0/celsius/fahrenheit">Celsius to Fahrenheit</a><br>
+    <a href="?time/7/day/week">Days to Weeks</a><br>
+    <a href="?time/1/year/day">Years to Days</a><br>
+    <a href="?time/2/year/dog%20year">Human Years to Dog Years</a><br>
+
   </div>
 </div>
 

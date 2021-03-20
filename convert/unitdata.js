@@ -95,6 +95,21 @@ unitdata = {
     "pica":0.00423333,
     "hand":0.1016,
     "lunar radius":1737125.91,
+    "rack unit":0.04445,
+    "light nanosecond":0.299792458,
+    "metric foot":0.3,
+    "horse length":2.4,
+    "average woman height":1.595,
+    "average man height":1.71,
+    "olympic swimming pool":50,
+    "mount everest":8850,
+    "boat length":19,
+    "city block":150,
+    "minecraft block":1,
+    "minecraft chunk":16,
+    "minecraft world":60000000n,
+
+
   },
   "angle":{//base: degree
     "degree":1,
@@ -158,8 +173,11 @@ unitdata = {
     "hundred thousand":100000,
     "million":1000000,
     "mole":6.02214076e23,
+    "kilomole":6.02214076e23*1000,
     "myrid":10000,
     "score":20,
+    "minecraft stack":64,
+    "minecraft chest":1728,
     
   },
   "death":{
@@ -226,7 +244,7 @@ unitdata = {
     "kilominute":60000,
     "megasecond":1000000,
     "fortnight":1209600,
-    "lunar month":2551442.98,
+    "lunar cycle":2551442.98,
     "quarter":7889231.49,
     "season":7889231.49,
     "quadrimester":10518975.3,
@@ -247,7 +265,13 @@ unitdata = {
     "aeon":31556926000000000n,
     "exasecond":1000000000000000000n,
     "zettasecond":1000000000000000000000n,
-    "yottasecond":1000000000000000000000000n,    
+    "yottasecond":1000000000000000000000000n,
+    "business week":432000,
+    "dog year":4508132.28,
+    "minecraft tick":20,
+    "minecraft day":1200,
+
+
   },
   "speed":{},//and velocity
   "mass":{},
@@ -255,9 +279,34 @@ unitdata = {
   "voltage":{},//volt
   "electric-resistance":{},//ohms
   "electric-charge":{},//coulomb
-  "energy":{},//joule
+  "energy":{
+    "joule":1,
+    "kilojoule":1000,
+    "calorie":4.184,
+    "kilocalorie":4184,
+    "watt hour":3600,
+    "kilowatt hour":3.6e+6,
+    "electronvolt":1.6022e-19,
+    "british thermal unit":1055.06,
+    "therm":1.055e+8,
+    "foot pound":1.35582,
+    "megajoule":1000000,
+    "millijoule":0.001,
+    "microjoule":1e-6,
+  },
   "pressure":{},//pascal
   "force":{},//newton
+  "solid-angle":{
+    "square degree":1,
+    "steradian":(180/Math.PI)**2,
+  },
+  "pepper":{
+    "scoville heat":1,
+    "ASTA pungency":1/15,
+    "pepper x":3180000,
+    "carolina reaper":2200000,
+    "ghost pepper":1041427,
+  },
   "temperature":{//[x to base,base to x]
     "fahrenheit":["(X-32)*5/9","(X*9/5)+32"],
     "celsius":1,
@@ -277,7 +326,20 @@ unitdata = {
     "bezos per second":2537,
     "maximum mac pro":50599,
     "mac pro stand":1000,
-  }
+    "cent":0.01,
+    "quarter":0.25,
+    "nickel":0.05,
+    "dime":0.10,
+    "half dollar":0.50,
+    "half cent":0.025,
+    "fifa point":0.00998666667,
+    "twitch bit":0.014,
+    "tier 3 sub":24.99,
+    "tier 2 sub":9.99,
+    "tier 1 sub":4.99,
+
+  },
+
 
 
 
@@ -295,6 +357,9 @@ aliases = {
   "great gross":"dozen gross",
   "small gross":"ten dozen",
   "megadeath":"megacorpse",
+  "cent":"penny",
+  "kilocalorie":"Calorie",
+  "lunar cycle":"moon phase"
   
 
   
@@ -306,10 +371,8 @@ abbrs = {
   "degree":"°","radian":"rad","gradian":"gon","milliradian":"mrad","minute of arc":"'","second of arc":'"',
   "tera":"T","giga":"G","mega":"M","kilo":"k","hecto":"h","deca":"da","deci":"d","centi":"c","milli":"m","micro":"µ","nano":"n","pico":"p","peta":"P","exa":"E","zetta":"Z","yotta":"Y","kibi":"Ki","mebi":"Mi","gibi":"Gi","tebi":"Ti","pebi":"Pi","exbi":"Ei","zebi":"Zi","yobi":"Yi","myria":"My","femto":"f","atto":"a","zepto":"z","yocto":"y",
   "mole":"mol","day":"d","month":"mo","second":"s","minute":"min","week":"wk","year":"yr","warzone point":"CP","millisecond":"ms","microsecond":"µs","nanosecond":"ns","yoctosecond":"ys","zeptosecond":"zs","attosecond":"as","femtosecond":"fs","picosecond":"ps","decasecond":"das","hectosecond":"hs","kilosecond":"ks","megasecond":"Ms","gigasecond":"Gs","terasecond":"Ts","exasecond":"Es","zettasecond":"Zs","yottasecond":"Ys",
-  "united states dollar":"$USD",
-  "robux":"R$",
-  "minecoin":"M$",
-  "primogem":"gem",
+  "united states dollar":"$USD","robux":"R$","minecoin":"M$","primogem":"gem","cent":"¢","square degree":"deg²","kilomole":"kmol","joule":"J","kilojoule":"kJ","calorie":"cal","kilocalorie":"kcal","watt hour":"Wh","kilowatt hour":"kWh","electronvolt":"eV","british thermal unit":"BTU","therm":"EC","foot pound":"ft⋅lbf","megajoule":"MJ","millijoule":"mJ","microjoule":"µJ",
+  "scoville heat":"SHU",
 
 
 }

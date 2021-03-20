@@ -285,9 +285,9 @@ https://r74n.com/icons/trans.png
 https://r74n.com/icons/twirl.png
 https://r74n.com/icons/white_border_black.png
 https://r74n.com/icons/yellow.png
-config/favicon.json
-Views/Shared/
-Views/Shared/_Favicons.cshtml
-Views/Shared/_Layout.cshtml
-pixijs/
-pixijs/favicon.jsonpixijs/favicon.png
+https://r74n.com/icons/config/favicon.json
+https://r74n.com/icons/Views/Shared/
+https://r74n.com/icons/Views/Shared/_Favicons.cshtml
+https://r74n.com/icons/Views/Shared/_Layout.cshtml
+https://r74n.com/icons/pixijs/
+https://r74n.com/icons/pixijs/favicon.jsonhttps://r74n.com/icons/pixijs/favicon.png

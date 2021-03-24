@@ -82,7 +82,7 @@ unitdata = {
     "earth radius":6371000,
     "lunar distance":384402000,
     "astronomical unit":149597870700,
-    "light year":9460730472580800,
+    "light year":9460730472580800n,
     "parsec":3.08567758146719e+16,
     "gigaparsec":3.08567758146719e+25,
     "planck length":1.6e-35,
@@ -108,6 +108,12 @@ unitdata = {
     "minecraft block":1,
     "minecraft chunk":16,
     "minecraft world":60000000n,
+    "paper thickness":0.0001,
+    "universe diameter":8.79847934e26,
+    "martian radius":3389439.4,
+    "SARS-CoV-2 diameter":1.0e-7,
+    "jupiter radius":69911512.7,
+    "solar radius":696347055,
 
 
   },
@@ -270,7 +276,14 @@ unitdata = {
     "dog year":4508132.28,
     "minecraft tick":20,
     "minecraft day":1200,
+    "universe age":4.35485578e17,
+    "solar age":1.4525653e17,
+    "baktun":12441600000n,
+    "human pregnancy":22982400,
+    "presidential term":126227704,
+    "trimester":7889231.49,
 
+    
 
   },
   "speed":{},//and velocity
@@ -279,6 +292,13 @@ unitdata = {
   "voltage":{},//volt
   "electric-resistance":{},//ohms
   "electric-charge":{},//coulomb
+  "musical-interval":{
+    "musical cent":1,
+    "semitone":100,
+    "whole tone":200,
+    "centitone":2,
+    
+  },
   "energy":{
     "joule":1,
     "kilojoule":1000,
@@ -314,6 +334,8 @@ unitdata = {
     "chicken slap":["X*0.0089","X/0.0089"],
     "chicken slap speed":["(x**2)*0.4/2/2720","Math.sqrt((2*2720*X)/(0.4))"],
     "rankine":["(X-491.67)*5/9","X*9/5+491.67"],
+    "degree newton":3.0303,
+
   },
   "money":{//base: united states dollar
     "united states dollar":1,
@@ -337,6 +359,8 @@ unitdata = {
     "tier 3 sub":24.99,
     "tier 2 sub":9.99,
     "tier 1 sub":4.99,
+    "US household income":68703,
+    
 
   },
 

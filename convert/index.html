@@ -120,7 +120,8 @@ This HTML and its contents are property of R74n.com.
         updateMore(0);
       }
 
-      changes = [1,5,10,20,50,100,500,1000,-1,-10,-100,-1000]
+      changes = [1,5,10,20,50,100,500,1000,-1,-10,-100,-1000];
+      multiples = [2,5,10,100];
 
       function updateMore(x) {
         if (isNaN(x)) {x=0}
@@ -131,12 +132,20 @@ This HTML and its contents are property of R74n.com.
         var etype = encodeURI(currenttype);
         var eunit1 = encodeURI(unit1);
         var eunit2 = encodeURI(unit2);
+        MoreLeft.innerHTML += '(⇄) <a class="morelink" href="?'+etype+'/'+x+'/'+eunit2+'/'+eunit1+'">'+x+' '+unit2+' to '+unit1+'</a><br>'
         for (var n in changes) {
           n = changes[n];
-          MoreLeft.innerHTML += '(+'+n+') <a href="?'+etype+'/'+(x+n)+'/'+eunit1+'/'+eunit2+'">'+(x+n)+' '+unit1+' to '+unit2+'</a><br>'
+          var newx = x+n;
+          MoreLeft.innerHTML += '('+((n > 0) ? '+':'-')+''+Math.abs(n)+') <a class="morelink" href="?'+etype+'/'+(newx)+'/'+eunit1+'/'+eunit2+'">'+(newx)+' '+unit1+' to '+unit2+'</a><br>'
+        }
+        MoreLeft.innerHTML += '(½) <a class="morelink" href="?'+etype+'/'+(x/2)+'/'+eunit1+'/'+eunit2+'">'+(x/2)+' '+unit1+' to '+unit2+'</a><br>'
+        for (var n in multiples) {
+          n = multiples[n];
+          var newx = x*n;
+          MoreLeft.innerHTML += '(×'+n+') <a class="morelink" href="?'+etype+'/'+(newx)+'/'+eunit1+'/'+eunit2+'">'+(newx)+' '+unit1+' to '+unit2+'</a><br>'
         }
         for (var key in unitdata[currenttype]) {
-          MoreRight.innerHTML += '<a href="?'+etype+'/'+x+'/'+eunit1+'/'+encodeURI(key)+'">'+x+' '+unit1+' to '+key+'</a><br>'
+          MoreRight.innerHTML += '<a class="morelink" href="?'+etype+'/'+x+'/'+eunit1+'/'+encodeURI(key)+'">'+x+' '+unit1+' to '+key+'</a><br>'
         }
       }
 
@@ -221,6 +230,9 @@ This HTML and its contents are property of R74n.com.
         #BoxLeft, #BoxRight, #Arrow {display:block}
         #Box select, #Box input[type="number"] {font-size:20px}
         #MoreLeft, #MoreRight {display:block;padding:25px;text-align:center}
+        .morelink {
+          margin-top:5px;margin-bottom:5px;display:inline-block
+        }
       }
       @media only screen and (max-width: 700px) {
         input[type="number"] {margin-bottom:10px;display:block!important;width:300px}
@@ -288,33 +300,33 @@ todo:
 
 <div id="MoreBox" style="display:none">
   <div id="MoreLeft">
-    <a href="?data">Data Storage Conversion</a><br>
-    <a href="?length">Length Conversion</a><br>
-    <a href="?angle">Angle Conversion</a><br>
-    <a href="?metric">Arbitrary Conversion</a><br>
-    <a href="?number">Number Conversion</a><br>
-    <a href="?death">Death Conversion</a><br>
-    <a href="?paper-quantity">Paper Quantity Conversion</a><br>
-    <a href="?money">Money Conversion</a><br>
-    <a href="?temperature">Temperature Conversion</a><br>
-    <a href="?time">Time Conversion</a><br>
-    <a href="?solid-angle">Solid Angle Conversion</a><br>
-    <a href="?pepper">Pepper Heat Conversion</a><br>
+    <a class="morelink" href="?data">Data Storage Conversion</a><br>
+    <a class="morelink" href="?length">Length Conversion</a><br>
+    <a class="morelink" href="?angle">Angle Conversion</a><br>
+    <a class="morelink" href="?metric">Arbitrary Conversion</a><br>
+    <a class="morelink" href="?number">Number Conversion</a><br>
+    <a class="morelink" href="?death">Death Conversion</a><br>
+    <a class="morelink" href="?paper-quantity">Paper Quantity Conversion</a><br>
+    <a class="morelink" href="?money">Money Conversion</a><br>
+    <a class="morelink" href="?temperature">Temperature Conversion</a><br>
+    <a class="morelink" href="?time">Time Conversion</a><br>
+    <a class="morelink" href="?solid-angle">Solid Angle Conversion</a><br>
+    <a class="morelink" href="?pepper">Pepper Heat Conversion</a><br>
   </div>
   <div id="MoreRight">
-    <a href="?length/5/inch/centimeter">Inches to Centimeters</a><br>
-    <a href="?length/12/inch/foot">Inches to Feet</a><br>
-    <a href="?length/1/inch/meter">Inches to Meters</a><br>
-    <a href="?length/1/meter/inch">Meters to Inches</a><br>
-    <a href="?data/1/megabyte/kilobyte">Megabytes to Kilobytes</a><br>
-    <a href="?data/1/megabyte/gigabyte">Megabytes to Gigabytes</a><br>
-    <a href="?angle/1/degree/radian">Degrees to Radians</a><br>
-    <a href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
-    <a href="?temperature/32/fahrenheit/celsius">Fahrenheit to Celsius</a><br>
-    <a href="?temperature/0/celsius/fahrenheit">Celsius to Fahrenheit</a><br>
-    <a href="?time/7/day/week">Days to Weeks</a><br>
-    <a href="?time/1/year/day">Years to Days</a><br>
-    <a href="?time/2/year/dog%20year">Human Years to Dog Years</a><br>
+    <a class="morelink" href="?length/5/inch/centimeter">Inches to Centimeters</a><br>
+    <a class="morelink" href="?length/12/inch/foot">Inches to Feet</a><br>
+    <a class="morelink" href="?length/1/inch/meter">Inches to Meters</a><br>
+    <a class="morelink" href="?length/1/meter/inch">Meters to Inches</a><br>
+    <a class="morelink" href="?data/1/megabyte/kilobyte">Megabytes to Kilobytes</a><br>
+    <a class="morelink" href="?data/1/megabyte/gigabyte">Megabytes to Gigabytes</a><br>
+    <a class="morelink" href="?angle/1/degree/radian">Degrees to Radians</a><br>
+    <a class="morelink" href="?length/1/inch/centimeter">Inches to Centimeters</a><br>
+    <a class="morelink" href="?temperature/32/fahrenheit/celsius">Fahrenheit to Celsius</a><br>
+    <a class="morelink" href="?temperature/0/celsius/fahrenheit">Celsius to Fahrenheit</a><br>
+    <a class="morelink" href="?time/7/day/week">Days to Weeks</a><br>
+    <a class="morelink" href="?time/1/year/day">Years to Days</a><br>
+    <a class="morelink" href="?time/2/year/dog%20year">Human Years to Dog Years</a><br>
 
   </div>
 </div>

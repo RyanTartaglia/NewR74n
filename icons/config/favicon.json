@@ -1,5 +1,5 @@
 {
-    "master_picture": "TODO: Path to your master picture",
+    "master_picture": "favicon.png",
     "favicon_design": {
         "ios": {
             "picture_aspect": "background_and_margin",

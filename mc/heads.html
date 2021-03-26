@@ -84,7 +84,7 @@ function searchheads(){
     added = [];
     for (var key in heads) {
         value = heads[key];
-        if (value.indexOf("(Hidden)") >= 0) {continue;}
+        if (value.indexOf("(Hidden)") >= 0 || value.indexOf("NSFW") >= 0) {continue;}
         if (((value.indexOf("???") >= 0)||(value.indexOf("(Duplicate)") >= 0)) && (Search=="")) {
           continue;
         }

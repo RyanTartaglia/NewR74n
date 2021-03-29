@@ -73,7 +73,7 @@ unitdata = {
     "x unit":1e-13,
     "scandinavian mile":10000,
     "line":0.0021166666666666664,
-    "league":4800,
+    "league":4828,
     "R74meter":2034.159,
     "fathom":1.8288,
     "nautical mile":1852,
@@ -114,6 +114,8 @@ unitdata = {
     "SARS-CoV-2 diameter":1.0e-7,
     "jupiter radius":69911512.7,
     "solar radius":696347055,
+    "social distance unit":1.8288,
+    "banana width":1.75
 
 
   },
@@ -122,8 +124,9 @@ unitdata = {
     "radian":180/Math.PI,
     "gradian":0.9,
     "milliradian":180/1000*Math.PI,
-    "minute of arc":0.0166667,
-    "second of arc":0.000277778,
+    "arc minute":0.0166667,
+    "arc second":0.000277778,
+    "revolution":360,
   },
   "metric":{//base: none
     "tera":10**12,
@@ -282,6 +285,7 @@ unitdata = {
     "human pregnancy":22982400,
     "presidential term":126227704,
     "trimester":7889231.49,
+    "megacycle":36000,
 
     
 
@@ -297,6 +301,17 @@ unitdata = {
     "semitone":100,
     "whole tone":200,
     "centitone":2,
+    "octave":1200,
+    "musical note":150,
+    "savart":3.9863,
+    "heptameride":3.98671096,
+    "millioctave":1.2,
+    "meride":27.9069767,
+    "decameride":0.398631,
+    "jot":0.0398631,
+    "demi-heptameride":1.993157,
+    "musical decade":3986.313714,
+
     
   },
   "energy":{
@@ -360,9 +375,54 @@ unitdata = {
     "tier 2 sub":9.99,
     "tier 1 sub":4.99,
     "US household income":68703,
-    
-
+    "microsoft point":0.0125,
+    "facebook credit":0.1,
+    "minecraft earth ruby":0.04975,
+    "steam point":0.01,
+    "bitcoin": {"eval":"jsondata[Object.keys(jsondata)[0]][Object.keys(jsondata[Object.keys(jsondata)[0]])[0]]",    "api":"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"}
   },
+  "area":{
+    "square meter":1,
+    "acre":4046.8564224,
+    "are":100,
+    "barn":10e-28,
+    "barony":16187425.6896,
+    "board":7.74192e-3,
+    "boiler horsepower EDR":12.958174,
+    "circular inch":5.067075e-4,
+    "circular mil":5.067075e-10,
+    "cord":1.48644864,
+    "cuerda":3930.395625,
+    "dunam":1000,
+    "guntha":101.17,
+    "hectare":10000,
+    "hide":500000,
+    "rood":1011.7141056,
+    "ping":3.306,
+    "section":2589988.110336,
+    "shed":1e-52,
+    "roofing square":9.290304,
+    "square chain":404.68564224,
+    "square foot":0.09290304,
+    "square inch":0.00064516,
+    "square kilometer":10**6,
+    "gunter's square link":4.0468564224e-2,
+    "ramsden's square link":0.09290304,
+    "square mil":6.4516e-10,
+    "square mile":2589988.110336,
+    "square rod":25.29285264,
+    "square yard":0.83612736,
+    "stremma":1000,
+    "township":93239940,
+    "yardland":120000,
+    "cricket pitch":61.3160064,
+    "football field":5351.2151,
+    "football pitch":7140,
+    "planck area":2.61219415e-70,
+    "square centimeter":0.0001,
+    "square millimeter":10**-6,
+
+  }
 
 
 
@@ -383,7 +443,8 @@ aliases = {
   "megadeath":"megacorpse",
   "cent":"penny",
   "kilocalorie":"Calorie",
-  "lunar cycle":"moon phase"
+  "lunar cycle":"moon phase",
+  "revolution":"turn",
   
 
   
@@ -397,6 +458,29 @@ abbrs = {
   "mole":"mol","day":"d","month":"mo","second":"s","minute":"min","week":"wk","year":"yr","warzone point":"CP","millisecond":"ms","microsecond":"µs","nanosecond":"ns","yoctosecond":"ys","zeptosecond":"zs","attosecond":"as","femtosecond":"fs","picosecond":"ps","decasecond":"das","hectosecond":"hs","kilosecond":"ks","megasecond":"Ms","gigasecond":"Gs","terasecond":"Ts","exasecond":"Es","zettasecond":"Zs","yottasecond":"Ys",
   "united states dollar":"$USD","robux":"R$","minecoin":"M$","primogem":"gem","cent":"¢","square degree":"deg²","kilomole":"kmol","joule":"J","kilojoule":"kJ","calorie":"cal","kilocalorie":"kcal","watt hour":"Wh","kilowatt hour":"kWh","electronvolt":"eV","british thermal unit":"BTU","therm":"EC","foot pound":"ft⋅lbf","megajoule":"MJ","millijoule":"mJ","microjoule":"µJ",
   "scoville heat":"SHU",
-
+  "square meter":"m²",
+  "acre":"ac",
+  "are":"a",
+  "barn":"b",
+  "board":"bd",
+  "boiler horsepower EDR":"bhp EDR",
+  "circular inch":"circ in",
+  "circular mil":"circ mil",
+  "cuerda":"cda",
+  "hectare":"ha",
+  "rood":"ro",
+  "square chain":"ch²",
+  "square foot":"ft²",
+  "square inch":"in²",
+  "square kilometer":"km²",
+  "gunter's square link":"sq lnk",
+  "ramsden's square link":"sq lnk",
+  "square mil":"mil²",
+  "square mile":"mi²",
+  "square rod":"rd²",
+  "square yard":"yd²",
+  "planck area":"𝓁²P",
+  "square centimeter":"cm²",
+  "square millimeter":"mm²",
 
 }

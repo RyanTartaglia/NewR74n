@@ -158,8 +158,12 @@ function updateHead(file) {
 window.addEventListener("load",function(){
   var URLSearch = location.search.substring(1);
   if (!(URLSearch=="")) {
-    if (URLSearch=="all_heads") {
+    if (URLSearch.startsWith("all_heads")) {
+      var sw = decodeURI(URLSearch.split("_",3)[2]);
+      if (sw==undefined) {sw=""}
       for (var key in heads) {
+        var value = heads[key];
+        if (value.startsWith(sw)) {
         var headimg = document.createElement("img");
         if (!(key.includes(".net"))){
           var headurl = "https://education.minecraft.net/wp-content/uploads/"+key
@@ -169,6 +173,7 @@ window.addEventListener("load",function(){
         }
         headimg.setAttribute("src",headurl)
         document.body.appendChild(headimg)
+      }
       }
     }
     else {

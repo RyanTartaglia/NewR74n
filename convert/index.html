@@ -49,18 +49,42 @@ This HTML and its contents are property of R74n.com.
         return new Function('return ' + fn)();
       }
 
+      
+      unitcache = {};
+
       function convert(type,x,xunit,yunit) {
-        x = parseFloat(x);
-        if (Array.isArray(unitdata[type][xunit])) {
-          var base = eval(unitdata[type][xunit][0].replace("X",x))
-        } else {
-          var base = x*Number(unitdata[type][xunit]);
+        var x = parseFloat(x);
+        var xcon = unitdata[type][xunit];
+        if (!(xcon["api"]==undefined)) {
+          if (unitcache[xunit]==undefined) {
+            var jsondata = getJSON(xcon["api"]);
+            var base = eval(xcon["eval"]);
+            unitcache[xunit] = base;
+          }
+          else {var base = unitcache[xunit]}
+          base = x*base;
+          console.log(base)
         }
-        if (Array.isArray(unitdata[type][yunit])) {
-          var goal = unitdata[type][yunit][1];
+        else if (Array.isArray(xcon)) {
+          var base = eval(xcon[0].replace("X",x))
+        } else {
+          var base = x*Number(xcon);
+        }
+        var ycon = unitdata[type][yunit];
+        if (!(ycon["api"]==undefined)) {
+          if (unitcache[xunit]==undefined) {
+            var jsondata = getJSON(ycon["api"]);
+            var goal = eval(ycon["eval"]);
+            unitcache[yunit] = goal;
+          }
+          else {var goal = unitcache[yunit]}
+          var final = base/goal;
+        }
+        else if (Array.isArray(ycon)) {
+          var goal = ycon[1];
           var final = eval(goal.replace("X",base));
         } else {
-          var goal = Number(unitdata[type][yunit]);
+          var goal = Number(ycon);
           var final = base/goal;
         }
         return final
@@ -169,6 +193,17 @@ This HTML and its contents are property of R74n.com.
           }
         );
       }
+
+      function getJSON(url) {
+        var request = new XMLHttpRequest();
+        request.open('GET', url, false);  // `false` makes the request synchronous
+        request.send(null);
+
+        if (request.status === 200) {
+          return JSON.parse(request.responseText)
+        }
+
+      }
       
       window.addEventListener("load", function(){
         var URLSearch = location.search.substring(1);
@@ -276,6 +311,8 @@ todo:
   <option value="time">Time (Hours, Days)</option>
   <option value="solid-angle">Solid Angle (Square Degrees, Steradians)</option>
   <option value="pepper">Pepper Heat (Scoville Units, ASTA)</option>
+  <option value="musical-interval">Musical Intervals (Cents, Octaves)</option>
+  
   
 </select>
 

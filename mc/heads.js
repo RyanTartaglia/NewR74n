@@ -1674,6 +1674,16 @@ heads = {
 'y-1.png':'Cosa Cazzo Vuoi?',
 'a-3.png':'CallMeCarson Mask',
 '1px.png':'Single Pixel (Might crash game)',
+'muskdeer.png':'Elon Musk Laughing at Deer',
+'muskdeer-1.png':'Elon Musk Laughing at Deer (Duplicate)',
+'grumpy.png':'Grumpy Cat Mask',
+'grumpy-1.png':'Grumpy Cat Mask (Duplicate)',
+'snug.png':'Kanna Kamui Bear Suit',
+'redial.png':'Hatsune Miku Redial',
+'hop1.png':'Fancy Hat and Monocle (Hopp)',
+'kamikaze.png':'Kamikaze Kanji',
+'egg2.png':'NSFW Ahegao 53',
+
 
 
 

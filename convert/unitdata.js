@@ -115,7 +115,8 @@ unitdata = {
     "jupiter radius":69911512.7,
     "solar radius":696347055,
     "social distance unit":1.8288,
-    "banana width":1.75
+    "banana width":1.75,
+    "ever given length":400,
 
 
   },
@@ -379,7 +380,11 @@ unitdata = {
     "facebook credit":0.1,
     "minecraft earth ruby":0.04975,
     "steam point":0.01,
-    "bitcoin": {"eval":"jsondata[Object.keys(jsondata)[0]][Object.keys(jsondata[Object.keys(jsondata)[0]])[0]]",    "api":"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"}
+    "bitcoin": {"eval":"jsondata[Object.keys(jsondata)[0]][Object.keys(jsondata[Object.keys(jsondata)[0]])[0]]",    "api":"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"},
+    "reddit coin":0.00398,
+    "reddit gold":1.99,
+    "reddit platinum":7.16400,
+    
   },
   "area":{
     "square meter":1,

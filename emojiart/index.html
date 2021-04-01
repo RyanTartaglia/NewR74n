@@ -63,6 +63,7 @@ This HTML and its contents are property of R74n.com.
         "🔳":"#8a8a8a",
         "🔲":"#b5b5b5",
         "ℹ️":"#5eb0b0",
+        "🏻":"#f5dcc0",
         "🏳️‍🌈":"#ffffff",
         
         //"👁":"#9a6509",
@@ -98,7 +99,7 @@ This HTML and its contents are property of R74n.com.
       function generate(jump=true) {
         document.getElementById("CopyButton").value = "Copy";
         var NameBox = document.getElementById("NameBox");
-        var piecename = NameBox.value.replaceAll("<","≤").replaceAll(">","≥")
+        var piecename = NameBox.value.replaceAll("<","≤").replaceAll(">","≥").replaceAll(".","․")
         if (piecename=="" || /^\s+$/.test(piecename)) {piecename = "Untitled Piece";NameBox.value=piecename}
         var newtext = "";
         var b64list = [];
@@ -119,8 +120,11 @@ This HTML and its contents are property of R74n.com.
           newlines.push(line);
         }
         newtext = newlines.join("\n");
-        var a = LZUTF8.compress(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|"+piecename);
-        var temp = b64EncodeUnicode(ab2str(a)).replaceAll("=","-");
+        //console.log("b64list = "+b64list);
+        var temp = encodeToUrl(piecename,canvassize[1],canvassize[0],b64list);
+        //console.log("temp = "+temp)
+        //var a = LZUTF8.compress(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|"+piecename);
+        //var temp = b64EncodeUnicode(ab2str(a)).replaceAll("=","-");
         window.history.replaceState(null, null, "?"+temp);//"?"+b64EncodeUnicode(canvassize[0]+"|"+canvassize[1]+"|"+b64list.join("—")+"|Untitled Piece").replaceAll("=","-"));
         while (newtext.endsWith("\n")) {newtext = newtext.slice(0, -1)}
         while (newtext.startsWith("\n")) {newtext = newtext.substring(1)}
@@ -133,7 +137,7 @@ This HTML and its contents are property of R74n.com.
         GeneratedLink.innerHTML = "https://R74n.com/emojiart/"+location.search
         GeneratedLink.setAttribute("href","https://R74n.com/emojiart/"+location.search)
         var ArtworkName = document.getElementById("ArtworkName");
-        ArtworkName.innerHTML = piecename.replaceAll("<","≤").replaceAll(">","≥")
+        ArtworkName.innerHTML = piecename.replaceAll("<","≤").replaceAll(">","≥").replaceAll(".","․")
         if (jump) {location.hash = "Generated";}
         //console.log(b64list)
       }
@@ -233,19 +237,18 @@ This HTML and its contents are property of R74n.com.
         setEmoji("⬛️");
 
         if (!(location.search=="")) {
+          /*
           var b64 = b64DecodeUnicode(location.search.substring(1).replaceAll("-","="));
           var b64Data = b64.split("|");
           var ArtData = LZUTF8.decompress(new Uint8Array(str2ab(b64)).filter(function(x,count=0){
     return count%2==0;
     count ++
-})).split("|");
+})).split("|");*/
+          var ArtData = decodeFromURL(location.search.substring(1)).split("|");
           var piecename = ArtData[3];
           document.getElementById("NameBox").value = piecename.replaceAll("<","≤").replaceAll(">","≥");
           //console.log(ArtData);
-          if (b64Data[2].startsWith("[")) {var pixels = JSON.parse(b64Data[2])}
-          else {
-            var pixels = ArtData[2].split("—");
-          }
+          var pixels = ArtData[2].split("—");
           resize(parseInt(ArtData[0]),parseInt(ArtData[1]),force=true);
           //console.log(pixels)
           var count = 0;
@@ -268,8 +271,11 @@ This HTML and its contents are property of R74n.com.
       function importFile(e) {
         if (!confirm("Are you sure you want to import this image?\n\nYou will lose your current piece. It may take a few seconds.")) {return false}
           var canvas = document.getElementById("ImportCanvas");
-          canvas.setAttribute("width",canvassize[0]);
-          canvas.setAttribute("height",canvassize[1]);
+          canvas.width = canvassize[0];
+          canvas.height = canvassize[1];
+          //canvas.setAttribute("width",canvassize[0]);
+          //canvas.setAttribute("height",canvassize[1]);
+          //console.log(canvas.getAttribute("width"))
           var ctx = canvas.getContext("2d");
           var img = new Image;
           img.src = URL.createObjectURL(e.target.files[0]);
@@ -286,7 +292,9 @@ This HTML and its contents are property of R74n.com.
             else {
               pixels.push(closestEmoji([red,green,blue]))
             }
-            var count = 0;
+            //console.log(red+","+green+","+blue+","+alpha)
+          }
+          var count = 0;
             for (var y=0; y<canvassize[1]; y++) {
               for (var x=0; x<canvassize[0]; x++) {
                 var e = document.getElementById(y+"-"+x);
@@ -295,8 +303,7 @@ This HTML and its contents are property of R74n.com.
               }
             }
             generate(jump=false);
-            //console.log(red+","+green+","+blue+","+alpha)
-          }}
+        }
       }
       emojicolors = {
 "[0,0,0]":"⬛️",
@@ -355,9 +362,47 @@ This HTML and its contents are property of R74n.com.
         var closestcolor = colors[0];
         //console.log(closestcolor);
         //console.log(colors);
+        //console.log(closestcolor)
         var emoji = emojicolors[closestcolor];
         return emoji;
       }
+
+      function hexToBase64(hexStr){/*console.log("hexStr = "+hexStr);*/return btoa([...hexStr].reduce((acc,_,i)=>acc+=!(i-1&1)?String.fromCharCode(parseInt(hexStr.substring(i-1,i+1),16)):"",""));}
+      function base64ToHex(str){const raw=atob(str);let result='';for(let i=0;i<raw.length;i++){const hex=raw.charCodeAt(i).toString(16);result+=(hex.length===2?hex:'0'+hex);}
+return result.toUpperCase();}
+      baseChar=["➖","⬛️","⬜️","🟥","🟧","🟨","🟩","🟦","🟪","🟫","🎛","🔳","🔲","ℹ️","🏻","🏳️‍🌈"]
+      function encodeToUrl(name,width,height,chars){
+        let output=`${encodeURI(name)}.${width}.${height}.`;
+        let hex=chars.map((c)=>baseChar.indexOf(c).toString(16)).join("");
+        output+=hexToBase64(hex);
+        return output;
+      }
+      function decodeFromURL(url){
+var [name, width, height, pixels] = url.split(".");
+name = decodeURI(name);
+width = Number(width);
+height = Number(height);
+pixels = base64ToHex(pixels);
+pixels = pixels.split("").map((c)=>baseChar[parseInt(c, 16)]).join("—");
+return `${width}|${height}|${pixels}|${name}`;
+}
+
+
+      /*
+function hexToBase64(hexStr){return btoa([...hexStr].reduce((acc,_,i)=>acc+=!(i-1&1)?String.fromCharCode(parseInt(hexStr.substring(i-1,i+1),16)):"",""));}
+function base64ToHex(str){const raw=atob(str);let result='';for(let i=0;i<raw.length;i++){const hex=raw.charCodeAt(i).toString(16);result+=(hex.length===2?hex:'0'+hex);}
+return result.toUpperCase();}
+baseChar=["➖","⬛️","⬜️","🟥","🟧","🟨","🟩","🟦","🟪","🟫","🎛","🔳","🔲","ℹ️","👁"]
+function encodeToUrl(name,width,height,chars){let output=`${encodeURI(name)}.${width}.${height}.`;let hex=chars.map((c)=>baseChar.indexOf(c).toString(16)).join("");output+=hexToBase64(hex);return output;}
+function decodeFromURL(url){let[name,width,height,pixels]=url.split(".");name=decodeURI(name);width=Number(width);height=Number(height);pixels=base64ToHex(pixels);pixels=pixels.split("").map((c)=>baseChar[Number(c)]).join("—");return `${width}|${height}|${pixels}|${name}`;}
+
+
+encodeToUrl("R74n","16","16","🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—➖—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—🟦—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—🟦—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—➖—🟦—➖—🟦—🟦—🟦—➖—🟦—🟦—🟦—🟦—➖—➖—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—🟦—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—🟦—🟦—🟦—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—🟦—➖—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—🟦—➖—➖—🟦".split("—"))
+"R74n.16.16.d3d3dwAAd3d3d3d3cAAAB3d3d3d3AABwd3AAB3cABwB3cAAHdwAHAHdwAAd3AAAAd3AAd3cAAHB3d3d3cAAHcHd3d3cAAHBwd3B3dwAHd3d3cAd3cAAAcHdwAHdwAABwd3AAB3cAAAB3cAAHdwB3cHdwAAB3cHB3d3AAAHdwcAc="
+decodeFromURL("R74n.16.16.d3d3dwAAd3d3d3d3cAAAB3d3d3d3AABwd3AAB3cABwB3cAAHdwAHAHdwAAd3AAAAd3AAd3cAAHB3d3d3cAAHcHd3d3cAAHBwd3B3dwAHd3d3cAd3cAAAcHdwAHdwAABwd3AAB3cAAAB3cAAHdwB3cHdwAAB3cHB3d3AAAHdwcAc=")
+"16|16|🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—➖—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—🟦—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—🟦—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—🟦—➖—🟦—➖—🟦—🟦—🟦—➖—🟦—🟦—🟦—🟦—➖—➖—➖—🟦—🟦—🟦—🟦—🟦—🟦—🟦—🟦—➖—➖—🟦—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—➖—➖—🟦—🟦—🟦—➖—➖—🟦—🟦—🟦—➖—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—🟦—➖—🟦—🟦—🟦—🟦—🟦—➖—➖—➖—➖—➖—🟦—🟦—🟦—➖—🟦—➖—➖—🟦|R74n"
+
+      */
       
     </script>
 

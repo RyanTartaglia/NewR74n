@@ -156,7 +156,7 @@ function updateHead(file) {
       }
 
 window.addEventListener("load",function(){
-  var URLSearch = location.search.substring(1);
+  var URLSearch = location.search.substring(1).replace("=","");
   if (!(URLSearch=="")) {
     if (URLSearch.startsWith("all_heads")) {
       var sw = decodeURI(URLSearch.split("_",3)[2]);
@@ -173,6 +173,7 @@ window.addEventListener("load",function(){
         }
         headimg.setAttribute("src",headurl)
         document.body.appendChild(headimg)
+        break
       }
       }
     }

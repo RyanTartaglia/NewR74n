@@ -26,7 +26,7 @@ This HTML and its contents are property of R74n.com.
     <meta name="author" content="R74n">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:image:alt" content="R74n">
-    <title>Emoji Art Canvas - R74n</title>
+    <title id="TitleTag">Emoji Art Canvas - R74n</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css"/>
     <link rel="stylesheet" type="text/css" href="../normalize.css"/>
     <link rel="apple-touch-icon" sizes="180x180" href="https://R74n.com/icons/apple-touch-icon.png?v=R74n-2">
@@ -245,8 +245,8 @@ This HTML and its contents are property of R74n.com.
     count ++
 })).split("|");*/
           var ArtData = decodeFromURL(location.search.substring(1)).split("|");
-          var piecename = ArtData[3];
-          document.getElementById("NameBox").value = piecename.replaceAll("<","≤").replaceAll(">","≥");
+          var piecename = ArtData[3].replaceAll("<","≤").replaceAll(">","≥");
+          document.getElementById("TitleTag").innerHTML = piecename+" Emoji Art - R74n";
           //console.log(ArtData);
           var pixels = ArtData[2].split("—");
           resize(parseInt(ArtData[0]),parseInt(ArtData[1]),force=true);
@@ -259,6 +259,7 @@ This HTML and its contents are property of R74n.com.
               count++
             }
           }
+          document.getElementById("NameBox").value = piecename;
           generate(jump=false);
 
 

@@ -371,7 +371,7 @@ unitdata = {
     "half dollar":0.50,
     "half cent":0.025,
     "fifa point":0.00998666667,
-    "twitch bit":0.014,
+    "twitch bit":0.01,
     "tier 3 sub":24.99,
     "tier 2 sub":9.99,
     "tier 1 sub":4.99,

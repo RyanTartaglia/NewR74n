@@ -43,7 +43,14 @@ This HTML and its contents are property of R74n.com.
     <script src="https://R74n.com/load.js"></script>
 
     <script>
-
+      function copyText(text) {
+        var inp = document.createElement('input');
+        document.body.appendChild(inp);
+        inp.value = unescape(text);
+        inp.select();
+        document.execCommand('copy',false);
+        inp.remove();
+      }
       function genShareImg() {
         var canvas = document.createElement("canvas");
         canvas.height = 740;
@@ -82,13 +89,16 @@ This HTML and its contents are property of R74n.com.
           element.style.backgroundColor = element.getAttribute("bg");
           element.title = "Share to "+element.innerHTML;
           element.alt = "Share to "+element.innerHTML;
-          element.href = element.href.replaceAll("[URL]",encodeURIComponent(window.location.href.replaceAll("r74n","R74n"))).replaceAll("[TEXT]",encodeURIComponent(document.title)).replaceAll("[TAG]","R74n").replaceAll("[IMAGE]","https://R74n.com/icons/thumbnail.png").replaceAll("[DESC]",document.querySelector('meta[name="description"]').content);
+          if (element.href) {
+            element.href = element.href.replaceAll("[URL]",encodeURIComponent(window.location.href.replaceAll("r74n","R74n"))).replaceAll("[TEXT]",encodeURIComponent(document.title)).replaceAll("[TAG]","R74n").replaceAll("[IMAGE]","https://R74n.com/icons/thumbnail.png").replaceAll("[DESC]",document.querySelector('meta[name="description"]').content);
+            if (element.href.startsWith("http")) {element.target = "_blank"};
+          }
           element.style.display = "inline-block";
         }
       })
     </script>
     <style>
-      .sb {display:none;padding:8px;text-decoration:none;border-radius:20px;margin-left:2.5px;margin-right:2.5px;margin-top:2px;margin-bottom:2px;}
+      .sb {display:none;padding:8px;text-decoration:none;border-radius:20px;margin-left:2.5px;margin-right:2.5px;margin-top:2px;margin-bottom:2px;cursor:pointer}
       .sb:active {filter:brightness(69%)}
     </style>
 
@@ -99,8 +109,12 @@ This HTML and its contents are property of R74n.com.
 
 <a href="https://R74n.com" class="backbutton">⦉</a>
 <h1 class="pagetitle">Share</h1><br>
-<div class="content" style="text-align:justify;text-justify:inter-word;">
+<div class="content">
 
+This is a collection of custom share buttons for a variety of websites and other methods of communication.<br><br>They will someday be on every R74n page.
+<br><br>
+
+<div  style="text-align:justify;text-justify:inter-word;">
 <a class="sb" c="white" bg="#4267B2" href="https://www.facebook.com/sharer/sharer.php?u=[URL]%2Fshare&quote=[TEXT]">Facebook</a>
 <a class="sb" c="white" bg="#25D366" href="https://wa.me/?text=[TEXT]%3A%20[URL]">WhatsApp</a>
 <a class="sb" c="white" bg="#A538F6" href="https://www.facebook.com/dialog/send?app_id=5303202981&display=popup&link=[URL]&redirect_uri=[URL]">Messenger</a>
@@ -111,7 +125,7 @@ This HTML and its contents are property of R74n.com.
 <a class="sb" c="white" bg="#FE4602" href="http://www.reddit.com/submit?url=[URL]&title=[TEXT]">Reddit</a>
 <a class="sb" c="white" bg="#E60022" href="https://www.pinterest.com/pin/create/button/?url=[URL]&media=&description=[DESC]">Pinterest</a>
 <a class="sb" c="white" bg="#666666" href="mailto:REPLACE_ME@example.com?subject=[TEXT]&body=[DESC]%20[URL]">Email</a>
-<a class="sb" c="white" bg="#666666" href="#" onclick="print()">Print</a>
+<span class="sb" c="white" bg="#666666" onclick="print()">Print</span>
 <a class="sb" c="white" bg="#0D65C1" href="https://www.linkedin.com/shareArticle?mini=true&url=[URL]&title=[TEXT]&summary=[DESC]&source=[URL]">LinkedIn</a>
 <a class="sb" c="white" bg="#26A9E9" href="https://t.me/share/url?url=[URL]&text=[TEXT]">Telegram</a>
 <a class="sb" c="white" bg="#1C9BEF" href="https://twitter.com/intent/tweet?text=[TEXT]&url=[URL]&hashtags=[TAG]">Twitter</a>
@@ -148,16 +162,32 @@ This HTML and its contents are property of R74n.com.
 <a class="sb" c="white" bg="#0378D3" href="https://outlook.live.com/mail/deeplink/compose?path=%2Fmail%2Finbox&subject=[TEXT]&body=[DESC]%20[URL]">Outlook</a>
 <a class="sb" c="white" bg="#6E9F02" href="https://www.printfriendly.com/print?url=[URL]">PrintFriendly</a>
 <a class="sb" c="white" bg="#7E3DAF" href="viber://forward?text=%20[URL]">Viber</a>
-<a class="sb" c="white" bg="#2A8CD1" href="#" onclick="window.open('http:\/\/'+window.prompt('What is your Mastodon instance url? Just the domain, like \'mastodon.social\'.')+'/share?text='+location.href)">Mastodon</a>
-<a class="sb" c="white" bg="#AC2D33" href="https://web.archive.org/save/URL">Wayback Machine</a>
+<span class="sb" c="white" bg="#2A8CD1" onclick="window.open('http:\/\/'+window.prompt('What is your Mastodon instance url? Just the domain, like \'mastodon.social\'.')+'/share?text='+location.href)">Mastodon</span>
+<a class="sb" c="white" bg="#AC2D33" href="https://web.archive.org/save/[URL]">Wayback Machine</a>
 <a class="sb" c="white" bg="#016187" href="https://wordpress.com/press-this.php?u=[URL]&t=[TEXT]&s=[DESC]">WordPress</a>
 <a class="sb" c="white" bg="#3B7ADF" href="https://translate.google.com/translate?sl=en&tl=tk&u=[URL]">Google Translate</a>
-<a class="sb" c="white" bg="#000000" href="#" onclick="genShareImg();">Image</a>
+<span class="sb" c="white" bg="#00ffff" style="background:linear-gradient(39deg, rgba(0,0,0,1) 0%, rgba(0,255,255,1) 100%);" onclick="genShareImg();">Image</span>
+<a class="sb" c="white" bg="#00CC47" href="sms:&body=[TEXT] [URL]">SMS</a>
+<a class="sb" c="black" bg="#00ffff" href="http://www.reddit.com/R/74n/submit?url=[URL]&title=[TEXT]">R/74n</a>
+<span class="sb" c="white" bg="#666666" onclick="copyText(location.href);this.innerHTML='Copied Link'">Copy Link</span>
+<a class="sb" c="white" bg="#1C73E8" href="https://www.google.com/calendar/render?action=TEMPLATE&text=[TEXT]&details=[DESC]%20[URL]&location=[URL]">Google Calendar</a>
+<a class="sb" c="white" bg="#01629B" href="https://www.folkd.com/?page=submit&check=&addurl=[URL]">Folkd</a>
+<a class="sb" c="white" bg="#666698" href="https://www.fark.com/submit?new_url=[URL]">Fark</a>
+<a class="sb" c="white" bg="#006566" href="https://slashdot.org/submission?url=[URL]">Slashdot</a>
+<a class="sb" c="white" bg="#666666" href="" onclick="alert('Drag this to your bookmarks!')">Bookmarklet</a>
+<a class="sb" c="white" bg="#464DB3" href="https://teams.microsoft.com/share?href=[URL]&msgText=[TEXT]">Teams</a>
+<span class="sb" c="white" bg="#666666" onclick='copyText("<iframe src=\""+location.href.replaceAll("r74n","R74n")+"\" title=\""+document.title+"\"></iframe>");this.innerHTML="Copied Iframe"'>Copy Iframe</span>
+<span class="sb" c="white" bg="#666666" onclick='copyText("<a class=\"embedly-card\" href=\""+location.href.replaceAll("r74n","R74n")+"\">R74n</a><script async src=\"\/\/cdn.embedly.com/widgets/platform.js\" charset=\"UTF-8\"></script>");this.innerHTML="Copied Embedly"'>Copy Embedly</span>
+<a class="sb" c="white" bg="#F08020" href="http://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Fr74n.com%2F&item=li&unique_url=0&unique_title=0&feed_title=R74n&max=20&order=document&guid=url_title">RSS</a>
+
+
+
+
 <!--
 <a class="sb" c="white" bg="#000000" href="">Facebook</a>
 -->
 
-
+</div>
 
 
 

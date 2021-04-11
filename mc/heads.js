@@ -1702,7 +1702,15 @@ heads = {
 'test2.png':'Discord Message (Video Archivist)',
 'mistletoe.png':'Mistletoe',
 'MOUSTACHE.png':'Pixel Mustache',
-
+'https://educommunity.minecraft.net/hc/user_images/jdB42CElnXZ-aYwnPMCTDg.png':'Head Cube (Evo)',
+'https://education.minecraft.net/wp-content/uploads/user-avatars//Untitled_87.png':'??? Face',
+'HDhead6-1.png':'Soap Computer (IWantFrogy)',
+'HDhead5.png':'??? Girl Computer (IWantFrogy)',
+'vhe.png':'Chef Boyardee Beefaroni (IWantFrogy)',
+'ArmadaHeadGradient1.png':'Armada',
+'':'',
+'':'',
+'':'',
 
 
 

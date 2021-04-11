@@ -43,6 +43,37 @@ This HTML and its contents are property of R74n.com.
     <script src="https://R74n.com/load.js"></script>
 
     <script>
+
+      function genShareImg() {
+        var canvas = document.createElement("canvas");
+        canvas.height = 740;
+        canvas.width = 740;
+        var ctx = canvas.getContext('2d');
+        var bgimg = new Image;
+        bgimg.onload = function(){
+          bgimg.setAttribute("crossorigin","anonymous");
+          ctx.drawImage(bgimg,0,0,canvas.width,canvas.height);
+          var logoimg = new Image;
+          logoimg.onload = function(){
+            logoimg.setAttribute("crossorigin","anonymous");
+            ctx.drawImage(logoimg,
+              canvas.width/2-logoimg.width/2,//x
+              (canvas.height/2-logoimg.height/2)-(canvas.height/5),//y
+              
+              canvas.width/4,canvas.height/4);
+            ctx.font = "50px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(document.title.split(" - R74n")[0], canvas.width/2, canvas.height/1.875);
+            ctx.font = "30px Arial";
+            ctx.fillText(window.location.href.replaceAll("r74n","R74n"), canvas.width/2, canvas.height/2+canvas.height/8);
+          }
+          logoimg.src = "https://R74n.com/icons/white.png";
+        };
+        bgimg.src = "https://R74n.com/share_bg.png";
+        
+        document.body.appendChild(canvas)
+      }
+
       window.addEventListener("load",function(){
         var elements = document.getElementsByClassName("sb");
         for (var i = 0; i < elements.length; i++) {
@@ -72,7 +103,7 @@ This HTML and its contents are property of R74n.com.
 
 <a class="sb" c="white" bg="#4267B2" href="https://www.facebook.com/sharer/sharer.php?u=[URL]%2Fshare&quote=[TEXT]">Facebook</a>
 <a class="sb" c="white" bg="#25D366" href="https://wa.me/?text=[TEXT]%3A%20[URL]">WhatsApp</a>
-<a class="sb" c="white" bg="#4267B2" href="https://www.facebook.com/dialog/send?app_id=5303202981&display=popup&link=[URL]&redirect_uri=[URL]">Messenger</a>
+<a class="sb" c="white" bg="#A538F6" href="https://www.facebook.com/dialog/send?app_id=5303202981&display=popup&link=[URL]&redirect_uri=[URL]">Messenger</a>
 <a class="sb" c="white" bg="#df2029" href="https://service.weibo.com/share/share.php?title=[TEXT]+[URL]&pic=[IMAGE]">Weibo</a>
 <a class="sb" c="white" bg="#FFCE00" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=[URL]&title=[TEXT]">QQ</a>
 <a class="sb" c="white" bg="#00569E" href="http://share.renren.com/share/buttonshare.do?link=[URL]&title=[TEXT]">Renren</a>
@@ -118,8 +149,13 @@ This HTML and its contents are property of R74n.com.
 <a class="sb" c="white" bg="#6E9F02" href="https://www.printfriendly.com/print?url=[URL]">PrintFriendly</a>
 <a class="sb" c="white" bg="#7E3DAF" href="viber://forward?text=%20[URL]">Viber</a>
 <a class="sb" c="white" bg="#2A8CD1" href="#" onclick="window.open('http:\/\/'+window.prompt('What is your Mastodon instance url? Just the domain, like \'mastodon.social\'.')+'/share?text='+location.href)">Mastodon</a>
-
-
+<a class="sb" c="white" bg="#AC2D33" href="https://web.archive.org/save/URL">Wayback Machine</a>
+<a class="sb" c="white" bg="#016187" href="https://wordpress.com/press-this.php?u=[URL]&t=[TEXT]&s=[DESC]">WordPress</a>
+<a class="sb" c="white" bg="#3B7ADF" href="https://translate.google.com/translate?sl=en&tl=tk&u=[URL]">Google Translate</a>
+<a class="sb" c="white" bg="#000000" href="#" onclick="genShareImg();">Image</a>
+<!--
+<a class="sb" c="white" bg="#000000" href="">Facebook</a>
+-->
 
 
 

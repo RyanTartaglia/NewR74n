@@ -6,9 +6,9 @@ for (var i = 0; i < elements.length; i++) {
     var content = element.innerHTML;
     if (element.getAttribute("open")==null) {element.setAttribute("open","false")}
     if (element.getAttribute("open")=="false") {
-        element.setAttribute("onclick","this.innerHTML=`"+content.replace('"','\\"')+"`;this.setAttribute('open','true')")
+        element.setAttribute("onclick","this.innerHTML=`"+content.replace('"','\\"')+"`;this.setAttribute('open','true');this.removeAttribute('onclick')")
         element.innerHTML = warning;
     }
-    console.log(elements.item(i).getAttribute("open"));
+    //console.log(elements.item(i).getAttribute("open"));
 }
 })

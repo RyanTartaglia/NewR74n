@@ -75,6 +75,7 @@ unitdata = {
     "line":0.0021166666666666664,
     "league":4828,
     "R74meter":2034.159,
+    "centiR74meter":20.34159,
     "fathom":1.8288,
     "nautical mile":1852,
     "chain":20.1168,

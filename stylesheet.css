@@ -181,9 +181,11 @@ hr {
 .lidesc {margin-left:10px;}
 .lidesc::before {content:"↳ "}
 .cw[open="false"] {cursor:pointer;background-color:rgb(39, 39, 39);padding:5px;border-radius:20px;line-height:2;}
+.cw[open="false"]:active {background-color:rgb(61, 61, 61);}
+.cw[open="true"] {transition:0.5s;}
 .desc {display:block;margin-left:10px;}
 .desc::before {content:"↳ "}
-.wordtxt {}
+/*.wordtxt {}*/
 .wordsep {color:rgb(85, 85, 85);}
 .wordcom {color:lightgray}
 .worddef {color:lightgray;font-style:italic;}

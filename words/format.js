@@ -30,6 +30,10 @@ for (var n in elements) {
 
 }
 
+function randomChoice(l) {
+    return l[Math.floor(Math.random() * l.length)];
+  }
+
 var InputsDiv = document.getElementById("InputsDiv");
 InputsDiv.style.paddingBottom = "20px";
 InputsDiv.innerHTML = "<form onsubmit='search();return false' style='padding-bottom:20px;'> \

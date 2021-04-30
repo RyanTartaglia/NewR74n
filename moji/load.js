@@ -449,7 +449,7 @@ window.addEventListener("load",function(){
     EmojiTag.style.verticalAlign = "middle";
     EmojiTag.style.marginBottom = "0.3em";
     EmojiTag.style.cursor = "text";
-    if (invalid) {
+    if (!(invalid)) {
       EmojiTag.setAttribute("title",R74mojiData[EmojiType][0]);
       if (R74mojiData[EmojiType][1]=="") {
         EmojiTag.setAttribute("alt","[?]");

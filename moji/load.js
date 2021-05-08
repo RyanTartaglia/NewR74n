@@ -418,6 +418,12 @@ function createPlaceholder() {/*https://stackoverflow.com/a/7004837/8234438*/
 
 window.addEventListener("load",function(){
   var EmojiTagList = document.getElementsByTagName("emoji");
+  if (EmojiTagList.length > 0) {
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '.R74mojiClass {image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering:pixelated;image-rendering:optimize-contrast;-ms-interpolation-mode:nearest-neighbor;}';
+    document.getElementsByTagName('head')[0].appendChild(style);
+  }
   for (i = 0; i < EmojiTagList.length; ++i) {
     var OriginalEmojiTag = EmojiTagList[i];
     var EmojiTag = document.createElement("img");

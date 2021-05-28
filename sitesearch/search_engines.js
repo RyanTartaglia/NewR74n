@@ -353,6 +353,7 @@ engines =
 "R74n Twitter Word List":"https://r74n.com/words/twitter#$1",
 "R74n 2020 Word List":"https://r74n.com/words/2020#$1",
 "R74n TikTok Word List":"https://r74n.com/words/tiktok#$1",
+"R74n 2021 Word List":"https://r74n.com/words/2021#$1",
 
 "Alexa Internet":"https://www.alexa.com/siteinfo/$1",
 
@@ -1460,9 +1461,9 @@ engines =
 
 "Can I Use":"https://caniuse.com/?search=HFAKSKFALS",
 
-"Metro UK":"https://metro.co.uk/search/#gsc.tab=0&gsc.q=among%20us&gsc.sort=",
+"Metro UK":"https://metro.co.uk/search/#gsc.tab=0&gsc.q=HFAKSKFALS&gsc.sort=",
 
-"HFAKSKFALS":"HFAKSKFALS",
+"Chrome History":"chrome://history/?q=HFAKSKFALS",
 
 "HFAKSKFALS":"HFAKSKFALS",
 

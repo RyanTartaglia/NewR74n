@@ -1,1 +1,91 @@
 VB.NET - Lisp - OCaml - Cascading Style Sheets - Ada - Tcl - OpenMP - Ruby - LiveCode - Bash - SQL/XML - PHP/FI - Fortran - Scheme - Prolog - XSLT - Groovy - Julia - Forth - Sass - Swift - C++ - Perl - Non-Javascript - Common Lisp - Batch - Smalltalk - Racket - Scala - AutoHotkey - LUA - Guile - Nemerle - D - Objective C - BASIC - JavaScript - ooc - Go - Vala - Haskell - Python - COBOL - Octave - ColdFusion - Java - SQL - LabVIEW - Lua - MatLab - Rust - Awk - PyPy - R - OpenCL - Xojo - Ajax - C/C++ - assembly - C# - Oz - NetLogo - Erlang - CSS - Clojure - MATLAB - VBScript - Pascal - C - Visual Basic - PHP
+
+List of extinct languages:
+1. Egyptian Hieroglyphs
+2. Cuneiform
+3. Linear A
+4. Linear B
+5. Mayan Hieroglyphs
+6. Khmer
+7. Rongorongo
+8. Cypro-Minoan
+9. Anatolian Hieroglyphs
+10. Samarran
+11. Hattic
+12. Palmyrene
+13. Imperial Aramaic
+14. Archaic Chinese
+15. Old Chinese
+16. Tangut
+17. Old Hungarian
+18. Etruscan
+19. Araucanian
+20. Cherokee
+21. Ugaritic
+22. Ge'ez
+23. Hittite
+24. Tocharian
+25. Old Norse
+26. Old Church Slavonic
+27. Avestan
+28. Old Persian
+29. Sanskrit
+30. Old English
+31. Gothic
+32. Old Church Slavonic
+33. Old Norse
+34. Old Russian
+35. Chinese
+36. Old Prussian
+37. Old Church Slavonic
+38. Ubykh
+39. Ancient Greek
+40. Old Church Slavonic
+41. Tangut
+42. Old Hungarian
+43. Old Permic
+44. Old East Slavic
+45. Old Church Slavonic
+46. Old Turkic
+
+Hello in every language
+
+English: Hello
+Spanish: Hola
+French: Bonjour
+German: Hallo
+Italian: Ciao
+Portugese: Olá
+Greek: Γεια σου
+Russian: Привет
+Turkish: Merhaba
+Romanian: Salut
+Arabic: سلام
+Chinese: 你好
+Japanese: こんにちは
+Korean: 안녕하세요
+Hindi: नमस्ते
+Telugu: నమస్తే
+Marathi: नमस्ते
+Malayalam: നമസ്തേ
+Tamil: நமஸ்தா
+Kannada: ನಮಸ್ತೆ
+Thai: สวัสดี
+Chinese (Traditional): 你好
+Vietnamese: Chào
+Hebrew: שלום
+Punjabi: ਨਾਮਸਤੇ
+Hindi: नमस्ते
+Urdu: سلام
+Bangla: নামসতে
+Marathi: नमस्ते
+Bengali: নামসতে
+Tamil: நமஸ்தே
+Telugu: నమస్తే
+Kannada: ನಮಸ್ತೆ
+Malayalam: നമസ്തേ
+Hindi: नमस्ते
+Kannada: ನಮಸ್ತೆ
+Malayalam: നമസ്തേ
+Telugu: నమస
+

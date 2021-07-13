@@ -131,7 +131,7 @@ This HTML and its contents are property of R74n.com.
         while (newtext.startsWith("\n")) {newtext = newtext.substring(1)}
         newtext = clearLineStarts(newtext,"➖");
         var GeneratedText = document.getElementById("GeneratedText");
-        GeneratedText.innerHTML = newtext;
+        GeneratedText.innerHTML = newtext.replaceAll("⬜️","⬜").replaceAll("⬛️","⬛");
         GeneratedText.select();
         document.getElementById("Generated").style.display = "block";
         var GeneratedLink = document.getElementById("GeneratedLink");
